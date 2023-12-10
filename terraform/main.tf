@@ -78,9 +78,6 @@ resource "aws_efs_file_system" "myefs" {
   tags = {
     Name = "MyEFS"
   }
-  provisioner "local-exec" {
-    command = "export TERRAFORM_OUTPUT_EFS_DNS_NAME='${aws_efs_file_system.myefs.dns_name}'"
-  }
 }
 
 resource "aws_efs_mount_target" "crud_mt_az_1" {
@@ -226,12 +223,20 @@ resource "aws_db_instance" "mysql" {
   depends_on                      = [aws_security_group.SG_for_RDS, aws_db_subnet_group.default]
 }
 
+resource "local_file" "userdata_init" {
+  filename = "./userdata.sh"
+  content = templatefile("./userdata.tpl", {
+    dns = aws_efs_file_system.myefs.dns_name
+  })
+  depends_on = [aws_efs_file_system.myefs]
+}
+
 resource "aws_launch_configuration" "my_conf" {
   name_prefix                 = "My Launch Config with WP"
   image_id                    = data.aws_ami.AL2_latest.id
   instance_type               = "t3.medium"
   key_name                    = "j2"
-  user_data                   = file("userdata.tpl")
+  user_data                   = file("userdata.sh")
   security_groups             = [aws_security_group.SG_for_EC2.id]
   associate_public_ip_address = true
   root_block_device {
@@ -315,7 +320,7 @@ resource "null_resource" "ansible" {
     working_dir = "../ansible"
     command     = "ansible-playbook -i hosts crud.yaml --ssh-common-args='-o StrictHostKeyChecking=no' -b -vvv"
   }
-  depends_on = [local_file.servers, aws_efs_file_system.myefs]
+  depends_on = [local_file.servers]
 }
 
 resource "aws_cloudwatch_metric_alarm" "cpuover60" {
