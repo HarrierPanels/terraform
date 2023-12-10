@@ -1,0 +1,10 @@
+---
+- hosts: all
+  vars:
+    db_name: "{{ var.rds_credentials.dbname }}"
+    db_hostname: "{{ aws_db_instance.mysql.endpoint }}"
+    db_username: "{{ var.rds_credentials.username }}"
+    db_password: "{{ var.rds_credentials.password }}"
+    lb_hostname: "{{ aws_efs_file_system.myefs.dns_name }}"  
+  roles:
+    - role: crud

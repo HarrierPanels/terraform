@@ -1,84 +1,76 @@
 provider "aws" {
-  region                  = "eu-west-2"
-  shared_credentials_file = "./aws/credentials"
 }
 
-module "myip" {
-  source  = "4ops/myip/http"
-  version = "1.0.0"
+data "http" "myip" {
+  url = "https://ifconfig.me/ip"
 }
 
-data "template_file" "user_data" {
-  template = file("./install.sh")
-}
-
-resource "aws_instance" "for_ami" {
-  ami           = "ami-0d26eb3972b7f8c96"
-  instance_type = "t2.micro"
-  user_data = data.template_file.user_data.rendered
-  tags = {
-    Name = "Delete_me"
+data "aws_ami" "AL2_latest" {
+  owners = ["137112412989"]
+  most_recent = true
+  filter {
+    name = "name"
+    values = ["amzn2-ami-*-x86_64-gp2"]
   }
 }
 
-resource "aws_ami_from_instance" "apache_php" {
-  name               = "apache_php"
-  source_instance_id = aws_instance.for_ami.id
+data "aws_availability_zones" "avail" {
+  state = "available"
 }
 
-resource "aws_vpc" "myvpc" {
+resource "aws_vpc" "crud_vpc" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
 
   tags = {
-    Name = "MyVPC"
+    Name = "crud_vpc"
   }
 }
 
-resource "aws_subnet" "eu-west-2a" {
-  vpc_id            = aws_vpc.myvpc.id
+resource "aws_subnet" "subnet_az_1" {
+  vpc_id            = aws_vpc.crud_vpc.id
   cidr_block        = "10.0.1.0/24"
-  availability_zone = "eu-west-2a"
+  availability_zone = data.aws_availability_zones.avail.names[0]
 
   tags = {
-    Name = "eu-west-2a"
+    Name = "${data.aws_availability_zones.avail.names[0]}"
   }
 }
 
-resource "aws_subnet" "eu-west-2b" {
-  vpc_id            = aws_vpc.myvpc.id
+resource "aws_subnet" "subnet_az_2" {
+  vpc_id            = aws_vpc.crud_vpc.id
   cidr_block        = "10.0.2.0/24"
-  availability_zone = "eu-west-2b"
+  availability_zone = data.aws_availability_zones.avail.names[1]
 
   tags = {
-    Name = "eu-west-2b"
+    Name = "${data.aws_availability_zones.avail.names[1]}"
   }
 }
 
 resource "aws_internet_gateway" "mygw" {
-  vpc_id = aws_vpc.myvpc.id
+  vpc_id = aws_vpc.crud_vpc.id
 
   tags = {
     Name = "MyIG"
   }
-  depends_on = [aws_vpc.myvpc]
+  depends_on = [aws_vpc.crud_vpc]
 }
 
 resource "aws_route" "route_to_ig" {
-  route_table_id         = aws_vpc.myvpc.main_route_table_id
+  route_table_id         = aws_vpc.crud_vpc.main_route_table_id
   destination_cidr_block = "0.0.0.0/0"
   gateway_id             = aws_internet_gateway.mygw.id
-  depends_on             = [aws_internet_gateway.mygw, aws_vpc.myvpc]
+  depends_on             = [aws_internet_gateway.mygw, aws_vpc.crud_vpc]
 }
 
-resource "aws_route_table_association" "eu-west-2a" {
-  subnet_id      = aws_subnet.eu-west-2a.id
-  route_table_id = aws_vpc.myvpc.main_route_table_id
+resource "aws_route_table_association" "crud_rt_az_1" {
+  subnet_id      = aws_subnet.subnet_az_1.id
+  route_table_id = aws_vpc.crud_vpc.main_route_table_id
 }
 
-resource "aws_route_table_association" "eu-west-2b" {
-  subnet_id      = aws_subnet.eu-west-2b.id
-  route_table_id = aws_vpc.myvpc.main_route_table_id
+resource "aws_route_table_association" "crud_rt_az_2" {
+  subnet_id      = aws_subnet.subnet_az_2.id
+  route_table_id = aws_vpc.crud_vpc.main_route_table_id
 }
 
 resource "aws_efs_file_system" "myefs" {
@@ -86,18 +78,21 @@ resource "aws_efs_file_system" "myefs" {
   tags = {
     Name = "MyEFS"
   }
+  provisioner "local-exec" {
+    command = "export TERRAFORM_OUTPUT_EFS_DNS_NAME='${aws_efs_file_system.myefs.dns_name}'"
+  }
 }
 
-resource "aws_efs_mount_target" "eu-west-2a" {
+resource "aws_efs_mount_target" "crud_mt_az_1" {
   file_system_id  = aws_efs_file_system.myefs.id
-  subnet_id       = aws_subnet.eu-west-2a.id
+  subnet_id       = aws_subnet.subnet_az_1.id
   security_groups = [aws_security_group.SG_for_EFS.id]
   depends_on      = [aws_efs_file_system.myefs, aws_security_group.SG_for_EFS]
 }
 
-resource "aws_efs_mount_target" "eu-west-2b" {
+resource "aws_efs_mount_target" "crud_mt_az_2" {
   file_system_id  = aws_efs_file_system.myefs.id
-  subnet_id       = aws_subnet.eu-west-2b.id
+  subnet_id       = aws_subnet.subnet_az_2.id
   security_groups = [aws_security_group.SG_for_EFS.id]
   depends_on      = [aws_efs_file_system.myefs, aws_security_group.SG_for_EFS]
 }
@@ -105,7 +100,7 @@ resource "aws_efs_mount_target" "eu-west-2b" {
 resource "aws_security_group" "SG_for_EC2" {
   name        = "SG_for_EC2"
   description = "Allow 80, 443, 22 port inbound traffic"
-  vpc_id      = aws_vpc.myvpc.id
+  vpc_id      = aws_vpc.crud_vpc.id
 
   ingress {
     description = "TLS from anywhere"
@@ -128,7 +123,7 @@ resource "aws_security_group" "SG_for_EC2" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
-    cidr_blocks = ["${module.myip.address}/32"]
+    cidr_blocks = ["${data.http.myip.response_body}/32"]
   }
 
   egress {
@@ -142,7 +137,7 @@ resource "aws_security_group" "SG_for_EC2" {
 resource "aws_security_group" "SG_for_RDS" {
   name        = "SG_for_RDS"
   description = "Allow MySQL inbound traffic"
-  vpc_id      = aws_vpc.myvpc.id
+  vpc_id      = aws_vpc.crud_vpc.id
 
   ingress {
     description     = "RDS from EC2"
@@ -164,7 +159,7 @@ resource "aws_security_group" "SG_for_RDS" {
 resource "aws_security_group" "SG_for_EFS" {
   name        = "SG_for_EFS"
   description = "Allow NFS inbound traffic"
-  vpc_id      = aws_vpc.myvpc.id
+  vpc_id      = aws_vpc.crud_vpc.id
 
   ingress {
     description     = "NFS from EC2"
@@ -186,7 +181,7 @@ resource "aws_security_group" "SG_for_EFS" {
 resource "aws_security_group" "SG_for_ELB" {
   name        = "SG_for_ELB"
   description = "Allow traffic for ELB"
-  vpc_id      = aws_vpc.myvpc.id
+  vpc_id      = aws_vpc.crud_vpc.id
 
   ingress {
     description = "Allow all inbound traffic on the 80 port"
@@ -207,17 +202,17 @@ resource "aws_security_group" "SG_for_ELB" {
 
 resource "aws_db_subnet_group" "default" {
   name       = "main"
-  subnet_ids = [aws_subnet.eu-west-2a.id, aws_subnet.eu-west-2b.id]
+  subnet_ids = [aws_subnet.subnet_az_1.id, aws_subnet.subnet_az_2.id]
 }
 
 resource "aws_db_instance" "mysql" {
   identifier = "mysql"
   engine     = "mysql"
-  engine_version                  = "5.7.33"
-  instance_class                  = "db.t2.micro"
+  engine_version                  = "8.0.28"
+  instance_class                  = "db.t3.medium"
   db_subnet_group_name            = aws_db_subnet_group.default.name
   enabled_cloudwatch_logs_exports = ["general", "error"]
-  name                            = var.rds_credentials.dbname
+  db_name                         = var.rds_credentials.dbname
   username                        = var.rds_credentials.username
   password                        = var.rds_credentials.password
   allocated_storage               = 20
@@ -233,9 +228,10 @@ resource "aws_db_instance" "mysql" {
 
 resource "aws_launch_configuration" "my_conf" {
   name_prefix                 = "My Launch Config with WP"
-  image_id                    = aws_ami_from_instance.apache_php.id
-  instance_type               = "t2.micro"
-  key_name                    = "Test_key"
+  image_id                    = data.aws_ami.AL2_latest.id
+  instance_type               = "t3.medium"
+  key_name                    = "j2"
+  user_data                   = file("userdata.tpl")
   security_groups             = [aws_security_group.SG_for_EC2.id]
   associate_public_ip_address = true
   root_block_device {
@@ -243,11 +239,7 @@ resource "aws_launch_configuration" "my_conf" {
     volume_size = 8
     encrypted   = false
   }
-  user_data  = <<EOF
-#!/bin/bash
-sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport ${aws_efs_file_system.myefs.dns_name}:/ /var/www/html
-EOF
-  depends_on = [aws_security_group.SG_for_EC2, aws_ami_from_instance.apache_php]
+  depends_on = [aws_security_group.SG_for_EC2]
 }
 
 resource "aws_autoscaling_group" "my_asg" {
@@ -258,18 +250,18 @@ resource "aws_autoscaling_group" "my_asg" {
   health_check_type         = "ELB"
   desired_capacity          = 2
   launch_configuration      = aws_launch_configuration.my_conf.name
-  vpc_zone_identifier       = [aws_subnet.eu-west-2a.id, aws_subnet.eu-west-2b.id]
+  vpc_zone_identifier       = [aws_subnet.subnet_az_1.id, aws_subnet.subnet_az_2.id]
   load_balancers            = [aws_elb.my_elb.name]
   lifecycle {
     create_before_destroy = true
   }
-  depends_on = [aws_elb.my_elb, aws_launch_configuration.my_conf, aws_efs_mount_target.eu-west-2a, aws_efs_mount_target.eu-west-2b]
+  depends_on = [aws_elb.my_elb, aws_launch_configuration.my_conf, aws_efs_mount_target.crud_mt_az_1, aws_efs_mount_target.crud_mt_az_2]
 }
 
 resource "aws_elb" "my_elb" {
   name            = "My-ELB"
   security_groups = [aws_security_group.SG_for_ELB.id]
-  subnets         = [aws_subnet.eu-west-2a.id, aws_subnet.eu-west-2b.id]
+  subnets         = [aws_subnet.subnet_az_1.id, aws_subnet.subnet_az_2.id]
 
   listener {
     instance_port     = 80
@@ -292,7 +284,7 @@ resource "aws_elb" "my_elb" {
 }
 
 resource "local_file" "wp_config" {
-  filename = "../ansible/roles/wordpress/files/wp-config.php"
+  filename = "../ansible/roles/crud/files/wp-config.php"
   content = templatefile("./wp-config.tmpl", {
     database_name = var.rds_credentials.dbname
     username      = var.rds_credentials.username
@@ -306,7 +298,7 @@ data "aws_instances" "my_inst" {
 
   filter {
     name   = "image-id"
-    values = [aws_ami_from_instance.apache_php.id]
+    values = [data.aws_ami.AL2_latest.id]
   }
   depends_on = [aws_autoscaling_group.my_asg]
 }
@@ -321,9 +313,9 @@ resource "local_file" "servers" {
 resource "null_resource" "ansible" {
   provisioner "local-exec" {
     working_dir = "../ansible"
-    command     = "ansible-playbook -i hosts wp.yaml"
+    command     = "ansible-playbook -i hosts crud.yaml --ssh-common-args='-o StrictHostKeyChecking=no' -b -vvv"
   }
-  depends_on = [local_file.servers, local_file.wp_config]
+  depends_on = [local_file.servers, aws_efs_file_system.myefs]
 }
 
 resource "aws_cloudwatch_metric_alarm" "cpuover60" {

@@ -1,0 +1,212 @@
+- name: Set EFS DNS Name
+  set_fact:
+    efs_dns_name: "{{ lookup('env', 'TERRAFORM_OUTPUT_EFS_DNS_NAME') }}"
+
+- name: Install required packages
+  yum:
+    name:
+      - amazon-linux-extras
+      - awslogs
+      - httpd
+      - mysql
+      - gcc-c++
+      - nfs-utils
+      - libselinux-python
+      - unzip
+    state: present
+    update_cache: yes
+  register: pack1
+
+- name: Show installer output Pack 1
+  debug:
+    var: pack1
+
+- name: Enable PHP 7.4
+  shell: "amazon-linux-extras enable php7.4"
+  register: php
+
+- name: Show installer output PHP
+  debug:
+    var: php
+
+- name: Install PHP packages
+  shell: "yum install -y php php-{pear,cgi,common,curl,mbstring,gd,mysqlnd,gettext,bcmath,json,xml,fpm,intl,zip,imap,devel,opcache}"
+  register: php_packages
+
+- name: Show installer output PHP packages
+  debug:
+    var: php_packages
+
+- name: Enable and start NFS server
+  systemd:
+    name: nfs-server.service
+    enabled: yes
+    state: started
+  register: nfs_server
+
+- name: Show Enable and start NFS server output
+  debug:
+    var: nfs_server
+
+- name: Mount EFS filesystem
+  mount:
+    name: /
+    src: "{{ efs_dns_name }}:/"
+    fstype: nfs4
+    opts: nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2
+    state: mounted
+  register: efs_filesystem
+  until: efs_filesystem is success or efs_filesystem is failed
+  retries: 5
+  delay: 10
+  ignore_errors: yes
+
+- name: Show Mount EFS filesystem output
+  debug:
+    var: efs_filesystem
+
+- name: Download CRUD
+  get_url:
+    url: https://github.com/FaztWeb/php-mysql-crud/archive/master.zip
+    dest: /tmp/crud.zip
+    mode: "0644"
+  register: download_result
+  until: download_result is success or download_result is failed
+  retries: 5
+  delay: 10
+
+- name: Download CRUD output
+  debug:
+    var: download_result
+
+- name: Extract CRUD
+  unarchive:
+    src: /tmp/crud.zip
+    dest: /tmp/
+    remote_src: yes
+  register: extract_crud
+
+- name: Extract CRUD output
+  debug:
+    var: extract_crud
+
+- name: Copy CRUD files to web root
+  copy:
+    src: /tmp/php-mysql-crud-master/
+    dest: /var/www/html/
+    remote_src: yes
+  register: copy_crud
+
+- name: Copy CRUD files to web root output
+  debug:
+    var: copy_crud
+
+- name: Modify SQL script
+  replace:
+    path: /var/www/html/database/script.sql
+    regexp: 'php_mysql_crud'
+    replace: "{{ db_name }}"
+  become: yes
+  register: mod_sql
+
+- name: Modify SQL script output
+  debug:
+    var: mod_sql
+
+- name: Execute SQL script
+  mysql_db:
+    name: "{{ db_name }}"
+    state: import
+    target: /var/www/html/database/script.sql
+    login_host: "{{ db_hostname }}"
+    login_user: "{{ db_username }}"
+    login_password: "{{ db_password }}"
+  register: exe_sql
+
+- name: Execute SQL script output
+  debug:
+    var: exe_sql
+
+
+- name: Modify PHP files dbname
+  replace:
+    path: /var/www/html/db.php
+    regexp: 'php_mysql_crud'
+    replace: "{{ db_name }}"
+  become: yes
+  register: mod_dbname_php
+
+- name: Modify PHP files dbname output
+  debug:
+    var: mod_dbname_php
+
+- name: Replace DB credentials in PHP files user
+  replace:
+    path: /var/www/html/db.php
+    regexp: 'root'
+    replace: "{{ db_username }}"
+  become: yes
+  register: mod_user_php
+
+- name: Replace DB credentials in PHP files user output
+  debug:
+    var: mod_user_php
+
+- name: Replace DB credentials in PHP files password
+  replace:
+    path: /var/www/html/db.php
+    regexp: 'password123'
+    replace: "{{ db_password }}"
+  become: yes
+  register: mod_pass_php
+
+- name: Replace DB credentials in PHP files password output
+  debug:
+    var: mod_pass_php
+
+- name: Replace DB hostname in PHP files hostname
+  replace:
+    path: /var/www/html/db.php
+    regexp: 'localhost'
+    replace: "{{ db_hostname }}"
+  become: yes
+  register: mod_hostname_php
+
+- name: Replace DB credentials in PHP files hostname output
+  debug:
+    var: mod_hostname_php
+
+- name: Replace error message in PHP files
+  replace:
+    path: /var/www/html/db.php
+    regexp: 'erro'
+    replace: 'error'
+  become: yes
+  register: mod_err_php
+
+- name: Replace error message in PHP files output
+  debug:
+    var: mod_err_php
+
+- name: Update title in header.php
+  replace:
+    path: /var/www/html/includes/header.php
+    regexp: 'PHP MySQL CRUD'
+    replace: "PHP MySQL CRUD ID/IP: {{ ansible_host }} | {{ ansible_default_ipv4.address }}"
+  become: yes
+  register: mod_title_php
+
+- name: Update title in header.php output
+  debug:
+    var: mod_title_php
+
+- name: Enable and start Apache
+  systemd:
+    name: httpd
+    enabled: yes
+    state: started
+  register: apaxhe_start
+
+- name: Enable and start Apache output
+  debug:
+    var: apaxhe_start
