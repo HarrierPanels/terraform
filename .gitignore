@@ -4,3 +4,4 @@
 .terraform.lock.hcl
 *sh
 ansible/*yaml
+hosts

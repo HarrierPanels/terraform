@@ -3,6 +3,7 @@
     name:
       - libselinux-python
       - unzip
+      - MySQL-python
     state: present
     update_cache: yes
   register: libselinux_unzip
@@ -58,11 +59,6 @@
 - name: Modify SQL script output
   debug:
     var: mod_sql
-
-- name: Get RDS Endpoint from Terraform
-  set_fact:
-    db_hostname: "{{ lookup('env', 'TF_VAR_rds_endpoint') }}"
-  when: lookup('env', 'TF_VAR_rds_endpoint') is defined
 
 - name: Execute SQL script
   mysql_db:
