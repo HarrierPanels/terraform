@@ -1,69 +1,15 @@
-- name: Set EFS DNS Name
-  set_fact:
-    efs_dns_name: "{{ lookup('env', 'TERRAFORM_OUTPUT_EFS_DNS_NAME') }}"
-
 - name: Install required packages
   yum:
     name:
-      - amazon-linux-extras
-      - awslogs
-      - httpd
-      - mysql
-      - gcc-c++
-      - nfs-utils
       - libselinux-python
       - unzip
     state: present
     update_cache: yes
-  register: pack1
+  register: libselinux_unzip
 
 - name: Show installer output Pack 1
   debug:
-    var: pack1
-
-- name: Enable PHP 7.4
-  shell: "amazon-linux-extras enable php7.4"
-  register: php
-
-- name: Show installer output PHP
-  debug:
-    var: php
-
-- name: Install PHP packages
-  shell: "yum install -y php php-{pear,cgi,common,curl,mbstring,gd,mysqlnd,gettext,bcmath,json,xml,fpm,intl,zip,imap,devel,opcache}"
-  register: php_packages
-
-- name: Show installer output PHP packages
-  debug:
-    var: php_packages
-
-- name: Enable and start NFS server
-  systemd:
-    name: nfs-server.service
-    enabled: yes
-    state: started
-  register: nfs_server
-
-- name: Show Enable and start NFS server output
-  debug:
-    var: nfs_server
-
-- name: Mount EFS filesystem
-  mount:
-    name: /
-    src: "{{ efs_dns_name }}:/"
-    fstype: nfs4
-    opts: nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2
-    state: mounted
-  register: efs_filesystem
-  until: efs_filesystem is success or efs_filesystem is failed
-  retries: 5
-  delay: 10
-  ignore_errors: yes
-
-- name: Show Mount EFS filesystem output
-  debug:
-    var: efs_filesystem
+    var: libselinux_unzip
 
 - name: Download CRUD
   get_url:
@@ -113,6 +59,11 @@
   debug:
     var: mod_sql
 
+- name: Get RDS Endpoint from Terraform
+  set_fact:
+    db_hostname: "{{ lookup('env', 'TF_VAR_rds_endpoint') }}"
+  when: lookup('env', 'TF_VAR_rds_endpoint') is defined
+
 - name: Execute SQL script
   mysql_db:
     name: "{{ db_name }}"
@@ -126,7 +77,6 @@
 - name: Execute SQL script output
   debug:
     var: exe_sql
-
 
 - name: Modify PHP files dbname
   replace:
