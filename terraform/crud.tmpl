@@ -1,0 +1,9 @@
+---
+- hosts: all
+  vars:
+    db_name: "${database_name}"
+    db_hostname: "${db_host}"
+    db_username: "${username}"
+    db_password: "${password}"
+  roles:
+    - role: crud

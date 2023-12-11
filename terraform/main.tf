@@ -280,9 +280,9 @@ resource "aws_elb" "my_elb" {
   depends_on                = [aws_security_group.SG_for_ELB]
 }
 
-resource "local_file" "wp_config" {
-  filename = "../ansible/roles/crud/files/wp-config.php"
-  content = templatefile("./wp-config.tmpl", {
+resource "local_file" "playbook" {
+  filename = "../ansible/crud.yaml"
+  content = templatefile("./crud.tmpl", {
     database_name = var.rds_credentials.dbname
     username      = var.rds_credentials.username
     password      = var.rds_credentials.password
@@ -312,7 +312,7 @@ resource "null_resource" "ansible" {
     working_dir = "../ansible"
     command     = "ansible-playbook -i hosts crud.yaml --ssh-common-args='-o StrictHostKeyChecking=no' -b -vvv"
   }
-  depends_on = [local_file.servers]
+  depends_on = [local_file.servers, local_file.playbook]
 }
 
 resource "aws_cloudwatch_metric_alarm" "cpuover60" {
