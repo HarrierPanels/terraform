@@ -14,7 +14,7 @@ yum clean metadata
 yum install -y php php-{pear,cgi,common,curl,mbstring,gd,mysqlnd,gettext,bcmath,json,xml,fpm,intl,zip,imap,devel,opcache}
 systemctl enable nfs-server.service
 systemctl start nfs-server.service
-sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport ${dns}:/ /var/www/html
+sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-02c21dc77cc6c5328.efs.us-east-1.amazonaws.com:/ /var/www/html
 
 chkconfig httpd on
 service httpd start

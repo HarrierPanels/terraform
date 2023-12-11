@@ -94,18 +94,10 @@ resource "aws_efs_mount_target" "crud_mt_az_2" {
   depends_on      = [aws_efs_file_system.myefs, aws_security_group.SG_for_EFS]
 }
 
-resource "aws_security_group" "SG_for_EC2" {
-  name        = "SG_for_EC2"
-  description = "Allow 80, 443, 22 port inbound traffic"
+resource "aws_security_group" "SG_for_ELB" {
+  name        = "SG_for_ELB"
+  description = "Allow 80 port inbound traffic"
   vpc_id      = aws_vpc.crud_vpc.id
-
-  ingress {
-    description = "TLS from anywhere"
-    from_port   = 443
-    to_port     = 443
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
 
   ingress {
     description = "HTTP from anywhere"
@@ -113,14 +105,6 @@ resource "aws_security_group" "SG_for_EC2" {
     to_port     = 80
     protocol    = "tcp"
     cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
-    description = "SSH from my IP"
-    from_port   = 22
-    to_port     = 22
-    protocol    = "tcp"
-    cidr_blocks = ["${data.http.myip.response_body}/32"]
   }
 
   egress {
@@ -175,26 +159,34 @@ resource "aws_security_group" "SG_for_EFS" {
   depends_on = [aws_security_group.SG_for_EC2]
 }
 
-resource "aws_security_group" "SG_for_ELB" {
-  name        = "SG_for_ELB"
-  description = "Allow traffic for ELB"
+resource "aws_security_group" "SG_for_EC2" {
+  name        = "SG_for_EC2"
+  description = "Allow traffic for EC2 from ELB"
   vpc_id      = aws_vpc.crud_vpc.id
 
   ingress {
-    description = "Allow all inbound traffic on the 80 port"
+    description = "Allow inbound traffic on the 80 port from ELB"
     from_port   = 80
     to_port     = 80
     protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
+    security_groups = [aws_security_group.SG_for_ELB.id]
+  }
+
+  ingress {
+    description = "SSH from my IP"
+    from_port   = 22
+    to_port     = 22
+    protocol    = "tcp"
+    cidr_blocks = ["${data.http.myip.response_body}/32"]
   }
 
   egress {
-    from_port       = 80
-    to_port         = 80
-    protocol        = "tcp"
-    security_groups = [aws_security_group.SG_for_EC2.id]
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
   }
-  depends_on = [aws_security_group.SG_for_EC2]
+  depends_on = [aws_security_group.SG_for_ELB]
 }
 
 resource "aws_db_subnet_group" "default" {
@@ -236,7 +228,7 @@ resource "aws_launch_configuration" "my_conf" {
   image_id                    = data.aws_ami.AL2_latest.id
   instance_type               = "t3.medium"
   key_name                    = "j2"
-  user_data                   = file("userdata.sh")
+  user_data                   = local_file.userdata_init.content
   security_groups             = [aws_security_group.SG_for_EC2.id]
   associate_public_ip_address = true
   root_block_device {
@@ -244,7 +236,7 @@ resource "aws_launch_configuration" "my_conf" {
     volume_size = 8
     encrypted   = false
   }
-  depends_on = [aws_security_group.SG_for_EC2]
+  depends_on = [local_file.userdata_init, aws_security_group.SG_for_EC2]
 }
 
 resource "aws_autoscaling_group" "my_asg" {
