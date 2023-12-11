@@ -286,7 +286,7 @@ resource "local_file" "playbook" {
     database_name = var.rds_credentials.dbname
     username      = var.rds_credentials.username
     password      = var.rds_credentials.password
-    db_host       = aws_db_instance.mysql.endpoint
+    db_host       = element(split(":", aws_db_instance.mysql.endpoint), 0)
   })
   depends_on = [aws_db_instance.mysql, aws_autoscaling_group.my_asg]
 }

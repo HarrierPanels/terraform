@@ -60,6 +60,30 @@
   debug:
     var: mod_sql
 
+- name: Modify SQL script create db
+  replace:
+    path: /var/www/html/database/script.sql
+    regexp: 'CREATE DATABASE'
+    replace: 'CREATE DATABASE IF NOT EXISTS'
+  become: yes
+  register: mod_sql_db
+
+- name: Modify SQL script create db output
+  debug:
+    var: mod_sql_db
+
+- name: Modify SQL script create table
+  replace:
+    path: /var/www/html/database/script.sql
+    regexp: 'CREATE TABLE'
+    replace: 'CREATE TABLE IF NOT EXISTS'
+  become: yes
+  register: mod_sql_table
+
+- name: Modify SQL script create table output
+  debug:
+    var: mod_sql_table
+
 - name: Execute SQL script
   mysql_db:
     name: "{{ db_name }}"
@@ -68,6 +92,9 @@
     login_host: "{{ db_hostname }}"
     login_user: "{{ db_username }}"
     login_password: "{{ db_password }}"
+    login_port: 3306
+    login_unix_socket: null
+    config_file: null
   register: exe_sql
 
 - name: Execute SQL script output
