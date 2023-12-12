@@ -3,7 +3,7 @@
 <br>
 ## Deploy https://github.com/FaztWeb/php-mysql-crud using Terraform / Ansible Toolchain for an AWS multi-tier architecture as follows:
 <img src="./Architecture.PNG" width="350" height="446">
-#### Terraform
+#### Terraform<br>
 <sub>Must be implemented in the form of two modules: one module - everything related to the network; the second is different
 Input parameters of the module: the name of the service (start from it when creating resources). For example, vasya-app-load-balancer, vasya-auto-scaling-group and so on.
 Input parameters for the program module are instance types; IPs from which there will be access. Outputs: instant sides.
