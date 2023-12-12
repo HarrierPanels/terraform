@@ -4,7 +4,7 @@ provider "aws" {
 terraform {
   backend "s3" {
     bucket         = "terraform-ansible-task"
-    key            = "test/terraform.tfstate"
+    key            = "environments/production/terraform.tfstate"
     region         = "us-east-1"
     dynamodb_table = "terraform-lock-table"
   }
