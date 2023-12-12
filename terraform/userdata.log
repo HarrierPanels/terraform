@@ -1,0 +1,838 @@
+++ date
++ echo 'Script started: Tue Dec 12 19:00:28 UTC 2023'
+Script started: Tue Dec 12 19:00:28 UTC 2023
++ yum update -y
+Loaded plugins: priorities, update-motd
+No packages marked for update
++ yum install -y amazon-linux-extras
+Loaded plugins: priorities, update-motd
+Package amazon-linux-extras-2.0.3-1.amzn2.noarch already installed and latest version
+Nothing to do
++ yum install -y awslogs httpd mysql gcc-c++ nfs-utils
+Loaded plugins: priorities, update-motd
+Resolving Dependencies
+--> Running transaction check
+---> Package awslogs.noarch 0:1.1.4-3.amzn2 will be installed
+--> Processing Dependency: aws-cli-plugin-cloudwatch-logs for package: awslogs-1.1.4-3.amzn2.noarch
+---> Package gcc-c++.x86_64 0:7.3.1-17.amzn2 will be installed
+--> Processing Dependency: gcc(x86-64) = 7.3.1-17.amzn2 for package: gcc-c++-7.3.1-17.amzn2.x86_64
+--> Processing Dependency: libmpc.so.3()(64bit) for package: gcc-c++-7.3.1-17.amzn2.x86_64
+--> Processing Dependency: libmpfr.so.4()(64bit) for package: gcc-c++-7.3.1-17.amzn2.x86_64
+---> Package httpd.x86_64 0:2.4.58-1.amzn2 will be installed
+--> Processing Dependency: httpd-filesystem = 2.4.58-1.amzn2 for package: httpd-2.4.58-1.amzn2.x86_64
+--> Processing Dependency: httpd-tools = 2.4.58-1.amzn2 for package: httpd-2.4.58-1.amzn2.x86_64
+--> Processing Dependency: /etc/mime.types for package: httpd-2.4.58-1.amzn2.x86_64
+--> Processing Dependency: httpd-filesystem for package: httpd-2.4.58-1.amzn2.x86_64
+--> Processing Dependency: mod_http2 for package: httpd-2.4.58-1.amzn2.x86_64
+--> Processing Dependency: system-logos-httpd for package: httpd-2.4.58-1.amzn2.x86_64
+--> Processing Dependency: libapr-1.so.0()(64bit) for package: httpd-2.4.58-1.amzn2.x86_64
+--> Processing Dependency: libaprutil-1.so.0()(64bit) for package: httpd-2.4.58-1.amzn2.x86_64
+---> Package mariadb.x86_64 1:5.5.68-1.amzn2.0.1 will be installed
+--> Processing Dependency: /usr/bin/perl for package: 1:mariadb-5.5.68-1.amzn2.0.1.x86_64
+--> Processing Dependency: perl(Exporter) for package: 1:mariadb-5.5.68-1.amzn2.0.1.x86_64
+--> Processing Dependency: perl(Fcntl) for package: 1:mariadb-5.5.68-1.amzn2.0.1.x86_64
+--> Processing Dependency: perl(File::Temp) for package: 1:mariadb-5.5.68-1.amzn2.0.1.x86_64
+--> Processing Dependency: perl(Getopt::Long) for package: 1:mariadb-5.5.68-1.amzn2.0.1.x86_64
+--> Processing Dependency: perl(IPC::Open3) for package: 1:mariadb-5.5.68-1.amzn2.0.1.x86_64
+--> Processing Dependency: perl(Sys::Hostname) for package: 1:mariadb-5.5.68-1.amzn2.0.1.x86_64
+---> Package nfs-utils.x86_64 1:1.3.0-0.54.amzn2.0.2 will be installed
+--> Processing Dependency: gssproxy >= 0.7.0-3 for package: 1:nfs-utils-1.3.0-0.54.amzn2.0.2.x86_64
+--> Processing Dependency: libtirpc >= 0.2.4-0.7 for package: 1:nfs-utils-1.3.0-0.54.amzn2.0.2.x86_64
+--> Processing Dependency: keyutils for package: 1:nfs-utils-1.3.0-0.54.amzn2.0.2.x86_64
+--> Processing Dependency: libevent for package: 1:nfs-utils-1.3.0-0.54.amzn2.0.2.x86_64
+--> Processing Dependency: libnfsidmap for package: 1:nfs-utils-1.3.0-0.54.amzn2.0.2.x86_64
+--> Processing Dependency: quota for package: 1:nfs-utils-1.3.0-0.54.amzn2.0.2.x86_64
+--> Processing Dependency: rpcbind for package: 1:nfs-utils-1.3.0-0.54.amzn2.0.2.x86_64
+--> Processing Dependency: libevent-2.0.so.5()(64bit) for package: 1:nfs-utils-1.3.0-0.54.amzn2.0.2.x86_64
+--> Processing Dependency: libnfsidmap.so.0()(64bit) for package: 1:nfs-utils-1.3.0-0.54.amzn2.0.2.x86_64
+--> Processing Dependency: libtirpc.so.1()(64bit) for package: 1:nfs-utils-1.3.0-0.54.amzn2.0.2.x86_64
+--> Running transaction check
+---> Package apr.x86_64 0:1.7.2-1.amzn2 will be installed
+---> Package apr-util.x86_64 0:1.6.3-1.amzn2.0.1 will be installed
+--> Processing Dependency: apr-util-bdb(x86-64) = 1.6.3-1.amzn2.0.1 for package: apr-util-1.6.3-1.amzn2.0.1.x86_64
+---> Package aws-cli-plugin-cloudwatch-logs.noarch 0:1.4.6-1.amzn2.0.1 will be installed
+--> Processing Dependency: awscli >= 1.11.41 for package: aws-cli-plugin-cloudwatch-logs-1.4.6-1.amzn2.0.1.noarch
+--> Processing Dependency: python-dateutil >= 2.1 for package: aws-cli-plugin-cloudwatch-logs-1.4.6-1.amzn2.0.1.noarch
+---> Package gcc.x86_64 0:7.3.1-17.amzn2 will be installed
+--> Processing Dependency: cpp = 7.3.1-17.amzn2 for package: gcc-7.3.1-17.amzn2.x86_64
+--> Processing Dependency: binutils >= 2.24 for package: gcc-7.3.1-17.amzn2.x86_64
+--> Processing Dependency: glibc-devel >= 2.2.90-12 for package: gcc-7.3.1-17.amzn2.x86_64
+--> Processing Dependency: libatomic >= 7.3.1-17.amzn2 for package: gcc-7.3.1-17.amzn2.x86_64
+--> Processing Dependency: libcilkrts >= 7.3.1-17.amzn2 for package: gcc-7.3.1-17.amzn2.x86_64
+--> Processing Dependency: libitm >= 7.3.1-17.amzn2 for package: gcc-7.3.1-17.amzn2.x86_64
+--> Processing Dependency: libmpx >= 7.3.1-17.amzn2 for package: gcc-7.3.1-17.amzn2.x86_64
+--> Processing Dependency: libquadmath >= 7.3.1-17.amzn2 for package: gcc-7.3.1-17.amzn2.x86_64
+--> Processing Dependency: libsanitizer >= 7.3.1-17.amzn2 for package: gcc-7.3.1-17.amzn2.x86_64
+---> Package generic-logos-httpd.noarch 0:18.0.0-4.amzn2 will be installed
+---> Package gssproxy.x86_64 0:0.7.0-17.amzn2 will be installed
+--> Processing Dependency: libini_config >= 1.3.1-28 for package: gssproxy-0.7.0-17.amzn2.x86_64
+--> Processing Dependency: libini_config.so.3(INI_CONFIG_1.1.0)(64bit) for package: gssproxy-0.7.0-17.amzn2.x86_64
+--> Processing Dependency: libini_config.so.3(INI_CONFIG_1.2.0)(64bit) for package: gssproxy-0.7.0-17.amzn2.x86_64
+--> Processing Dependency: libref_array.so.1(REF_ARRAY_0.1.1)(64bit) for package: gssproxy-0.7.0-17.amzn2.x86_64
+--> Processing Dependency: libverto-module-base for package: gssproxy-0.7.0-17.amzn2.x86_64
+--> Processing Dependency: libbasicobjects.so.0()(64bit) for package: gssproxy-0.7.0-17.amzn2.x86_64
+--> Processing Dependency: libcollection.so.2()(64bit) for package: gssproxy-0.7.0-17.amzn2.x86_64
+--> Processing Dependency: libini_config.so.3()(64bit) for package: gssproxy-0.7.0-17.amzn2.x86_64
+--> Processing Dependency: libref_array.so.1()(64bit) for package: gssproxy-0.7.0-17.amzn2.x86_64
+---> Package httpd-filesystem.noarch 0:2.4.58-1.amzn2 will be installed
+---> Package httpd-tools.x86_64 0:2.4.58-1.amzn2 will be installed
+---> Package keyutils.x86_64 0:1.5.8-3.amzn2.0.2 will be installed
+---> Package libevent.x86_64 0:2.0.21-4.amzn2.0.3 will be installed
+---> Package libmpc.x86_64 0:1.0.1-3.amzn2.0.2 will be installed
+---> Package libnfsidmap.x86_64 0:0.25-19.amzn2 will be installed
+---> Package libtirpc.x86_64 0:0.2.4-0.16.amzn2 will be installed
+---> Package mailcap.noarch 0:2.1.41-2.amzn2 will be installed
+---> Package mod_http2.x86_64 0:1.15.19-1.amzn2.0.1 will be installed
+---> Package mpfr.x86_64 0:3.1.1-4.amzn2.0.2 will be installed
+---> Package perl.x86_64 4:5.16.3-299.amzn2.0.2 will be installed
+--> Processing Dependency: perl-libs = 4:5.16.3-299.amzn2.0.2 for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(Scalar::Util) >= 1.10 for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(Socket) >= 1.3 for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(Carp) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(Cwd) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(File::Path) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(File::Spec) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(File::Spec::Functions) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(File::Spec::Unix) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(Filter::Util::Call) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(Pod::Simple::Search) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(Pod::Simple::XHTML) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(Scalar::Util) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(Socket) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(Storable) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(Time::HiRes) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(Time::Local) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(constant) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(threads) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl(threads::shared) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl-libs for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: perl-macros for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+--> Processing Dependency: libperl.so()(64bit) for package: 4:perl-5.16.3-299.amzn2.0.2.x86_64
+---> Package perl-Exporter.noarch 0:5.68-3.amzn2 will be installed
+---> Package perl-File-Temp.noarch 0:0.23.01-3.amzn2 will be installed
+---> Package perl-Getopt-Long.noarch 0:2.40-3.amzn2 will be installed
+--> Processing Dependency: perl(Pod::Usage) >= 1.14 for package: perl-Getopt-Long-2.40-3.amzn2.noarch
+--> Processing Dependency: perl(Text::ParseWords) for package: perl-Getopt-Long-2.40-3.amzn2.noarch
+---> Package quota.x86_64 1:4.01-17.amzn2 will be installed
+--> Processing Dependency: quota-nls = 1:4.01-17.amzn2 for package: 1:quota-4.01-17.amzn2.x86_64
+--> Processing Dependency: tcp_wrappers for package: 1:quota-4.01-17.amzn2.x86_64
+---> Package rpcbind.x86_64 0:0.2.0-44.amzn2 will be installed
+--> Running transaction check
+---> Package apr-util-bdb.x86_64 0:1.6.3-1.amzn2.0.1 will be installed
+---> Package awscli.noarch 0:1.18.147-1.amzn2.0.2 will be installed
+--> Processing Dependency: python2-botocore = 1.18.6 for package: awscli-1.18.147-1.amzn2.0.2.noarch
+--> Processing Dependency: python-colorama for package: awscli-1.18.147-1.amzn2.0.2.noarch
+--> Processing Dependency: python-docutils for package: awscli-1.18.147-1.amzn2.0.2.noarch
+--> Processing Dependency: python-rsa for package: awscli-1.18.147-1.amzn2.0.2.noarch
+--> Processing Dependency: python2-s3transfer for package: awscli-1.18.147-1.amzn2.0.2.noarch
+---> Package binutils.x86_64 0:2.29.1-31.amzn2 will be installed
+---> Package cpp.x86_64 0:7.3.1-17.amzn2 will be installed
+---> Package glibc-devel.x86_64 0:2.26-63.amzn2.0.1 will be installed
+--> Processing Dependency: glibc-headers = 2.26-63.amzn2.0.1 for package: glibc-devel-2.26-63.amzn2.0.1.x86_64
+--> Processing Dependency: glibc-headers for package: glibc-devel-2.26-63.amzn2.0.1.x86_64
+---> Package libatomic.x86_64 0:7.3.1-17.amzn2 will be installed
+---> Package libbasicobjects.x86_64 0:0.1.1-29.amzn2 will be installed
+---> Package libcilkrts.x86_64 0:7.3.1-17.amzn2 will be installed
+---> Package libcollection.x86_64 0:0.7.0-29.amzn2 will be installed
+---> Package libini_config.x86_64 0:1.3.1-29.amzn2 will be installed
+--> Processing Dependency: libpath_utils.so.1(PATH_UTILS_0.2.1)(64bit) for package: libini_config-1.3.1-29.amzn2.x86_64
+--> Processing Dependency: libpath_utils.so.1()(64bit) for package: libini_config-1.3.1-29.amzn2.x86_64
+---> Package libitm.x86_64 0:7.3.1-17.amzn2 will be installed
+---> Package libmpx.x86_64 0:7.3.1-17.amzn2 will be installed
+---> Package libquadmath.x86_64 0:7.3.1-17.amzn2 will be installed
+---> Package libref_array.x86_64 0:0.1.5-29.amzn2 will be installed
+---> Package libsanitizer.x86_64 0:7.3.1-17.amzn2 will be installed
+---> Package libverto-libevent.x86_64 0:0.2.5-4.amzn2.0.2 will be installed
+---> Package perl-Carp.noarch 0:1.26-244.amzn2 will be installed
+---> Package perl-File-Path.noarch 0:2.09-2.amzn2 will be installed
+---> Package perl-Filter.x86_64 0:1.49-3.amzn2.0.2 will be installed
+---> Package perl-PathTools.x86_64 0:3.40-5.amzn2.0.2 will be installed
+---> Package perl-Pod-Simple.noarch 1:3.28-4.amzn2 will be installed
+--> Processing Dependency: perl(Pod::Escapes) >= 1.04 for package: 1:perl-Pod-Simple-3.28-4.amzn2.noarch
+--> Processing Dependency: perl(Encode) for package: 1:perl-Pod-Simple-3.28-4.amzn2.noarch
+---> Package perl-Pod-Usage.noarch 0:1.63-3.amzn2 will be installed
+--> Processing Dependency: perl(Pod::Text) >= 3.15 for package: perl-Pod-Usage-1.63-3.amzn2.noarch
+--> Processing Dependency: perl-Pod-Perldoc for package: perl-Pod-Usage-1.63-3.amzn2.noarch
+---> Package perl-Scalar-List-Utils.x86_64 0:1.27-248.amzn2.0.2 will be installed
+---> Package perl-Socket.x86_64 0:2.010-4.amzn2.0.2 will be installed
+---> Package perl-Storable.x86_64 0:2.45-3.amzn2.0.2 will be installed
+---> Package perl-Text-ParseWords.noarch 0:3.29-4.amzn2 will be installed
+---> Package perl-Time-HiRes.x86_64 4:1.9725-3.amzn2.0.2 will be installed
+---> Package perl-Time-Local.noarch 0:1.2300-2.amzn2 will be installed
+---> Package perl-constant.noarch 0:1.27-2.amzn2.0.1 will be installed
+---> Package perl-libs.x86_64 4:5.16.3-299.amzn2.0.2 will be installed
+---> Package perl-macros.x86_64 4:5.16.3-299.amzn2.0.2 will be installed
+---> Package perl-threads.x86_64 0:1.87-4.amzn2.0.2 will be installed
+---> Package perl-threads-shared.x86_64 0:1.43-6.amzn2.0.2 will be installed
+---> Package python2-dateutil.noarch 1:2.6.1-3.amzn2 will be installed
+---> Package quota-nls.noarch 1:4.01-17.amzn2 will be installed
+---> Package tcp_wrappers.x86_64 0:7.6-77.amzn2.0.2 will be installed
+--> Running transaction check
+---> Package glibc-headers.x86_64 0:2.26-63.amzn2.0.1 will be installed
+--> Processing Dependency: kernel-headers >= 2.2.1 for package: glibc-headers-2.26-63.amzn2.0.1.x86_64
+--> Processing Dependency: kernel-headers for package: glibc-headers-2.26-63.amzn2.0.1.x86_64
+---> Package libpath_utils.x86_64 0:0.2.1-29.amzn2 will be installed
+---> Package perl-Encode.x86_64 0:2.51-7.amzn2.0.2 will be installed
+---> Package perl-Pod-Escapes.noarch 1:1.04-299.amzn2.0.2 will be installed
+---> Package perl-Pod-Perldoc.noarch 0:3.20-4.amzn2.0.1 will be installed
+--> Processing Dependency: perl(HTTP::Tiny) for package: perl-Pod-Perldoc-3.20-4.amzn2.0.1.noarch
+--> Processing Dependency: perl(parent) for package: perl-Pod-Perldoc-3.20-4.amzn2.0.1.noarch
+---> Package perl-podlators.noarch 0:2.5.1-3.amzn2.0.1 will be installed
+---> Package python-docutils.noarch 0:0.12-0.2.20140510svn7747.amzn2 will be installed
+--> Processing Dependency: python-imaging for package: python-docutils-0.12-0.2.20140510svn7747.amzn2.noarch
+---> Package python2-botocore.noarch 0:1.18.6-1.amzn2.0.3 will be installed
+--> Processing Dependency: python-jmespath >= 0.9.3 for package: python2-botocore-1.18.6-1.amzn2.0.3.noarch
+---> Package python2-colorama.noarch 0:0.3.9-3.amzn2.0.1 will be installed
+---> Package python2-rsa.noarch 0:3.4.1-1.amzn2.0.4 will be installed
+---> Package python2-s3transfer.noarch 0:0.3.3-1.amzn2.0.1 will be installed
+--> Processing Dependency: python-futures for package: python2-s3transfer-0.3.3-1.amzn2.0.1.noarch
+--> Running transaction check
+---> Package kernel-headers.x86_64 0:4.14.330-250.540.amzn2 will be installed
+---> Package perl-HTTP-Tiny.noarch 0:0.033-3.amzn2.0.1 will be installed
+---> Package perl-parent.noarch 1:0.225-244.amzn2.0.1 will be installed
+---> Package python-pillow.x86_64 0:2.0.0-23.gitd1c6db8.amzn2.0.8 will be installed
+--> Processing Dependency: libjpeg.so.62(LIBJPEG_6.2)(64bit) for package: python-pillow-2.0.0-23.gitd1c6db8.amzn2.0.8.x86_64
+--> Processing Dependency: libtiff.so.5(LIBTIFF_4.0)(64bit) for package: python-pillow-2.0.0-23.gitd1c6db8.amzn2.0.8.x86_64
+--> Processing Dependency: libjpeg.so.62()(64bit) for package: python-pillow-2.0.0-23.gitd1c6db8.amzn2.0.8.x86_64
+--> Processing Dependency: libtiff.so.5()(64bit) for package: python-pillow-2.0.0-23.gitd1c6db8.amzn2.0.8.x86_64
+--> Processing Dependency: libwebp.so.4()(64bit) for package: python-pillow-2.0.0-23.gitd1c6db8.amzn2.0.8.x86_64
+---> Package python2-futures.noarch 0:3.0.5-1.amzn2 will be installed
+---> Package python2-jmespath.noarch 0:0.9.3-1.amzn2.0.2 will be installed
+--> Running transaction check
+---> Package libjpeg-turbo.x86_64 0:2.0.90-2.amzn2.0.6 will be installed
+---> Package libtiff.x86_64 0:4.0.3-35.amzn2.0.20 will be installed
+--> Processing Dependency: libjbig.so.2.0()(64bit) for package: libtiff-4.0.3-35.amzn2.0.20.x86_64
+---> Package libwebp.x86_64 0:0.3.0-10.amzn2.0.2 will be installed
+--> Running transaction check
+---> Package jbigkit-libs.x86_64 0:2.0-11.amzn2.0.3 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package                 Arch   Version                        Repository  Size
+================================================================================
+Installing:
+ awslogs                 noarch 1.1.4-3.amzn2                  amzn2-core 8.2 k
+ gcc-c++                 x86_64 7.3.1-17.amzn2                 amzn2-core  13 M
+ httpd                   x86_64 2.4.58-1.amzn2                 amzn2-core 1.4 M
+ mariadb                 x86_64 1:5.5.68-1.amzn2.0.1           amzn2-core 8.8 M
+ nfs-utils               x86_64 1:1.3.0-0.54.amzn2.0.2         amzn2-core 408 k
+Installing for dependencies:
+ apr                     x86_64 1.7.2-1.amzn2                  amzn2-core 130 k
+ apr-util                x86_64 1.6.3-1.amzn2.0.1              amzn2-core 101 k
+ apr-util-bdb            x86_64 1.6.3-1.amzn2.0.1              amzn2-core  22 k
+ aws-cli-plugin-cloudwatch-logs
+                         noarch 1.4.6-1.amzn2.0.1              amzn2-core  62 k
+ awscli                  noarch 1.18.147-1.amzn2.0.2           amzn2-core 2.1 M
+ binutils                x86_64 2.29.1-31.amzn2                amzn2-core 5.8 M
+ cpp                     x86_64 7.3.1-17.amzn2                 amzn2-core 9.2 M
+ gcc                     x86_64 7.3.1-17.amzn2                 amzn2-core  22 M
+ generic-logos-httpd     noarch 18.0.0-4.amzn2                 amzn2-core  19 k
+ glibc-devel             x86_64 2.26-63.amzn2.0.1              amzn2-core 995 k
+ glibc-headers           x86_64 2.26-63.amzn2.0.1              amzn2-core 516 k
+ gssproxy                x86_64 0.7.0-17.amzn2                 amzn2-core 109 k
+ httpd-filesystem        noarch 2.4.58-1.amzn2                 amzn2-core  25 k
+ httpd-tools             x86_64 2.4.58-1.amzn2                 amzn2-core  88 k
+ jbigkit-libs            x86_64 2.0-11.amzn2.0.3               amzn2-core  47 k
+ kernel-headers          x86_64 4.14.330-250.540.amzn2         amzn2-core 1.2 M
+ keyutils                x86_64 1.5.8-3.amzn2.0.2              amzn2-core  54 k
+ libatomic               x86_64 7.3.1-17.amzn2                 amzn2-core  46 k
+ libbasicobjects         x86_64 0.1.1-29.amzn2                 amzn2-core  25 k
+ libcilkrts              x86_64 7.3.1-17.amzn2                 amzn2-core  85 k
+ libcollection           x86_64 0.7.0-29.amzn2                 amzn2-core  42 k
+ libevent                x86_64 2.0.21-4.amzn2.0.3             amzn2-core 214 k
+ libini_config           x86_64 1.3.1-29.amzn2                 amzn2-core  64 k
+ libitm                  x86_64 7.3.1-17.amzn2                 amzn2-core  85 k
+ libjpeg-turbo           x86_64 2.0.90-2.amzn2.0.6             amzn2-core 171 k
+ libmpc                  x86_64 1.0.1-3.amzn2.0.2              amzn2-core  52 k
+ libmpx                  x86_64 7.3.1-17.amzn2                 amzn2-core  52 k
+ libnfsidmap             x86_64 0.25-19.amzn2                  amzn2-core  50 k
+ libpath_utils           x86_64 0.2.1-29.amzn2                 amzn2-core  28 k
+ libquadmath             x86_64 7.3.1-17.amzn2                 amzn2-core 189 k
+ libref_array            x86_64 0.1.5-29.amzn2                 amzn2-core  26 k
+ libsanitizer            x86_64 7.3.1-17.amzn2                 amzn2-core 642 k
+ libtiff                 x86_64 4.0.3-35.amzn2.0.20            amzn2-core 176 k
+ libtirpc                x86_64 0.2.4-0.16.amzn2               amzn2-core  88 k
+ libverto-libevent       x86_64 0.2.5-4.amzn2.0.2              amzn2-core 9.0 k
+ libwebp                 x86_64 0.3.0-10.amzn2.0.2             amzn2-core 170 k
+ mailcap                 noarch 2.1.41-2.amzn2                 amzn2-core  31 k
+ mod_http2               x86_64 1.15.19-1.amzn2.0.1            amzn2-core 149 k
+ mpfr                    x86_64 3.1.1-4.amzn2.0.2              amzn2-core 208 k
+ perl                    x86_64 4:5.16.3-299.amzn2.0.2         amzn2-core 8.0 M
+ perl-Carp               noarch 1.26-244.amzn2                 amzn2-core  19 k
+ perl-Encode             x86_64 2.51-7.amzn2.0.2               amzn2-core 1.5 M
+ perl-Exporter           noarch 5.68-3.amzn2                   amzn2-core  29 k
+ perl-File-Path          noarch 2.09-2.amzn2                   amzn2-core  27 k
+ perl-File-Temp          noarch 0.23.01-3.amzn2                amzn2-core  56 k
+ perl-Filter             x86_64 1.49-3.amzn2.0.2               amzn2-core  76 k
+ perl-Getopt-Long        noarch 2.40-3.amzn2                   amzn2-core  56 k
+ perl-HTTP-Tiny          noarch 0.033-3.amzn2.0.1              amzn2-core  39 k
+ perl-PathTools          x86_64 3.40-5.amzn2.0.2               amzn2-core  83 k
+ perl-Pod-Escapes        noarch 1:1.04-299.amzn2.0.2           amzn2-core  52 k
+ perl-Pod-Perldoc        noarch 3.20-4.amzn2.0.1               amzn2-core  87 k
+ perl-Pod-Simple         noarch 1:3.28-4.amzn2                 amzn2-core 216 k
+ perl-Pod-Usage          noarch 1.63-3.amzn2                   amzn2-core  27 k
+ perl-Scalar-List-Utils  x86_64 1.27-248.amzn2.0.2             amzn2-core  36 k
+ perl-Socket             x86_64 2.010-4.amzn2.0.2              amzn2-core  49 k
+ perl-Storable           x86_64 2.45-3.amzn2.0.2               amzn2-core  78 k
+ perl-Text-ParseWords    noarch 3.29-4.amzn2                   amzn2-core  14 k
+ perl-Time-HiRes         x86_64 4:1.9725-3.amzn2.0.2           amzn2-core  45 k
+ perl-Time-Local         noarch 1.2300-2.amzn2                 amzn2-core  24 k
+ perl-constant           noarch 1.27-2.amzn2.0.1               amzn2-core  19 k
+ perl-libs               x86_64 4:5.16.3-299.amzn2.0.2         amzn2-core 685 k
+ perl-macros             x86_64 4:5.16.3-299.amzn2.0.2         amzn2-core  45 k
+ perl-parent             noarch 1:0.225-244.amzn2.0.1          amzn2-core  12 k
+ perl-podlators          noarch 2.5.1-3.amzn2.0.1              amzn2-core 112 k
+ perl-threads            x86_64 1.87-4.amzn2.0.2               amzn2-core  50 k
+ perl-threads-shared     x86_64 1.43-6.amzn2.0.2               amzn2-core  39 k
+ python-docutils         noarch 0.12-0.2.20140510svn7747.amzn2 amzn2-core 1.5 M
+ python-pillow           x86_64 2.0.0-23.gitd1c6db8.amzn2.0.8  amzn2-core 444 k
+ python2-botocore        noarch 1.18.6-1.amzn2.0.3             amzn2-core 4.4 M
+ python2-colorama        noarch 0.3.9-3.amzn2.0.1              amzn2-core  30 k
+ python2-dateutil        noarch 1:2.6.1-3.amzn2                amzn2-core 251 k
+ python2-futures         noarch 3.0.5-1.amzn2                  amzn2-core  27 k
+ python2-jmespath        noarch 0.9.3-1.amzn2.0.2              amzn2-core  42 k
+ python2-rsa             noarch 3.4.1-1.amzn2.0.4              amzn2-core  67 k
+ python2-s3transfer      noarch 0.3.3-1.amzn2.0.1              amzn2-core 104 k
+ quota                   x86_64 1:4.01-17.amzn2                amzn2-core 179 k
+ quota-nls               noarch 1:4.01-17.amzn2                amzn2-core  90 k
+ rpcbind                 x86_64 0.2.0-44.amzn2                 amzn2-core  60 k
+ tcp_wrappers            x86_64 7.6-77.amzn2.0.2               amzn2-core  79 k
+
+Transaction Summary
+================================================================================
+Install  5 Packages (+79 Dependent packages)
+
+Total download size: 87 M
+Installed size: 318 M
+Downloading packages:
+--------------------------------------------------------------------------------
+Total                                               46 MB/s |  87 MB  00:01     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : mpfr-3.1.1-4.amzn2.0.2.x86_64                               1/84 
+  Installing : libmpc-1.0.1-3.amzn2.0.2.x86_64                             2/84 
+  Installing : apr-1.7.2-1.amzn2.x86_64                                    3/84 
+  Installing : apr-util-bdb-1.6.3-1.amzn2.0.1.x86_64                       4/84 
+  Installing : apr-util-1.6.3-1.amzn2.0.1.x86_64                           5/84 
+  Installing : libcollection-0.7.0-29.amzn2.x86_64                         6/84 
+  Installing : libbasicobjects-0.1.1-29.amzn2.x86_64                       7/84 
+  Installing : libjpeg-turbo-2.0.90-2.amzn2.0.6.x86_64                     8/84 
+  Installing : libevent-2.0.21-4.amzn2.0.3.x86_64                          9/84 
+  Installing : libref_array-0.1.5-29.amzn2.x86_64                         10/84 
+  Installing : libtirpc-0.2.4-0.16.amzn2.x86_64                           11/84 
+  Installing : rpcbind-0.2.0-44.amzn2.x86_64                              12/84 
+  Installing : 1:python2-dateutil-2.6.1-3.amzn2.noarch                    13/84 
+  Installing : libverto-libevent-0.2.5-4.amzn2.0.2.x86_64                 14/84 
+  Installing : httpd-tools-2.4.58-1.amzn2.x86_64                          15/84 
+  Installing : cpp-7.3.1-17.amzn2.x86_64                                  16/84 
+  Installing : 1:perl-parent-0.225-244.amzn2.0.1.noarch                   17/84 
+  Installing : perl-HTTP-Tiny-0.033-3.amzn2.0.1.noarch                    18/84 
+  Installing : perl-Pod-Perldoc-3.20-4.amzn2.0.1.noarch                   19/84 
+  Installing : perl-podlators-2.5.1-3.amzn2.0.1.noarch                    20/84 
+  Installing : 1:perl-Pod-Escapes-1.04-299.amzn2.0.2.noarch               21/84 
+  Installing : perl-Text-ParseWords-3.29-4.amzn2.noarch                   22/84 
+  Installing : perl-Encode-2.51-7.amzn2.0.2.x86_64                        23/84 
+  Installing : perl-Pod-Usage-1.63-3.amzn2.noarch                         24/84 
+  Installing : perl-Socket-2.010-4.amzn2.0.2.x86_64                       25/84 
+  Installing : perl-Exporter-5.68-3.amzn2.noarch                          26/84 
+  Installing : perl-Time-Local-1.2300-2.amzn2.noarch                      27/84 
+  Installing : perl-constant-1.27-2.amzn2.0.1.noarch                      28/84 
+  Installing : perl-Filter-1.49-3.amzn2.0.2.x86_64                        29/84 
+  Installing : perl-Scalar-List-Utils-1.27-248.amzn2.0.2.x86_64           30/84 
+  Installing : perl-PathTools-3.40-5.amzn2.0.2.x86_64                     31/84 
+  Installing : perl-Storable-2.45-3.amzn2.0.2.x86_64                      32/84 
+  Installing : 4:perl-Time-HiRes-1.9725-3.amzn2.0.2.x86_64                33/84 
+  Installing : perl-Carp-1.26-244.amzn2.noarch                            34/84 
+  Installing : 4:perl-libs-5.16.3-299.amzn2.0.2.x86_64                    35/84 
+  Installing : perl-File-Temp-0.23.01-3.amzn2.noarch                      36/84 
+  Installing : perl-File-Path-2.09-2.amzn2.noarch                         37/84 
+  Installing : 1:perl-Pod-Simple-3.28-4.amzn2.noarch                      38/84 
+  Installing : perl-Getopt-Long-2.40-3.amzn2.noarch                       39/84 
+  Installing : perl-threads-shared-1.43-6.amzn2.0.2.x86_64                40/84 
+  Installing : perl-threads-1.87-4.amzn2.0.2.x86_64                       41/84 
+  Installing : 4:perl-macros-5.16.3-299.amzn2.0.2.x86_64                  42/84 
+  Installing : 4:perl-5.16.3-299.amzn2.0.2.x86_64                         43/84 
+  Installing : jbigkit-libs-2.0-11.amzn2.0.3.x86_64                       44/84 
+  Installing : libtiff-4.0.3-35.amzn2.0.20.x86_64                         45/84 
+  Installing : libcilkrts-7.3.1-17.amzn2.x86_64                           46/84 
+  Installing : python2-colorama-0.3.9-3.amzn2.0.1.noarch                  47/84 
+  Installing : python2-futures-3.0.5-1.amzn2.noarch                       48/84 
+  Installing : python2-jmespath-0.9.3-1.amzn2.0.2.noarch                  49/84 
+  Installing : keyutils-1.5.8-3.amzn2.0.2.x86_64                          50/84 
+  Installing : libmpx-7.3.1-17.amzn2.x86_64                               51/84 
+  Installing : kernel-headers-4.14.330-250.540.amzn2.x86_64               52/84 
+  Installing : glibc-headers-2.26-63.amzn2.0.1.x86_64                     53/84 
+  Installing : glibc-devel-2.26-63.amzn2.0.1.x86_64                       54/84 
+  Installing : libwebp-0.3.0-10.amzn2.0.2.x86_64                          55/84 
+  Installing : python-pillow-2.0.0-23.gitd1c6db8.amzn2.0.8.x86_64         56/84 
+  Installing : python-docutils-0.12-0.2.20140510svn7747.amzn2.noarch      57/84 
+  Installing : python2-botocore-1.18.6-1.amzn2.0.3.noarch                 58/84 
+  Installing : python2-s3transfer-0.3.3-1.amzn2.0.1.noarch                59/84 
+  Installing : libpath_utils-0.2.1-29.amzn2.x86_64                        60/84 
+  Installing : libini_config-1.3.1-29.amzn2.x86_64                        61/84 
+  Installing : gssproxy-0.7.0-17.amzn2.x86_64                             62/84 
+  Installing : libatomic-7.3.1-17.amzn2.x86_64                            63/84 
+  Installing : tcp_wrappers-7.6-77.amzn2.0.2.x86_64                       64/84 
+  Installing : 1:quota-nls-4.01-17.amzn2.noarch                           65/84 
+  Installing : 1:quota-4.01-17.amzn2.x86_64                               66/84 
+  Installing : libsanitizer-7.3.1-17.amzn2.x86_64                         67/84 
+  Installing : libitm-7.3.1-17.amzn2.x86_64                               68/84 
+  Installing : binutils-2.29.1-31.amzn2.x86_64                            69/84 
+  Installing : generic-logos-httpd-18.0.0-4.amzn2.noarch                  70/84 
+  Installing : mailcap-2.1.41-2.amzn2.noarch                              71/84 
+  Installing : libquadmath-7.3.1-17.amzn2.x86_64                          72/84 
+  Installing : gcc-7.3.1-17.amzn2.x86_64                                  73/84 
+  Installing : python2-rsa-3.4.1-1.amzn2.0.4.noarch                       74/84 
+  Installing : awscli-1.18.147-1.amzn2.0.2.noarch                         75/84 
+  Installing : aws-cli-plugin-cloudwatch-logs-1.4.6-1.amzn2.0.1.noarch    76/84 
+  Installing : httpd-filesystem-2.4.58-1.amzn2.noarch                     77/84 
+  Installing : mod_http2-1.15.19-1.amzn2.0.1.x86_64                       78/84 
+  Installing : httpd-2.4.58-1.amzn2.x86_64                                79/84 
+  Installing : libnfsidmap-0.25-19.amzn2.x86_64                           80/84 
+  Installing : 1:nfs-utils-1.3.0-0.54.amzn2.0.2.x86_64                    81/84 
+  Installing : awslogs-1.1.4-3.amzn2.noarch                               82/84 
+  Installing : gcc-c++-7.3.1-17.amzn2.x86_64                              83/84 
+  Installing : 1:mariadb-5.5.68-1.amzn2.0.1.x86_64                        84/84 
+  Verifying  : libnfsidmap-0.25-19.amzn2.x86_64                            1/84 
+  Verifying  : 4:perl-macros-5.16.3-299.amzn2.0.2.x86_64                   2/84 
+  Verifying  : httpd-filesystem-2.4.58-1.amzn2.noarch                      3/84 
+  Verifying  : gssproxy-0.7.0-17.amzn2.x86_64                              4/84 
+  Verifying  : httpd-2.4.58-1.amzn2.x86_64                                 5/84 
+  Verifying  : perl-Time-Local-1.2300-2.amzn2.noarch                       6/84 
+  Verifying  : glibc-devel-2.26-63.amzn2.0.1.x86_64                        7/84 
+  Verifying  : aws-cli-plugin-cloudwatch-logs-1.4.6-1.amzn2.0.1.noarch     8/84 
+  Verifying  : awslogs-1.1.4-3.amzn2.noarch                                9/84 
+  Verifying  : perl-Socket-2.010-4.amzn2.0.2.x86_64                       10/84 
+  Verifying  : 1:quota-4.01-17.amzn2.x86_64                               11/84 
+  Verifying  : 1:perl-parent-0.225-244.amzn2.0.1.noarch                   12/84 
+  Verifying  : python2-rsa-3.4.1-1.amzn2.0.4.noarch                       13/84 
+  Verifying  : libquadmath-7.3.1-17.amzn2.x86_64                          14/84 
+  Verifying  : mailcap-2.1.41-2.amzn2.noarch                              15/84 
+  Verifying  : generic-logos-httpd-18.0.0-4.amzn2.noarch                  16/84 
+  Verifying  : libmpc-1.0.1-3.amzn2.0.2.x86_64                            17/84 
+  Verifying  : perl-Exporter-5.68-3.amzn2.noarch                          18/84 
+  Verifying  : perl-constant-1.27-2.amzn2.0.1.noarch                      19/84 
+  Verifying  : perl-Encode-2.51-7.amzn2.0.2.x86_64                        20/84 
+  Verifying  : binutils-2.29.1-31.amzn2.x86_64                            21/84 
+  Verifying  : libitm-7.3.1-17.amzn2.x86_64                               22/84 
+  Verifying  : perl-threads-shared-1.43-6.amzn2.0.2.x86_64                23/84 
+  Verifying  : 1:perl-Pod-Simple-3.28-4.amzn2.noarch                      24/84 
+  Verifying  : perl-Pod-Perldoc-3.20-4.amzn2.0.1.noarch                   25/84 
+  Verifying  : python2-s3transfer-0.3.3-1.amzn2.0.1.noarch                26/84 
+  Verifying  : apr-1.7.2-1.amzn2.x86_64                                   27/84 
+  Verifying  : libsanitizer-7.3.1-17.amzn2.x86_64                         28/84 
+  Verifying  : 1:nfs-utils-1.3.0-0.54.amzn2.0.2.x86_64                    29/84 
+  Verifying  : perl-Filter-1.49-3.amzn2.0.2.x86_64                        30/84 
+  Verifying  : 1:python2-dateutil-2.6.1-3.amzn2.noarch                    31/84 
+  Verifying  : libtirpc-0.2.4-0.16.amzn2.x86_64                           32/84 
+  Verifying  : apr-util-1.6.3-1.amzn2.0.1.x86_64                          33/84 
+  Verifying  : cpp-7.3.1-17.amzn2.x86_64                                  34/84 
+  Verifying  : 1:quota-nls-4.01-17.amzn2.noarch                           35/84 
+  Verifying  : 1:mariadb-5.5.68-1.amzn2.0.1.x86_64                        36/84 
+  Verifying  : perl-File-Temp-0.23.01-3.amzn2.noarch                      37/84 
+  Verifying  : awscli-1.18.147-1.amzn2.0.2.noarch                         38/84 
+  Verifying  : perl-Scalar-List-Utils-1.27-248.amzn2.0.2.x86_64           39/84 
+  Verifying  : perl-Pod-Usage-1.63-3.amzn2.noarch                         40/84 
+  Verifying  : libref_array-0.1.5-29.amzn2.x86_64                         41/84 
+  Verifying  : perl-PathTools-3.40-5.amzn2.0.2.x86_64                     42/84 
+  Verifying  : perl-podlators-2.5.1-3.amzn2.0.1.noarch                    43/84 
+  Verifying  : libverto-libevent-0.2.5-4.amzn2.0.2.x86_64                 44/84 
+  Verifying  : tcp_wrappers-7.6-77.amzn2.0.2.x86_64                       45/84 
+  Verifying  : perl-HTTP-Tiny-0.033-3.amzn2.0.1.noarch                    46/84 
+  Verifying  : mpfr-3.1.1-4.amzn2.0.2.x86_64                              47/84 
+  Verifying  : gcc-c++-7.3.1-17.amzn2.x86_64                              48/84 
+  Verifying  : libatomic-7.3.1-17.amzn2.x86_64                            49/84 
+  Verifying  : libpath_utils-0.2.1-29.amzn2.x86_64                        50/84 
+  Verifying  : python-pillow-2.0.0-23.gitd1c6db8.amzn2.0.8.x86_64         51/84 
+  Verifying  : perl-Storable-2.45-3.amzn2.0.2.x86_64                      52/84 
+  Verifying  : libevent-2.0.21-4.amzn2.0.3.x86_64                         53/84 
+  Verifying  : libwebp-0.3.0-10.amzn2.0.2.x86_64                          54/84 
+  Verifying  : 4:perl-5.16.3-299.amzn2.0.2.x86_64                         55/84 
+  Verifying  : gcc-7.3.1-17.amzn2.x86_64                                  56/84 
+  Verifying  : libjpeg-turbo-2.0.90-2.amzn2.0.6.x86_64                    57/84 
+  Verifying  : 4:perl-Time-HiRes-1.9725-3.amzn2.0.2.x86_64                58/84 
+  Verifying  : perl-Carp-1.26-244.amzn2.noarch                            59/84 
+  Verifying  : python2-botocore-1.18.6-1.amzn2.0.3.noarch                 60/84 
+  Verifying  : libbasicobjects-0.1.1-29.amzn2.x86_64                      61/84 
+  Verifying  : 1:perl-Pod-Escapes-1.04-299.amzn2.0.2.noarch               62/84 
+  Verifying  : kernel-headers-4.14.330-250.540.amzn2.x86_64               63/84 
+  Verifying  : httpd-tools-2.4.58-1.amzn2.x86_64                          64/84 
+  Verifying  : apr-util-bdb-1.6.3-1.amzn2.0.1.x86_64                      65/84 
+  Verifying  : libtiff-4.0.3-35.amzn2.0.20.x86_64                         66/84 
+  Verifying  : 4:perl-libs-5.16.3-299.amzn2.0.2.x86_64                    67/84 
+  Verifying  : libmpx-7.3.1-17.amzn2.x86_64                               68/84 
+  Verifying  : keyutils-1.5.8-3.amzn2.0.2.x86_64                          69/84 
+  Verifying  : python2-jmespath-0.9.3-1.amzn2.0.2.noarch                  70/84 
+  Verifying  : python2-futures-3.0.5-1.amzn2.noarch                       71/84 
+  Verifying  : libini_config-1.3.1-29.amzn2.x86_64                        72/84 
+  Verifying  : python2-colorama-0.3.9-3.amzn2.0.1.noarch                  73/84 
+  Verifying  : perl-Text-ParseWords-3.29-4.amzn2.noarch                   74/84 
+  Verifying  : perl-File-Path-2.09-2.amzn2.noarch                         75/84 
+  Verifying  : libcilkrts-7.3.1-17.amzn2.x86_64                           76/84 
+  Verifying  : perl-Getopt-Long-2.40-3.amzn2.noarch                       77/84 
+  Verifying  : mod_http2-1.15.19-1.amzn2.0.1.x86_64                       78/84 
+  Verifying  : jbigkit-libs-2.0-11.amzn2.0.3.x86_64                       79/84 
+  Verifying  : glibc-headers-2.26-63.amzn2.0.1.x86_64                     80/84 
+  Verifying  : rpcbind-0.2.0-44.amzn2.x86_64                              81/84 
+  Verifying  : perl-threads-1.87-4.amzn2.0.2.x86_64                       82/84 
+  Verifying  : libcollection-0.7.0-29.amzn2.x86_64                        83/84 
+  Verifying  : python-docutils-0.12-0.2.20140510svn7747.amzn2.noarch      84/84 
+
+Installed:
+  awslogs.noarch 0:1.1.4-3.amzn2           gcc-c++.x86_64 0:7.3.1-17.amzn2     
+  httpd.x86_64 0:2.4.58-1.amzn2            mariadb.x86_64 1:5.5.68-1.amzn2.0.1 
+  nfs-utils.x86_64 1:1.3.0-0.54.amzn2.0.2 
+
+Dependency Installed:
+  apr.x86_64 0:1.7.2-1.amzn2                                                    
+  apr-util.x86_64 0:1.6.3-1.amzn2.0.1                                           
+  apr-util-bdb.x86_64 0:1.6.3-1.amzn2.0.1                                       
+  aws-cli-plugin-cloudwatch-logs.noarch 0:1.4.6-1.amzn2.0.1                     
+  awscli.noarch 0:1.18.147-1.amzn2.0.2                                          
+  binutils.x86_64 0:2.29.1-31.amzn2                                             
+  cpp.x86_64 0:7.3.1-17.amzn2                                                   
+  gcc.x86_64 0:7.3.1-17.amzn2                                                   
+  generic-logos-httpd.noarch 0:18.0.0-4.amzn2                                   
+  glibc-devel.x86_64 0:2.26-63.amzn2.0.1                                        
+  glibc-headers.x86_64 0:2.26-63.amzn2.0.1                                      
+  gssproxy.x86_64 0:0.7.0-17.amzn2                                              
+  httpd-filesystem.noarch 0:2.4.58-1.amzn2                                      
+  httpd-tools.x86_64 0:2.4.58-1.amzn2                                           
+  jbigkit-libs.x86_64 0:2.0-11.amzn2.0.3                                        
+  kernel-headers.x86_64 0:4.14.330-250.540.amzn2                                
+  keyutils.x86_64 0:1.5.8-3.amzn2.0.2                                           
+  libatomic.x86_64 0:7.3.1-17.amzn2                                             
+  libbasicobjects.x86_64 0:0.1.1-29.amzn2                                       
+  libcilkrts.x86_64 0:7.3.1-17.amzn2                                            
+  libcollection.x86_64 0:0.7.0-29.amzn2                                         
+  libevent.x86_64 0:2.0.21-4.amzn2.0.3                                          
+  libini_config.x86_64 0:1.3.1-29.amzn2                                         
+  libitm.x86_64 0:7.3.1-17.amzn2                                                
+  libjpeg-turbo.x86_64 0:2.0.90-2.amzn2.0.6                                     
+  libmpc.x86_64 0:1.0.1-3.amzn2.0.2                                             
+  libmpx.x86_64 0:7.3.1-17.amzn2                                                
+  libnfsidmap.x86_64 0:0.25-19.amzn2                                            
+  libpath_utils.x86_64 0:0.2.1-29.amzn2                                         
+  libquadmath.x86_64 0:7.3.1-17.amzn2                                           
+  libref_array.x86_64 0:0.1.5-29.amzn2                                          
+  libsanitizer.x86_64 0:7.3.1-17.amzn2                                          
+  libtiff.x86_64 0:4.0.3-35.amzn2.0.20                                          
+  libtirpc.x86_64 0:0.2.4-0.16.amzn2                                            
+  libverto-libevent.x86_64 0:0.2.5-4.amzn2.0.2                                  
+  libwebp.x86_64 0:0.3.0-10.amzn2.0.2                                           
+  mailcap.noarch 0:2.1.41-2.amzn2                                               
+  mod_http2.x86_64 0:1.15.19-1.amzn2.0.1                                        
+  mpfr.x86_64 0:3.1.1-4.amzn2.0.2                                               
+  perl.x86_64 4:5.16.3-299.amzn2.0.2                                            
+  perl-Carp.noarch 0:1.26-244.amzn2                                             
+  perl-Encode.x86_64 0:2.51-7.amzn2.0.2                                         
+  perl-Exporter.noarch 0:5.68-3.amzn2                                           
+  perl-File-Path.noarch 0:2.09-2.amzn2                                          
+  perl-File-Temp.noarch 0:0.23.01-3.amzn2                                       
+  perl-Filter.x86_64 0:1.49-3.amzn2.0.2                                         
+  perl-Getopt-Long.noarch 0:2.40-3.amzn2                                        
+  perl-HTTP-Tiny.noarch 0:0.033-3.amzn2.0.1                                     
+  perl-PathTools.x86_64 0:3.40-5.amzn2.0.2                                      
+  perl-Pod-Escapes.noarch 1:1.04-299.amzn2.0.2                                  
+  perl-Pod-Perldoc.noarch 0:3.20-4.amzn2.0.1                                    
+  perl-Pod-Simple.noarch 1:3.28-4.amzn2                                         
+  perl-Pod-Usage.noarch 0:1.63-3.amzn2                                          
+  perl-Scalar-List-Utils.x86_64 0:1.27-248.amzn2.0.2                            
+  perl-Socket.x86_64 0:2.010-4.amzn2.0.2                                        
+  perl-Storable.x86_64 0:2.45-3.amzn2.0.2                                       
+  perl-Text-ParseWords.noarch 0:3.29-4.amzn2                                    
+  perl-Time-HiRes.x86_64 4:1.9725-3.amzn2.0.2                                   
+  perl-Time-Local.noarch 0:1.2300-2.amzn2                                       
+  perl-constant.noarch 0:1.27-2.amzn2.0.1                                       
+  perl-libs.x86_64 4:5.16.3-299.amzn2.0.2                                       
+  perl-macros.x86_64 4:5.16.3-299.amzn2.0.2                                     
+  perl-parent.noarch 1:0.225-244.amzn2.0.1                                      
+  perl-podlators.noarch 0:2.5.1-3.amzn2.0.1                                     
+  perl-threads.x86_64 0:1.87-4.amzn2.0.2                                        
+  perl-threads-shared.x86_64 0:1.43-6.amzn2.0.2                                 
+  python-docutils.noarch 0:0.12-0.2.20140510svn7747.amzn2                       
+  python-pillow.x86_64 0:2.0.0-23.gitd1c6db8.amzn2.0.8                          
+  python2-botocore.noarch 0:1.18.6-1.amzn2.0.3                                  
+  python2-colorama.noarch 0:0.3.9-3.amzn2.0.1                                   
+  python2-dateutil.noarch 1:2.6.1-3.amzn2                                       
+  python2-futures.noarch 0:3.0.5-1.amzn2                                        
+  python2-jmespath.noarch 0:0.9.3-1.amzn2.0.2                                   
+  python2-rsa.noarch 0:3.4.1-1.amzn2.0.4                                        
+  python2-s3transfer.noarch 0:0.3.3-1.amzn2.0.1                                 
+  quota.x86_64 1:4.01-17.amzn2                                                  
+  quota-nls.noarch 1:4.01-17.amzn2                                              
+  rpcbind.x86_64 0:0.2.0-44.amzn2                                               
+  tcp_wrappers.x86_64 0:7.6-77.amzn2.0.2                                        
+
+Complete!
++ amazon-linux-extras enable php7.4
+Topic php7.4 has end-of-support date of 2022-11-03
+  2  httpd_modules            available    [ =1.0  =stable ]
+  3  memcached1.5             available    \
+        [ =1.5.1  =1.5.16  =1.5.17 ]
+  9  R3.4                     available    [ =3.4.3  =stable ]
+ 10  rust1                    available    \
+        [ =1.22.1  =1.26.0  =1.26.1  =1.27.2  =1.31.0  =1.38.0
+          =stable ]
+ 18  libreoffice              available    \
+        [ =5.0.6.2_15  =5.3.6.1  =stable ]
+ 19  gimp                     available    [ =2.8.22 ]
+ 20 †docker=latest            enabled      \
+        [ =17.12.1  =18.03.1  =18.06.1  =18.09.9  =stable ]
+ 21  mate-desktop1.x          available    \
+        [ =1.19.0  =1.20.0  =stable ]
+ 22  GraphicsMagick1.3        available    \
+        [ =1.3.29  =1.3.32  =1.3.34  =stable ]
+ 23 †tomcat8.5                available    \
+        [ =8.5.31  =8.5.32  =8.5.38  =8.5.40  =8.5.42  =8.5.50
+          =stable ]
+ 24  epel                     available    [ =7.11  =stable ]
+ 25  testing                  available    [ =1.0  =stable ]
+ 26  ecs                      available    [ =stable ]
+ 27 †corretto8                available    \
+        [ =1.8.0_192  =1.8.0_202  =1.8.0_212  =1.8.0_222  =1.8.0_232
+          =1.8.0_242  =stable ]
+ 32  lustre2.10               available    \
+        [ =2.10.5  =2.10.8  =stable ]
+ 33 †java-openjdk11           available    [ =11  =stable ]
+ 34  lynis                    available    [ =stable ]
+ 36  BCC                      available    [ =0.x  =stable ]
+ 37  mono                     available    [ =5.x  =stable ]
+ 38  nginx1                   available    [ =stable ]
+ 40  mock                     available    [ =stable ]
+ 42 *php7.4=latest            enabled      [ =stable ]
+ 43  livepatch                available    [ =stable ]
+ 44 †python3.8                available    [ =stable ]
+ 45  haproxy2                 available    [ =stable ]
+ 46  collectd                 available    [ =stable ]
+ 47  aws-nitro-enclaves-cli   available    [ =stable ]
+ 48  R4                       available    [ =stable ]
+ 49  kernel-5.4               available    [ =stable ]
+ 50  selinux-ng=latest        enabled      [ =stable ]
+ 52  tomcat9                  available    [ =stable ]
+ 53  unbound1.13              available    [ =stable ]
+ 54 †mariadb10.5              available    [ =stable ]
+ 55  kernel-5.10              available    [ =stable ]
+ 56  redis6                   available    [ =stable ]
+ 57 †ruby3.0                  available    [ =stable ]
+ 58 †postgresql12             available    [ =stable ]
+ 59 †postgresql13             available    [ =stable ]
+ 60  mock2                    available    [ =stable ]
+ 61  dnsmasq2.85              available    [ =stable ]
+ 62  kernel-5.15              available    [ =stable ]
+ 63 †postgresql14             available    [ =stable ]
+ 64  firefox                  available    [ =stable ]
+ 65  lustre                   available    [ =stable ]
+  _ †php8.1                   available    [ =stable ]
+ 67  awscli1                  available    [ =stable ]
+  _ †php8.2                   available    [ =stable ]
+ 69  dnsmasq                  available    [ =stable ]
+ 70  unbound1.17              available    [ =stable ]
+ 72  collectd-python3         available    [ =stable ]
+* Extra topic has reached end of support.
+† Note on end-of-support. Use 'info' subcommand.
+
+Now you can install:
+ # yum clean metadata
+ # yum install php-cli php-pdo php-fpm php-json php-mysqlnd
++ yum clean metadata
+Loaded plugins: priorities, update-motd
+Existing lock /var/run/yum.pid: another copy is running as pid 2707.
+Another app is currently holding the yum lock; waiting for it to exit...
+  The other application is: yum
+    Memory : 192 M RSS (409 MB VSZ)
+    Started: Tue Dec 12 19:01:02 2023 - 00:10 ago
+    State  : Running, pid: 2707
+Cleaning repos: amzn2-core amzn2extra-docker amzn2extra-php7.4
+              : amzn2extra-selinux-ng
+19 metadata files removed
+5 sqlite files removed
+0 metadata files removed
++ sudo setenforce 0
++ yum install -y php php-pear php-cgi php-common php-curl php-mbstring php-gd php-mysqlnd php-gettext php-bcmath php-json php-xml php-fpm php-intl php-zip php-imap php-devel php-opcache
+Loaded plugins: priorities, update-motd
+No package php-imap available.
+Resolving Dependencies
+--> Running transaction check
+---> Package php.x86_64 0:7.4.33-1.amzn2 will be installed
+---> Package php-bcmath.x86_64 0:7.4.33-1.amzn2 will be installed
+---> Package php-cli.x86_64 0:7.4.33-1.amzn2 will be installed
+---> Package php-common.x86_64 0:7.4.33-1.amzn2 will be installed
+--> Processing Dependency: libzip.so.5()(64bit) for package: php-common-7.4.33-1.amzn2.x86_64
+---> Package php-devel.x86_64 0:7.4.33-1.amzn2 will be installed
+--> Processing Dependency: automake for package: php-devel-7.4.33-1.amzn2.x86_64
+--> Processing Dependency: autoconf for package: php-devel-7.4.33-1.amzn2.x86_64
+---> Package php-fpm.x86_64 0:7.4.33-1.amzn2 will be installed
+---> Package php-gd.x86_64 0:7.4.33-1.amzn2 will be installed
+---> Package php-intl.x86_64 0:7.4.33-1.amzn2 will be installed
+---> Package php-json.x86_64 0:7.4.33-1.amzn2 will be installed
+---> Package php-mbstring.x86_64 0:7.4.33-1.amzn2 will be installed
+--> Processing Dependency: libonig.so.2()(64bit) for package: php-mbstring-7.4.33-1.amzn2.x86_64
+---> Package php-mysqlnd.x86_64 0:7.4.33-1.amzn2 will be installed
+--> Processing Dependency: php-pdo(x86-64) = 7.4.33-1.amzn2 for package: php-mysqlnd-7.4.33-1.amzn2.x86_64
+---> Package php-opcache.x86_64 0:7.4.33-1.amzn2 will be installed
+---> Package php-pear.noarch 1:1.10.12-9.amzn2 will be installed
+--> Processing Dependency: php-posix for package: 1:php-pear-1.10.12-9.amzn2.noarch
+---> Package php-xml.x86_64 0:7.4.33-1.amzn2 will be installed
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.0.24)(64bit) for package: php-xml-7.4.33-1.amzn2.x86_64
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.0.22)(64bit) for package: php-xml-7.4.33-1.amzn2.x86_64
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.0.18)(64bit) for package: php-xml-7.4.33-1.amzn2.x86_64
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.0.13)(64bit) for package: php-xml-7.4.33-1.amzn2.x86_64
+--> Processing Dependency: libxslt.so.1(LIBXML2_1.0.11)(64bit) for package: php-xml-7.4.33-1.amzn2.x86_64
+--> Processing Dependency: libxslt.so.1()(64bit) for package: php-xml-7.4.33-1.amzn2.x86_64
+--> Processing Dependency: libexslt.so.0()(64bit) for package: php-xml-7.4.33-1.amzn2.x86_64
+--> Running transaction check
+---> Package autoconf.noarch 0:2.69-11.amzn2 will be installed
+--> Processing Dependency: m4 >= 1.4.14 for package: autoconf-2.69-11.amzn2.noarch
+--> Processing Dependency: perl(Data::Dumper) for package: autoconf-2.69-11.amzn2.noarch
+---> Package automake.noarch 0:1.13.4-3.1.amzn2 will be installed
+--> Processing Dependency: perl(TAP::Parser) for package: automake-1.13.4-3.1.amzn2.noarch
+--> Processing Dependency: perl(Thread::Queue) for package: automake-1.13.4-3.1.amzn2.noarch
+---> Package libxslt.x86_64 0:1.1.28-6.amzn2 will be installed
+---> Package libzip.x86_64 0:1.3.2-1.amzn2.0.1 will be installed
+---> Package oniguruma.x86_64 0:5.9.6-1.amzn2.0.7 will be installed
+---> Package php-pdo.x86_64 0:7.4.33-1.amzn2 will be installed
+---> Package php-process.x86_64 0:7.4.33-1.amzn2 will be installed
+--> Running transaction check
+---> Package m4.x86_64 0:1.4.16-10.amzn2.0.2 will be installed
+---> Package perl-Data-Dumper.x86_64 0:2.145-3.amzn2.0.2 will be installed
+---> Package perl-Test-Harness.noarch 0:3.28-3.amzn2 will be installed
+---> Package perl-Thread-Queue.noarch 0:3.02-2.amzn2 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package             Arch     Version                 Repository           Size
+================================================================================
+Installing:
+ php                 x86_64   7.4.33-1.amzn2          amzn2extra-php7.4   3.2 M
+ php-bcmath          x86_64   7.4.33-1.amzn2          amzn2extra-php7.4    69 k
+ php-cli             x86_64   7.4.33-1.amzn2          amzn2extra-php7.4   4.9 M
+ php-common          x86_64   7.4.33-1.amzn2          amzn2extra-php7.4   1.1 M
+ php-devel           x86_64   7.4.33-1.amzn2          amzn2extra-php7.4   1.3 M
+ php-fpm             x86_64   7.4.33-1.amzn2          amzn2extra-php7.4   1.7 M
+ php-gd              x86_64   7.4.33-1.amzn2          amzn2extra-php7.4   183 k
+ php-intl            x86_64   7.4.33-1.amzn2          amzn2extra-php7.4   221 k
+ php-json            x86_64   7.4.33-1.amzn2          amzn2extra-php7.4    71 k
+ php-mbstring        x86_64   7.4.33-1.amzn2          amzn2extra-php7.4   514 k
+ php-mysqlnd         x86_64   7.4.33-1.amzn2          amzn2extra-php7.4   241 k
+ php-opcache         x86_64   7.4.33-1.amzn2          amzn2extra-php7.4   318 k
+ php-pear            noarch   1:1.10.12-9.amzn2       amzn2-core          359 k
+ php-xml             x86_64   7.4.33-1.amzn2          amzn2extra-php7.4   199 k
+Installing for dependencies:
+ autoconf            noarch   2.69-11.amzn2           amzn2-core          701 k
+ automake            noarch   1.13.4-3.1.amzn2        amzn2-core          679 k
+ libxslt             x86_64   1.1.28-6.amzn2          amzn2-core          240 k
+ libzip              x86_64   1.3.2-1.amzn2.0.1       amzn2-core           62 k
+ m4                  x86_64   1.4.16-10.amzn2.0.2     amzn2-core          256 k
+ oniguruma           x86_64   5.9.6-1.amzn2.0.7       amzn2-core          127 k
+ perl-Data-Dumper    x86_64   2.145-3.amzn2.0.2       amzn2-core           48 k
+ perl-Test-Harness   noarch   3.28-3.amzn2            amzn2-core          302 k
+ perl-Thread-Queue   noarch   3.02-2.amzn2            amzn2-core           17 k
+ php-pdo             x86_64   7.4.33-1.amzn2          amzn2extra-php7.4   134 k
+ php-process         x86_64   7.4.33-1.amzn2          amzn2extra-php7.4    89 k
+
+Transaction Summary
+================================================================================
+Install  14 Packages (+11 Dependent packages)
+
+Total download size: 17 M
+Installed size: 73 M
+Downloading packages:
+--------------------------------------------------------------------------------
+Total                                               20 MB/s |  17 MB  00:00     
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Installing : oniguruma-5.9.6-1.amzn2.0.7.x86_64                          1/25 
+  Installing : m4-1.4.16-10.amzn2.0.2.x86_64                               2/25 
+  Installing : libzip-1.3.2-1.amzn2.0.1.x86_64                             3/25 
+  Installing : php-common-7.4.33-1.amzn2.x86_64                            4/25 
+  Installing : php-json-7.4.33-1.amzn2.x86_64                              5/25 
+  Installing : php-cli-7.4.33-1.amzn2.x86_64                               6/25 
+  Installing : php-pdo-7.4.33-1.amzn2.x86_64                               7/25 
+  Installing : php-process-7.4.33-1.amzn2.x86_64                           8/25 
+  Installing : libxslt-1.1.28-6.amzn2.x86_64                               9/25 
+  Installing : php-xml-7.4.33-1.amzn2.x86_64                              10/25 
+  Installing : perl-Data-Dumper-2.145-3.amzn2.0.2.x86_64                  11/25 
+  Installing : autoconf-2.69-11.amzn2.noarch                              12/25 
+  Installing : perl-Test-Harness-3.28-3.amzn2.noarch                      13/25 
+  Installing : perl-Thread-Queue-3.02-2.amzn2.noarch                      14/25 
+  Installing : automake-1.13.4-3.1.amzn2.noarch                           15/25 
+  Installing : php-devel-7.4.33-1.amzn2.x86_64                            16/25 
+  Installing : 1:php-pear-1.10.12-9.amzn2.noarch                          17/25 
+  Installing : php-mysqlnd-7.4.33-1.amzn2.x86_64                          18/25 
+  Installing : php-7.4.33-1.amzn2.x86_64                                  19/25 
+  Installing : php-fpm-7.4.33-1.amzn2.x86_64                              20/25 
+  Installing : php-gd-7.4.33-1.amzn2.x86_64                               21/25 
+  Installing : php-opcache-7.4.33-1.amzn2.x86_64                          22/25 
+  Installing : php-mbstring-7.4.33-1.amzn2.x86_64                         23/25 
+  Installing : php-intl-7.4.33-1.amzn2.x86_64                             24/25 
+  Installing : php-bcmath-7.4.33-1.amzn2.x86_64                           25/25 
+  Verifying  : perl-Thread-Queue-3.02-2.amzn2.noarch                       1/25 
+  Verifying  : php-pdo-7.4.33-1.amzn2.x86_64                               2/25 
+  Verifying  : php-json-7.4.33-1.amzn2.x86_64                              3/25 
+  Verifying  : php-mysqlnd-7.4.33-1.amzn2.x86_64                           4/25 
+  Verifying  : php-fpm-7.4.33-1.amzn2.x86_64                               5/25 
+  Verifying  : 1:php-pear-1.10.12-9.amzn2.noarch                           6/25 
+  Verifying  : php-gd-7.4.33-1.amzn2.x86_64                                7/25 
+  Verifying  : autoconf-2.69-11.amzn2.noarch                               8/25 
+  Verifying  : php-xml-7.4.33-1.amzn2.x86_64                               9/25 
+  Verifying  : php-opcache-7.4.33-1.amzn2.x86_64                          10/25 
+  Verifying  : php-7.4.33-1.amzn2.x86_64                                  11/25 
+  Verifying  : php-mbstring-7.4.33-1.amzn2.x86_64                         12/25 
+  Verifying  : perl-Test-Harness-3.28-3.amzn2.noarch                      13/25 
+  Verifying  : php-process-7.4.33-1.amzn2.x86_64                          14/25 
+  Verifying  : automake-1.13.4-3.1.amzn2.noarch                           15/25 
+  Verifying  : php-common-7.4.33-1.amzn2.x86_64                           16/25 
+  Verifying  : php-intl-7.4.33-1.amzn2.x86_64                             17/25 
+  Verifying  : perl-Data-Dumper-2.145-3.amzn2.0.2.x86_64                  18/25 
+  Verifying  : libxslt-1.1.28-6.amzn2.x86_64                              19/25 
+  Verifying  : php-devel-7.4.33-1.amzn2.x86_64                            20/25 
+  Verifying  : php-cli-7.4.33-1.amzn2.x86_64                              21/25 
+  Verifying  : libzip-1.3.2-1.amzn2.0.1.x86_64                            22/25 
+  Verifying  : m4-1.4.16-10.amzn2.0.2.x86_64                              23/25 
+  Verifying  : php-bcmath-7.4.33-1.amzn2.x86_64                           24/25 
+  Verifying  : oniguruma-5.9.6-1.amzn2.0.7.x86_64                         25/25 
+
+Installed:
+  php.x86_64 0:7.4.33-1.amzn2            php-bcmath.x86_64 0:7.4.33-1.amzn2     
+  php-cli.x86_64 0:7.4.33-1.amzn2        php-common.x86_64 0:7.4.33-1.amzn2     
+  php-devel.x86_64 0:7.4.33-1.amzn2      php-fpm.x86_64 0:7.4.33-1.amzn2        
+  php-gd.x86_64 0:7.4.33-1.amzn2         php-intl.x86_64 0:7.4.33-1.amzn2       
+  php-json.x86_64 0:7.4.33-1.amzn2       php-mbstring.x86_64 0:7.4.33-1.amzn2   
+  php-mysqlnd.x86_64 0:7.4.33-1.amzn2    php-opcache.x86_64 0:7.4.33-1.amzn2    
+  php-pear.noarch 1:1.10.12-9.amzn2      php-xml.x86_64 0:7.4.33-1.amzn2        
+
+Dependency Installed:
+  autoconf.noarch 0:2.69-11.amzn2                                               
+  automake.noarch 0:1.13.4-3.1.amzn2                                            
+  libxslt.x86_64 0:1.1.28-6.amzn2                                               
+  libzip.x86_64 0:1.3.2-1.amzn2.0.1                                             
+  m4.x86_64 0:1.4.16-10.amzn2.0.2                                               
+  oniguruma.x86_64 0:5.9.6-1.amzn2.0.7                                          
+  perl-Data-Dumper.x86_64 0:2.145-3.amzn2.0.2                                   
+  perl-Test-Harness.noarch 0:3.28-3.amzn2                                       
+  perl-Thread-Queue.noarch 0:3.02-2.amzn2                                       
+  php-pdo.x86_64 0:7.4.33-1.amzn2                                               
+  php-process.x86_64 0:7.4.33-1.amzn2                                           
+
+Complete!
++ systemctl enable nfs-server.service
+Created symlink from /etc/systemd/system/multi-user.target.wants/nfs-server.service to /usr/lib/systemd/system/nfs-server.service.
++ systemctl start nfs-server.service
++ sudo mount -t nfs4 -o nfsvers=4.1,rsize=1048576,wsize=1048576,hard,timeo=600,retrans=2,noresvport fs-0f3d6e7941bedbc04.efs.us-east-1.amazonaws.com:/ /var/www/html
++ chkconfig httpd on
+Note: Forwarding request to 'systemctl enable httpd.service'.
+Created symlink from /etc/systemd/system/multi-user.target.wants/httpd.service to /usr/lib/systemd/system/httpd.service.
++ service httpd start
+Redirecting to /bin/systemctl start httpd.service
+++ date
++ echo 'Script completed: Tue Dec 12 19:01:54 UTC 2023'
+Script completed: Tue Dec 12 19:01:54 UTC 2023
