@@ -6,10 +6,11 @@ data "http" "myip" {
 }
 
 data "aws_ami" "AL2_latest" {
-  owners = ["137112412989"]
+  owners      = ["137112412989"]
   most_recent = true
+
   filter {
-    name = "name"
+    name   = "name"
     values = ["amzn2-ami-*-x86_64-gp2"]
   }
 }
@@ -18,6 +19,7 @@ data "aws_availability_zones" "avail" {
   state = "available"
 }
 
+# VPC
 resource "aws_vpc" "crud_vpc" {
   cidr_block           = "10.0.0.0/16"
   enable_dns_hostnames = true
@@ -27,26 +29,60 @@ resource "aws_vpc" "crud_vpc" {
   }
 }
 
-resource "aws_subnet" "subnet_az_1" {
+# Public Subnets
+resource "aws_subnet" "public_subnet_az_1" {
   vpc_id            = aws_vpc.crud_vpc.id
-  cidr_block        = "10.0.1.0/24"
+  cidr_block        = "10.0.0.0/24"
   availability_zone = data.aws_availability_zones.avail.names[0]
 
   tags = {
-    Name = "${data.aws_availability_zones.avail.names[0]}"
+    Name = "${data.aws_availability_zones.avail.names[0]} Public Subnet"
   }
 }
 
-resource "aws_subnet" "subnet_az_2" {
+resource "aws_subnet" "public_subnet_az_2" {
   vpc_id            = aws_vpc.crud_vpc.id
-  cidr_block        = "10.0.2.0/24"
+  cidr_block        = "10.0.1.0/24"
   availability_zone = data.aws_availability_zones.avail.names[1]
 
   tags = {
-    Name = "${data.aws_availability_zones.avail.names[1]}"
+    Name = "${data.aws_availability_zones.avail.names[1]} Public Subnet"
   }
 }
 
+# Private Subnets for EC2 Instances
+resource "aws_subnet" "private_subnet_az_1" {
+  vpc_id            = aws_vpc.crud_vpc.id
+  cidr_block        = "10.0.2.0/24"
+  availability_zone = data.aws_availability_zones.avail.names[0]
+
+  tags = {
+    Name = "${data.aws_availability_zones.avail.names[0]} Private Subnet for EC2"
+  }
+}
+
+resource "aws_subnet" "private_subnet_az_2" {
+  vpc_id            = aws_vpc.crud_vpc.id
+  cidr_block        = "10.0.3.0/24"
+  availability_zone = data.aws_availability_zones.avail.names[1]
+
+  tags = {
+    Name = "${data.aws_availability_zones.avail.names[1]} Private Subnet for EC2"
+  }
+}
+
+# Private Subnets for Database
+resource "aws_subnet" "private_db_subnet_az_1" {
+  vpc_id            = aws_vpc.crud_vpc.id
+  cidr_block        = "10.0.4.0/24"
+  availability_zone = data.aws_availability_zones.avail.names[0]
+
+  tags = {
+    Name = "${data.aws_availability_zones.avail.names[0]} Private Subnet for Database"
+  }
+}
+
+# Internet Gateway
 resource "aws_internet_gateway" "mygw" {
   vpc_id = aws_vpc.crud_vpc.id
 
@@ -56,44 +92,119 @@ resource "aws_internet_gateway" "mygw" {
   depends_on = [aws_vpc.crud_vpc]
 }
 
-resource "aws_route" "route_to_ig" {
-  route_table_id         = aws_vpc.crud_vpc.main_route_table_id
-  destination_cidr_block = "0.0.0.0/0"
-  gateway_id             = aws_internet_gateway.mygw.id
-  depends_on             = [aws_internet_gateway.mygw, aws_vpc.crud_vpc]
+# Route Tables
+resource "aws_route_table" "public_route_table" {
+  vpc_id = aws_vpc.crud_vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    gateway_id = aws_internet_gateway.mygw.id
+  }
 }
 
-resource "aws_route_table_association" "crud_rt_az_1" {
-  subnet_id      = aws_subnet.subnet_az_1.id
-  route_table_id = aws_vpc.crud_vpc.main_route_table_id
+resource "aws_route_table" "private_route_table" {
+  vpc_id = aws_vpc.crud_vpc.id
 }
 
-resource "aws_route_table_association" "crud_rt_az_2" {
-  subnet_id      = aws_subnet.subnet_az_2.id
-  route_table_id = aws_vpc.crud_vpc.main_route_table_id
+# Associating Subnets with Route Tables
+resource "aws_route_table_association" "public_rt_association_az_1" {
+  subnet_id      = aws_subnet.public_subnet_az_1.id
+  route_table_id = aws_route_table.public_route_table.id
 }
 
+resource "aws_route_table_association" "public_rt_association_az_2" {
+  subnet_id      = aws_subnet.public_subnet_az_2.id
+  route_table_id = aws_route_table.public_route_table.id
+}
+
+resource "aws_route_table_association" "private_rt_association_az_1" {
+  subnet_id      = aws_subnet.private_subnet_az_1.id
+  route_table_id = aws_route_table.private_route_table.id
+}
+
+resource "aws_route_table_association" "private_rt_association_az_2" {
+  subnet_id      = aws_subnet.private_subnet_az_2.id
+  route_table_id = aws_route_table.private_route_table.id
+}
+
+# NAT Gateways
+resource "aws_nat_gateway" "nat_gw_az_1" {
+  allocation_id = aws_eip.nat_eip_az_1.id
+  subnet_id     = aws_subnet.public_subnet_az_1.id
+
+  tags = {
+    Name = "NAT Gateway for AZ 1"
+  }
+
+  depends_on = [aws_internet_gateway.mygw]
+}
+
+resource "aws_nat_gateway" "nat_gw_az_2" {
+  allocation_id = aws_eip.nat_eip_az_2.id
+  subnet_id     = aws_subnet.public_subnet_az_2.id
+
+  tags = {
+    Name = "NAT Gateway for AZ 2"
+  }
+
+  depends_on = [aws_internet_gateway.mygw]
+}
+
+# Route Tables
+resource "aws_route_table" "private_rt_az_1" {
+  vpc_id = aws_vpc.crud_vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat_gw_az_1.id
+  }
+}
+
+resource "aws_route_table" "private_rt_az_2" {
+  vpc_id = aws_vpc.crud_vpc.id
+
+  route {
+    cidr_block = "0.0.0.0/0"
+    nat_gateway_id = aws_nat_gateway.nat_gw_az_2.id
+  }
+}
+
+# Associate Private Subnets with Route Tables
+resource "aws_route_table_association" "private_rt_association_az_1" {
+  subnet_id      = aws_subnet.private_subnet_az_1.id
+  route_table_id = aws_route_table.private_rt_az_1.id
+}
+
+resource "aws_route_table_association" "private_rt_association_az_2" {
+  subnet_id      = aws_subnet.private_subnet_az_2.id
+  route_table_id = aws_route_table.private_rt_az_2.id
+}
+
+# EFS File System
 resource "aws_efs_file_system" "myefs" {
   encrypted = true
+
   tags = {
     Name = "MyEFS"
   }
 }
 
+# EFS Mount Targets
 resource "aws_efs_mount_target" "crud_mt_az_1" {
   file_system_id  = aws_efs_file_system.myefs.id
-  subnet_id       = aws_subnet.subnet_az_1.id
+  subnet_id       = aws_subnet.private_subnet_az_1.id
   security_groups = [aws_security_group.SG_for_EFS.id]
   depends_on      = [aws_efs_file_system.myefs, aws_security_group.SG_for_EFS]
 }
 
 resource "aws_efs_mount_target" "crud_mt_az_2" {
   file_system_id  = aws_efs_file_system.myefs.id
-  subnet_id       = aws_subnet.subnet_az_2.id
+  subnet_id       = aws_subnet.private_subnet_az_2.id
   security_groups = [aws_security_group.SG_for_EFS.id]
   depends_on      = [aws_efs_file_system.myefs, aws_security_group.SG_for_EFS]
 }
 
+# Security Groups (Adjustments made for subnet references)
 resource "aws_security_group" "SG_for_ELB" {
   name        = "SG_for_ELB"
   description = "Allow 80 port inbound traffic"
@@ -189,14 +300,16 @@ resource "aws_security_group" "SG_for_EC2" {
   depends_on = [aws_security_group.SG_for_ELB]
 }
 
+# Database Subnet Group
 resource "aws_db_subnet_group" "default" {
   name       = "main"
-  subnet_ids = [aws_subnet.subnet_az_1.id, aws_subnet.subnet_az_2.id]
+  subnet_ids = [aws_subnet.private_db_subnet_az_1.id, aws_subnet.private_db_subnet_az_2.id]
 }
 
+# RDS Instance
 resource "aws_db_instance" "mysql" {
-  identifier = "mysql"
-  engine     = "mysql"
+  identifier                      = "mysql"
+  engine                          = "mysql"
   engine_version                  = "8.0.28"
   instance_class                  = "db.t3.medium"
   db_subnet_group_name            = aws_db_subnet_group.default.name
@@ -215,14 +328,16 @@ resource "aws_db_instance" "mysql" {
   depends_on                      = [aws_security_group.SG_for_RDS, aws_db_subnet_group.default]
 }
 
+# UserData for EC2 Instances
 resource "local_file" "userdata_init" {
   filename = "./userdata.sh"
-  content = templatefile("./userdata.tpl", {
+  content  = templatefile("./userdata.tpl", {
     dns = aws_efs_file_system.myefs.dns_name
   })
   depends_on = [aws_efs_file_system.myefs]
 }
 
+# Launch Configuration
 resource "aws_launch_configuration" "my_conf" {
   name_prefix                 = "My Launch Config with WP"
   image_id                    = data.aws_ami.AL2_latest.id
@@ -239,6 +354,7 @@ resource "aws_launch_configuration" "my_conf" {
   depends_on = [local_file.userdata_init, aws_security_group.SG_for_EC2]
 }
 
+# Autoscaling Group
 resource "aws_autoscaling_group" "my_asg" {
   name_prefix               = "my_asg"
   max_size                  = 4
@@ -247,7 +363,7 @@ resource "aws_autoscaling_group" "my_asg" {
   health_check_type         = "ELB"
   desired_capacity          = 2
   launch_configuration      = aws_launch_configuration.my_conf.name
-  vpc_zone_identifier       = [aws_subnet.subnet_az_1.id, aws_subnet.subnet_az_2.id]
+  vpc_zone_identifier       = [aws_subnet.private_subnet_az_1.id, aws_subnet.private_subnet_az_2.id]
   load_balancers            = [aws_elb.my_elb.name]
   lifecycle {
     create_before_destroy = true
@@ -255,10 +371,11 @@ resource "aws_autoscaling_group" "my_asg" {
   depends_on = [aws_elb.my_elb, aws_launch_configuration.my_conf, aws_efs_mount_target.crud_mt_az_1, aws_efs_mount_target.crud_mt_az_2]
 }
 
+# ELB
 resource "aws_elb" "my_elb" {
   name            = "My-ELB"
   security_groups = [aws_security_group.SG_for_ELB.id]
-  subnets         = [aws_subnet.subnet_az_1.id, aws_subnet.subnet_az_2.id]
+  subnets         = [aws_subnet.public_subnet_az_1.id, aws_subnet.public_subnet_az_2.id]
 
   listener {
     instance_port     = 80
@@ -280,33 +397,15 @@ resource "aws_elb" "my_elb" {
   depends_on                = [aws_security_group.SG_for_ELB]
 }
 
-resource "local_file" "playbook" {
-  filename = "../ansible/crud.yaml"
-  content = templatefile("./crud.tmpl", {
-    database_name = var.rds_credentials.dbname
-    username      = var.rds_credentials.username
-    password      = var.rds_credentials.password
-    db_host       = element(split(":", aws_db_instance.mysql.endpoint), 0)
-  })
-  depends_on = [aws_db_instance.mysql, aws_autoscaling_group.my_asg]
-}
-
-data "aws_instances" "my_inst" {
-
-  filter {
-    name   = "image-id"
-    values = [data.aws_ami.AL2_latest.id]
-  }
-  depends_on = [aws_autoscaling_group.my_asg]
-}
-
+# Ansible Inventory File
 resource "local_file" "servers" {
   filename = "../ansible/hosts"
-  content = templatefile("./servers.tmpl", {
+  content  = templatefile("./servers.tmpl", {
     ip = data.aws_instances.my_inst.public_ips[0]
   })
 }
 
+# Ansible Provisioning
 resource "null_resource" "ansible" {
   provisioner "local-exec" {
     working_dir = "../ansible"
@@ -315,6 +414,7 @@ resource "null_resource" "ansible" {
   depends_on = [local_file.servers, local_file.playbook]
 }
 
+# CloudWatch Alarms
 resource "aws_cloudwatch_metric_alarm" "cpuover60" {
   alarm_name                = "cpuover60"
   comparison_operator       = "GreaterThanThreshold"
@@ -358,3 +458,4 @@ resource "aws_autoscaling_policy" "scale_in_one" {
   cooldown               = 300
   autoscaling_group_name = aws_autoscaling_group.my_asg.name
 }
+
