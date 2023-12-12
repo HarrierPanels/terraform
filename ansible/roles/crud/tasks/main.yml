@@ -162,7 +162,7 @@
   replace:
     path: /var/www/html/includes/header.php
     regexp: 'PHP MySQL CRUD'
-    replace: "PHP MySQL CRUD ID/IP: {{ ansible_host }} | {{ ansible_default_ipv4.address }}"
+    replace: "PHP MySQL CRUD IP: {{ ansible_host }} | {{ ansible_default_ipv4.address }}"
   become: yes
   register: mod_title_php
 
