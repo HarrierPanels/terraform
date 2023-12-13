@@ -30,7 +30,15 @@ Separation of Concerns: Terraform focuses on infrastructure provisioning, while 
 
 Using only Terraform or only Ansible for a multi-tier architecture can have certain drawbacks, and using a toolchain that combines both can address these limitations. Let's explore the cons of using only Terraform or only Ansible for such an architecture:
 #### Using Only Terraform:
+**Configuration Management Limitations:**
+- Terraform is primarily designed for infrastructure provisioning and may lack the robustness and features required for detailed configuration management.
+- Managing software configurations, application deployments, and dynamic changes on instances might be challenging.
 
+**Limited Idempotency:**
+- While Terraform is idempotent at the infrastructure level, it may not be as effective at managing configurations on instances.
+- Making changes to configuration files or installing software may not be as reliable or idempotent as Ansible.
+**Complexity for Application Deployment:**
+- As the complexity of application deployments increases, handling it solely through Terraform may result in complex and less maintainable code.
 
 #### Terraform / Ansible Toolchain structure:
 ```
