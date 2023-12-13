@@ -17,7 +17,7 @@ Combining Terraform and Ansible in a single toolchain for deploying a multi-tier
 
 **Ansible:** Used for configuration management and application deployment. It ensures that the software running on your infrastructure is properly configured.
 
-*The benefits of using both tools together include:*
+**The benefits of using both tools together include:**<br>
 Separation of Concerns: Terraform focuses on infrastructure provisioning, while Ansible focuses on configuration management. This separation makes it easier to manage and understand the different aspects of your infrastructure.
 
     Idempotency: Terraform is idempotent by design, meaning it brings the infrastructure to the desired state regardless of its current state. Ansible follows a similar philosophy, making it safe to apply configurations multiple times.
