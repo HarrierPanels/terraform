@@ -14,7 +14,7 @@ For all groups - access by ssh key. The configuration of the general ssh paramet
 ```
 terraform/
 └── ansible/
-    ├── crud.yml [*]
+    ├── crud.yaml [*]
     ├── hosts [*]
     └── roles/
         └── crud/
