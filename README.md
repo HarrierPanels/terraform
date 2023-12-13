@@ -64,7 +64,8 @@ Using only Terraform or only Ansible for a multi-tier architecture can have cert
 
 **Clear Separation of Concerns:**
 - Separating infrastructure provisioning and configuration management provides clarity in responsibilities and makes codebases more manageable.
-#### Terraform / Ansible Toolchain structure:```
+#### Terraform / Ansible Toolchain structure:
+```
 terraform/
 └── ansible/
     ├── crud.yaml [*]
