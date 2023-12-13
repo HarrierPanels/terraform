@@ -40,6 +40,7 @@ Using only Terraform or only Ansible for a multi-tier architecture can have cert
 
 **Complexity for Application Deployment:**
 - As the complexity of application deployments increases, handling it solely through Terraform may result in complex and less maintainable code.
+#### Using Only Ansible:
 
 #### Terraform / Ansible Toolchain structure:
 ```
@@ -60,5 +61,5 @@ terraform/
 ├── userdata.sh [*]
 └── variables.tf
 ```
-<sub>[*] created by terraform from a template</sub>
+<sub>[*] created by Terraform from a template</sub>
 
