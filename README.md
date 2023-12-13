@@ -13,9 +13,9 @@ For all groups - access by ssh key. The configuration of the general ssh paramet
 #### Integrating Terraform and Ansible Tasks: A Unified Execution Strategy
 Combining Terraform and Ansible in a single toolchain for deploying a multi-tier architecture on AWS is a common and reasonable approach. Both tools serve different purposes in the infrastructure deployment process:
 
-*Terraform:* Used for infrastructure provisioning. It defines the architecture of your infrastructure, including networks, security groups, instances, databases, etc.
+**Terraform:** Used for infrastructure provisioning. It defines the architecture of your infrastructure, including networks, security groups, instances, databases, etc.
 
-*Ansible:* Used for configuration management and application deployment. It ensures that the software running on your infrastructure is properly configured.
+**Ansible:** Used for configuration management and application deployment. It ensures that the software running on your infrastructure is properly configured.
 
 *The benefits of using both tools together include:*
 Separation of Concerns: Terraform focuses on infrastructure provisioning, while Ansible focuses on configuration management. This separation makes it easier to manage and understand the different aspects of your infrastructure.
