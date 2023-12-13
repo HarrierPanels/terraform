@@ -51,8 +51,20 @@ Using only Terraform or only Ansible for a multi-tier architecture can have cert
 
 **Less Declarative:**
 - Ansible is more procedural and imperative, which may result in less declarative and more step-by-step scripting for infrastructure setup.
-#### Terraform / Ansible Toolchain structure:
-```
+#### Using a Toolchain (Terraform + Ansible):
+**Leveraging Strengths:**
+- Combining Terraform for infrastructure provisioning and Ansible for configuration management leverages the strengths of each tool.
+- Terraform provides a declarative approach to define infrastructure, while Ansible handles configuration and application deployment more flexibly.
+
+**Scalability and Reusability:**
+- The toolchain approach allows for scalable infrastructure changes using Terraform and reusable, modular Ansible roles for consistent configuration across instances.
+
+**Better Collaboration:**
+- Teams with expertise in different areas (infrastructure vs. configuration management) can collaborate more effectively, each focusing on their strengths.
+
+**Clear Separation of Concerns:**
+- Separating infrastructure provisioning and configuration management provides clarity in responsibilities and makes codebases more manageable.
+#### Terraform / Ansible Toolchain structure:```
 terraform/
 └── ansible/
     ├── crud.yaml [*]
