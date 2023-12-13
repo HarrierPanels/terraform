@@ -37,6 +37,7 @@ Using only Terraform or only Ansible for a multi-tier architecture can have cert
 **Limited Idempotency:**
 - While Terraform is idempotent at the infrastructure level, it may not be as effective at managing configurations on instances.
 - Making changes to configuration files or installing software may not be as reliable or idempotent as Ansible.
+
 **Complexity for Application Deployment:**
 - As the complexity of application deployments increases, handling it solely through Terraform may result in complex and less maintainable code.
 
