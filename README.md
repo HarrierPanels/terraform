@@ -14,6 +14,8 @@ For all groups - access by ssh key. The configuration of the general ssh paramet
 ```
 terraform/
 └── ansible/
+    ├── crud.yml [*]
+    ├── hosts [*]
     └── roles/
         └── crud/
             └── tasks/
@@ -24,5 +26,7 @@ terraform/
 ├── outputs.tf
 ├── servers.tmpl
 ├── userdata.tpl
+├── userdata.sh [*]
 └── variables.tf
 ```
+<sub>[*] created by terraform from a template</sub>
