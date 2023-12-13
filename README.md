@@ -28,6 +28,10 @@ Separation of Concerns: Terraform focuses on infrastructure provisioning, while 
 
 **Reusability:** With separate Terraform modules and Ansible roles, you can reuse code for similar setups in different environments, making it easier to maintain and update.
 
+Using only Terraform or only Ansible for a multi-tier architecture can have certain drawbacks, and using a toolchain that combines both can address these limitations. Let's explore the cons of using only Terraform or only Ansible for such an architecture:
+#### Using Only Terraform:
+
+
 #### Terraform / Ansible Toolchain structure:
 ```
 terraform/
