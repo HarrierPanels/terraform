@@ -41,7 +41,16 @@ Using only Terraform or only Ansible for a multi-tier architecture can have cert
 **Complexity for Application Deployment:**
 - As the complexity of application deployments increases, handling it solely through Terraform may result in complex and less maintainable code.
 #### Using Only Ansible:
+**Infrastructure Provisioning:**
+- While Ansible is excellent for configuration management, it lacks Terraform's ability to manage the complete lifecycle of infrastructure.
+- Defining network architecture, security groups, and other infrastructure elements might be less intuitive in Ansible.
 
+**Limited State Management:**
+- Ansible does not inherently manage state, making it less suitable for tracking the state of the infrastructure and handling drift.
+- Keeping track of resource dependencies and managing changes in a complex infrastructure might be challenging.
+
+**Less Declarative:**
+- Ansible is more procedural and imperative, which may result in less declarative and more step-by-step scripting for infrastructure setup.
 #### Terraform / Ansible Toolchain structure:
 ```
 terraform/
