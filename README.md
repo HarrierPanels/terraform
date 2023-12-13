@@ -20,21 +20,13 @@ Combining Terraform and Ansible in a single toolchain for deploying a multi-tier
 **The benefits of using both tools together include:**<br>
 Separation of Concerns: Terraform focuses on infrastructure provisioning, while Ansible focuses on configuration management. This separation makes it easier to manage and understand the different aspects of your infrastructure.
 
-    Idempotency: Terraform is idempotent by design, meaning it brings the infrastructure to the desired state regardless of its current state. Ansible follows a similar philosophy, making it safe to apply configurations multiple times.
+**Idempotency:** Terraform is idempotent by design, meaning it brings the infrastructure to the desired state regardless of its current state. Ansible follows a similar philosophy, making it safe to apply configurations multiple times.
 
-    Scalability: Terraform excels at defining infrastructure as code, and Ansible excels at configuration management. As your infrastructure grows, you can continue to use Terraform to scale your infrastructure and use Ansible to configure new instances.
+**Scalability:** Terraform excels at defining infrastructure as code, and Ansible excels at configuration management. As your infrastructure grows, you can continue to use Terraform to scale your infrastructure and use Ansible to configure new instances.
 
-    Flexibility: The combination allows you to leverage the strengths of each tool. Terraform can handle complex infrastructure changes, while Ansible provides flexibility in configuring software components.
+**Flexibility:** The combination allows you to leverage the strengths of each tool. Terraform can handle complex infrastructure changes, while Ansible provides flexibility in configuring software components.
 
-    Reusability: With separate Terraform modules and Ansible roles, you can reuse code for similar setups in different environments, making it easier to maintain and update.
-
-However, keep in mind a few considerations:
-
-    Learning Curve: Using both tools requires familiarity with both Terraform and Ansible. Ensure your team has the necessary skills to work with these tools effectively.
-
-    Integration: Although Terraform and Ansible can work well together, consider potential integration points and how they align with your workflow. For example, you might use Ansible dynamic inventory scripts or output variables from Terraform for Ansible.
-
-    Toolchain Complexity: Depending on your team's familiarity with the tools, introducing both Terraform and Ansible might increase the complexity of your deployment process.
+**Reusability:** With separate Terraform modules and Ansible roles, you can reuse code for similar setups in different environments, making it easier to maintain and update.
 
 #### Terraform / Ansible Toolchain structure:
 ```
