@@ -84,4 +84,6 @@ terraform/
 └── variables.tf
 ```
 <sub>[*] created by Terraform from a template</sub>
+The provided Terraform configuration sets up a multi-tier architecture on AWS, including a VPC, subnets, internet gateway, route tables, EFS (Elastic File System), security groups, RDS (Relational Database Service), EC2 instances, and an ELB (Elastic Load Balancer). After the infrastructure is provisioned using Terraform, Ansible is used to configure the instances and deploy a PHP-MySQL CRUD application.
 
+Here's the high-level workflow:
