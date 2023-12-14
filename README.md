@@ -68,6 +68,110 @@ Using only Terraform or only Ansible for a multi-tier architecture can have cert
 - AWS S3 Bucket
 - DynamoDB Database
 - EC2 key pair
+- CRUD GitHub Repo
+#### Remote Backend Setup
+```
+[ec2-user@ip-192-168-0-145 terraform]$ aws s3api create-bucket --bucket terraform-ansible-task --acl private
+{
+    "Location": "/terraform-ansible-task"
+}
+[ec2-user@ip-192-168-0-145 terraform]$ aws s3api put-bucket-versioning --bucket terraform-ansible-task --versioning-configuration Status=Enabled
+[ec2-user@ip-192-168-0-145 terraform]$ aws s3api put-object --bucket terraform-ansible-task --key environments/production/
+{
+    "ETag": "\"d41d8cd98f00b204e9800998ecf8427e\"",
+    "ServerSideEncryption": "AES256",
+    "VersionId": "s4OKmv9KcksGxPn46WyW99UQ2pPSVS3T"
+}
+[ec2-user@ip-192-168-0-145 terraform]$ aws s3 ls s3://terraform-ansible-task --recursive
+2023-12-12 18:36:59          0 environments/production/
+[ec2-user@ip-192-168-0-145 terraform]$ aws dynamodb create-table     --table-name terraform-lock-table     --attribute-definitions AttributeName=LockID,AttributeType=S     --key-schema AttributeName=LockID,KeyType=HASH     --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+{
+    "TableDescription": {
+        "AttributeDefinitions": [
+            {
+                "AttributeName": "LockID",
+                "AttributeType": "S"
+            }
+        ],
+        "TableName": "terraform-lock-table",
+        "KeySchema": [
+            {
+                "AttributeName": "LockID",
+                "KeyType": "HASH"
+            }
+        ],
+        "TableStatus": "CREATING",
+        "CreationDateTime": "2023-12-12T18:40:35.406000+00:00",
+        "ProvisionedThroughput": {
+            "NumberOfDecreasesToday": 0,
+            "ReadCapacityUnits": 5,
+            "WriteCapacityUnits": 5
+        },
+        "TableSizeBytes": 0,
+        "ItemCount": 0,
+        "TableArn": "arn:aws:dynamodb:us-east-1:325618140111:table/terraform-lock-table",
+        "TableId": "dfa7ca03-476f-4d36-9a2c-d37c2c50eac9",
+        "DeletionProtectionEnabled": false
+    }
+}
+[ec2-user@ip-192-168-0-145 terraform]$ aws sts get-caller-identity --query Arn
+"arn:aws:iam::325618140111:user/cloud_user"
+[ec2-user@ip-192-168-0-145 terraform]$ aws s3api get-bucket-policy --bucket terraform-ansible-task --query Policy | jq -r 'fromjson | {Version: .Version, Statement: .Statement}'
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::325618140111:user/cloud_user"
+      },
+      "Action": "s3:ListBucket",
+      "Resource": "arn:aws:s3:::terraform-ansible-task"
+    },
+    {
+      "Effect": "Allow",
+      "Principal": {
+        "AWS": "arn:aws:iam::325618140111:user/cloud_user"
+      },
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject"
+      ],
+      "Resource": "arn:aws:s3:::terraform-ansible-task/*"
+    }
+  ]
+}
+[ec2-user@ip-192-168-0-145 terraform]$ terraform init
+
+Initializing the backend...
+
+Successfully configured the backend "s3"! Terraform will automatically
+use this backend unless the backend configuration changes.
+
+Initializing provider plugins...
+- Reusing previous version of hashicorp/http from the dependency lock file
+- Reusing previous version of hashicorp/aws from the dependency lock file
+- Reusing previous version of hashicorp/null from the dependency lock file
+- Reusing previous version of hashicorp/local from the dependency lock file
+- Using previously-installed hashicorp/http v3.4.0
+- Using previously-installed hashicorp/aws v5.29.0
+- Using previously-installed hashicorp/null v3.2.2
+- Using previously-installed hashicorp/local v2.4.0
+
+Terraform has made some changes to the provider dependency selections recorded
+in the .terraform.lock.hcl file. Review those changes and commit them to your
+version control system if they represent changes you intended to make.
+
+Terraform has been successfully initialized!
+
+You may now begin working with Terraform. Try running "terraform plan" to see
+any changes that are required for your infrastructure. All Terraform commands
+should now work.
+
+If you ever set or change modules or backend configuration for Terraform,
+rerun this command to reinitialize your working directory. If you forget, other
+commands will detect it and remind you to do so if necessary.
+```
 #### Terraform / Ansible Toolchain structure:
 ```
 terraform/
