@@ -84,7 +84,11 @@ Using only Terraform or only Ansible for a multi-tier architecture can have cert
 }
 [ec2-user@ip-192-168-0-145 terraform]$ aws s3 ls s3://terraform-ansible-task --recursive
 2023-12-12 18:36:59          0 environments/production/
-[ec2-user@ip-192-168-0-145 terraform]$ aws dynamodb create-table     --table-name terraform-lock-table     --attribute-definitions AttributeName=LockID,AttributeType=S     --key-schema AttributeName=LockID,KeyType=HASH     --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
+[ec2-user@ip-192-168-0-145 terraform]$ aws dynamodb create-table \
+    --table-name terraform-lock-table \
+    --attribute-definitions AttributeName=LockID,AttributeType=S \
+    --key-schema AttributeName=LockID,KeyType=HASH \
+    --provisioned-throughput ReadCapacityUnits=5,WriteCapacityUnits=5
 {
     "TableDescription": {
         "AttributeDefinitions": [
