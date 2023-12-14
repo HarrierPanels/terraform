@@ -91,14 +91,14 @@ Here's the high-level workflow:
 #### Terraform:
 - **Infrastructure Provisioning:**
   - AWS resources are defined in the Terraform configuration, including VPC, subnets, internet gateway, route tables, EFS, security groups, RDS, EC2 instances, ELB, etc.
- - Dependencies between resources are specified using the depends_on attribute to ensure proper provisioning order.
+  - Dependencies between resources are specified using the depends_on attribute to ensure proper provisioning order.
 
 - **UserData Script:**
- - A user data script is defined in the Terraform configuration (userdata.tpl), which is executed on EC2 instances at launch.
- - This script installs required packages, updates the system, installs necessary software (such as Apache, PHP, MySQL), mounts the EFS file system, and starts services.
+  - A user data script is defined in the Terraform configuration (userdata.tpl), which is executed on EC2 instances at launch.
+  - This script installs required packages, updates the system, installs necessary software (such as Apache, PHP, MySQL), mounts the EFS file system, and starts services.
 
 - **Dynamic Inventory:**
- - AWS EC2 instances are dynamically discovered using the data "aws_instances" block, and their public IP is populated in the Ansible inventory file.
+  - AWS EC2 instances are dynamically discovered using the data "aws_instances" block, and their public IP is populated in the Ansible inventory file.
 
 - **Output Values:**
- - Outputs like EFS DNS name and RDS endpoint are defined to be used in Ansible.
+  - Outputs like EFS DNS name and RDS endpoint are defined to be used in Ansible.
