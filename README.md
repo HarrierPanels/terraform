@@ -64,6 +64,10 @@ Using only Terraform or only Ansible for a multi-tier architecture can have cert
 
 **Clear Separation of Concerns:**
 - Separating infrastructure provisioning and configuration management provides clarity in responsibilities and makes codebases more manageable.
+#### Prerequisites
+- AWS S3 Bucket
+- DynamoDB Database
+- EC2 key pair
 #### Terraform / Ansible Toolchain structure:
 ```
 terraform/
