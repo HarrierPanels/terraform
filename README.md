@@ -85,6 +85,20 @@ terraform/
 ```
 <sub>[*] created by Terraform from a template</sub>
 
-The provided Terraform configuration sets up a multi-tier architecture on AWS, including a VPC, subnets, internet gateway, route tables, EFS (Elastic File System), security groups, RDS (Relational Database Service), EC2 instances, and an ELB (Elastic Load Balancer) with Auto-Scaling Group. After the infrastructure is provisioned using Terraform, Ansible is used to configure the instances and deploy a PHP-MySQL CRUD application.
+The provided Terraform configuration sets up a multi-tier architecture on AWS, including a VPC, subnets, internet gateway, route tables, EFS (Elastic File System), security groups, RDS (Relational Database Service), EC2 instances, and an ELB (Elastic Load Balancer) with Autoscaling Group. After the infrastructure is provisioned using Terraform, Ansible is used to configure the instances and deploy a PHP-MySQL CRUD application.
 
 Here's the high-level workflow:
+#### Terraform:
+- **Infrastructure Provisioning:**
+ - AWS resources are defined in the Terraform configuration, including VPC, subnets, internet gateway, route tables, EFS, security groups, RDS, EC2 instances, ELB, etc.
+ - Dependencies between resources are specified using the depends_on attribute to ensure proper provisioning order.
+
+- **UserData Script:**
+ - A user data script is defined in the Terraform configuration (userdata.tpl), which is executed on EC2 instances at launch.
+ - This script installs required packages, updates the system, installs necessary software (such as Apache, PHP, MySQL), mounts the EFS file system, and starts services.
+
+- **Dynamic Inventory:**
+ - AWS EC2 instances are dynamically discovered using the data "aws_instances" block, and their public IP is populated in the Ansible inventory file.
+
+- **Output Values:**
+ - Outputs like EFS DNS name and RDS endpoint are defined to be used in Ansible.
