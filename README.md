@@ -90,7 +90,7 @@ The provided Terraform configuration sets up a multi-tier architecture on AWS, i
 Here's the high-level workflow:
 #### Terraform:
 - **Infrastructure Provisioning:**
- - AWS resources are defined in the Terraform configuration, including VPC, subnets, internet gateway, route tables, EFS, security groups, RDS, EC2 instances, ELB, etc.
+ -- AWS resources are defined in the Terraform configuration, including VPC, subnets, internet gateway, route tables, EFS, security groups, RDS, EC2 instances, ELB, etc.
  - Dependencies between resources are specified using the depends_on attribute to ensure proper provisioning order.
 
 - **UserData Script:**
