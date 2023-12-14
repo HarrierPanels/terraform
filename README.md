@@ -262,4 +262,7 @@ Here's the high-level workflow:
 ```
 [ec2-user@ip-192-168-0-145 terraform]$ terraform apply -auto-approve >logs
 ```
-The **[logs](terraform/logs)** show the Terraform apply process, including resource creation, progress updates, and Ansible playbook execution. Key steps include acquiring a state lock, generating a plan, creating AWS resources (VPC, subnets, security groups, RDS, EFS), and executing an Ansible playbook. Outputs include the DNS name for the EFS file system and the RDS endpoint.
+The **[logs](terraform/logs)** show the Terraform apply process, including resource creation, progress updates, and Ansible playbook execution. Key steps include acquiring a state lock, generating a plan, creating AWS resources (VPC, subnets, security groups, RDS, EFS, etc.), and executing an Ansible playbook. Outputs include the DNS name for the EFS file system and the RDS endpoint.
+```
+
+```
