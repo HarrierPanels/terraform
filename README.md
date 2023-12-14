@@ -117,3 +117,11 @@ Here's the high-level workflow:
 
 - **[Output Values:](terraform/outputs.tf)**
   - Outputs like EFS DNS name and RDS endpoint are defined to be used in Ansible.
+ 
+- **Terraform Variables:**
+  - The **[variables.tf](terraform/variables.tf)** file plays a crucial role in managing dynamic values and parameters in the Terraform configuration.
+  - This file defines variables, such as the **rds_credentials** variable, which encapsulates sensitive information like the master DB username, password, and database name.
+  - The **rds_credentials** variable is of type **object** and is set to default values in this configuration. However, it's designed to be easily customized by users, allowing for a secure and flexible approach to managing database credentials.
+  - By externalizing these variable values, the Terraform configuration becomes more modular and adaptable. Users can customize these variables based on their specific requirements, promoting reusability and ensuring that sensitive information remains confidential.
+  - When deploying the infrastructure, users can provide values for these variables interactively or through various methods, such as input files, environment variables, or command-line flags.
+  - In summary, **[variables.tf](terraform/variables.tf)** enhances the configurability and security of the Terraform setup by centralizing variable definitions and allowing users to customize values according to their specific needs.
