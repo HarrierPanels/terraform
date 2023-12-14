@@ -120,7 +120,9 @@ Using only Terraform or only Ansible for a multi-tier architecture can have cert
 }
 [ec2-user@ip-192-168-0-145 terraform]$ aws sts get-caller-identity --query Arn
 "arn:aws:iam::325618140111:user/cloud_user"
-[ec2-user@ip-192-168-0-145 terraform]$ aws s3api get-bucket-policy --bucket terraform-ansible-task --query Policy | jq -r 'fromjson | {Version: .Version, Statement: .Statement}'
+[ec2-user@ip-192-168-0-145 terraform]$ aws s3api get-bucket-policy \
+    --bucket terraform-ansible-task --query Policy |
+    jq -r 'fromjson | {Version: .Version, Statement: .Statement}'
 {
   "Version": "2012-10-17",
   "Statement": [
