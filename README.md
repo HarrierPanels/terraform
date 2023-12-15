@@ -235,8 +235,8 @@ Here's the high-level workflow:
   - The backend "s3" block in the Terraform configuration defines the settings for this remote backend. The S3 bucket (**terraform-ansible-task**), key (*environments/production/terraform.tfstate*), and DynamoDB table (**terraform-lock-table**) collectively serve as a robust infrastructure state management solution.
   - This remote backend configuration enhances collaboration and state management, allowing multiple team members to work on the infrastructure concurrently. It provides a centralized location for storing and versioning the Terraform state, promoting consistency and avoiding conflicts in a collaborative environment. The use of DynamoDB for state locking ensures the integrity of the state file during concurrent operations.
 
-- **[Output Values:](terraform/outputs.tf)**
-  - Outputs like EFS DNS name and RDS endpoint are defined to be used in Ansible.
+- **Output Values:
+  - Outputs (**[outputs.tf](terraform/outputs.tf)**) like EFS DNS name and RDS endpoint are defined to be used in Ansible.
  
 - **Terraform Variables:**
   - The **[variables.tf](terraform/variables.tf)** file plays a crucial role in managing dynamic values and parameters in the Terraform configuration.
