@@ -264,6 +264,183 @@ Here's the high-level workflow:
 [ec2-user@ip-192-168-0-145 terraform]$ terraform apply -auto-approve >logs
 ```
 The **[logs](terraform/logs)** show the Terraform apply process, including resource creation, progress updates, and Ansible playbook execution. Key steps include acquiring a state lock, generating a plan, creating AWS resources (VPC, subnets, security groups, RDS, EFS, etc.), and executing an Ansible playbook. Outputs include the DNS name for the EFS file system and the RDS endpoint.
+#### Terraform State file:
 ```
+[ec2-user@ip-192-168-0-145 terraform]$ aws s3 ls s3://terraform-ansible-task --recursive
+2023-12-12 18:36:59          0 environments/production/
+2023-12-12 19:10:44      59132 environments/production/terraform.tfstate
+[ec2-user@ip-192-168-0-145 terraform]$ aws dynamodb scan --table-name terraform-lock-table
 
+{
+    "Items": [
+        {
+            "LockID": {
+                "S": "terraform-ansible-task/environments/production/terraform.tfstate-md5"
+            },
+            "Digest": {
+                "S": "14cf95613d7a1f5cd6d89be4528912b8"
+            }
+        }
+    ],
+    "Count": 1,
+    "ScannedCount": 1,
+    "ConsumedCapacity": null
+}
+```
+#### VPC:
+```
+[ec2-user@ip-192-168-0-145 terraform]$ aws ec2 describe-vpcs
+{
+    "Vpcs": [
+        {
+            "CidrBlock": "10.0.0.0/16",
+            "DhcpOptionsId": "dopt-0f21acf582e3e8366",
+            "State": "available",
+            "VpcId": "vpc-01550116fd4f544b4",
+            "OwnerId": "325618140111",
+            "InstanceTenancy": "default",
+            "CidrBlockAssociationSet": [
+                {
+                    "AssociationId": "vpc-cidr-assoc-0ec3b8b283d5e2dd5",
+                    "CidrBlock": "10.0.0.0/16",
+                    "CidrBlockState": {
+                        "State": "associated"
+                    }
+                }
+            ],
+            "IsDefault": false,
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "crud_vpc"
+                }
+            ]
+        },
+        {
+            "CidrBlock": "172.31.0.0/16",
+            "DhcpOptionsId": "dopt-0f21acf582e3e8366",
+            "State": "available",
+            "VpcId": "vpc-00e49357f011c7ae5",
+            "OwnerId": "325618140111",
+            "InstanceTenancy": "default",
+            "CidrBlockAssociationSet": [
+                {
+                    "AssociationId": "vpc-cidr-assoc-0c6762e157cac9054",
+                    "CidrBlock": "172.31.0.0/16",
+                    "CidrBlockState": {
+                        "State": "associated"
+                    }
+                }
+            ],
+            "IsDefault": true
+        }
+    ]
+}
+```
+#### Database
+```
+[ec2-user@ip-192-168-0-145 terraform]$ aws rds describe-db-instances --db-instance-identifier mysql
+{
+    "DBInstances": [
+        {
+            "DBInstanceIdentifier": "mysql",
+            "DBInstanceClass": "db.t3.medium",
+            "Engine": "mysql",
+            "DBInstanceStatus": "available",
+            "MasterUsername": "username",
+            "DBName": "dbname",
+            "Endpoint": {
+                "Address": "mysql.crmzqzrcrpkm.us-east-1.rds.amazonaws.com",
+                "Port": 3306,
+                "HostedZoneId": "Z2R2ITUGPM61AM"
+            },
+            "AllocatedStorage": 20,
+            "InstanceCreateTime": "2023-12-12T19:02:28.615000+00:00",
+            "PreferredBackupWindow": "00:00-00:30",
+            "BackupRetentionPeriod": 7,
+            "DBSecurityGroups": [],
+            "VpcSecurityGroups": [
+                {
+                    "VpcSecurityGroupId": "sg-0cbd0be57d380721a",
+                    "Status": "active"
+                }
+            ],
+            "DBParameterGroups": [
+                {
+                    "DBParameterGroupName": "default.mysql8.0",
+                    "ParameterApplyStatus": "in-sync"
+                }
+            ],
+            "AvailabilityZone": "us-east-1b",
+            "DBSubnetGroup": {
+                "DBSubnetGroupName": "main",
+                "DBSubnetGroupDescription": "Managed by Terraform",
+                "VpcId": "vpc-01550116fd4f544b4",
+                "SubnetGroupStatus": "Complete",
+                "Subnets": [
+                    {
+                        "SubnetIdentifier": "subnet-0f38077a9a17c2d71",
+                        "SubnetAvailabilityZone": {
+                            "Name": "us-east-1b"
+                        },
+                        "SubnetOutpost": {},
+                        "SubnetStatus": "Active"
+                    },
+                    {
+                        "SubnetIdentifier": "subnet-03fd3612d7a72aef6",
+                        "SubnetAvailabilityZone": {
+                            "Name": "us-east-1a"
+                        },
+                        "SubnetOutpost": {},
+                        "SubnetStatus": "Active"
+                    }
+                ]
+            },
+            "PreferredMaintenanceWindow": "sun:21:00-sun:21:30",
+            "PendingModifiedValues": {},
+            "LatestRestorableTime": "2023-12-12T19:25:00+00:00",
+            "MultiAZ": false,
+            "EngineVersion": "8.0.28",
+            "AutoMinorVersionUpgrade": true,
+            "ReadReplicaDBInstanceIdentifiers": [],
+            "LicenseModel": "general-public-license",
+            "OptionGroupMemberships": [
+                {
+                    "OptionGroupName": "default:mysql-8-0",
+                    "Status": "in-sync"
+                }
+            ],
+            "PubliclyAccessible": false,
+            "StorageType": "gp2",
+            "DbInstancePort": 0,
+            "StorageEncrypted": false,
+            "DbiResourceId": "db-POHUAPS4RS4IOL5F4E6VVQWOMI",
+            "CACertificateIdentifier": "rds-ca-2019",
+            "DomainMemberships": [],
+            "CopyTagsToSnapshot": false,
+            "MonitoringInterval": 0,
+            "DBInstanceArn": "arn:aws:rds:us-east-1:325618140111:db:mysql",
+            "IAMDatabaseAuthenticationEnabled": false,
+            "PerformanceInsightsEnabled": false,
+            "EnabledCloudwatchLogsExports": [
+                "error",
+                "general"
+            ],
+            "DeletionProtection": false,
+            "AssociatedRoles": [],
+            "TagList": [],
+            "CustomerOwnedIpEnabled": false,
+            "ActivityStreamStatus": "stopped",
+            "BackupTarget": "region",
+            "NetworkType": "IPV4",
+            "StorageThroughput": 0,
+            "CertificateDetails": {
+                "CAIdentifier": "rds-ca-2019",
+                "ValidTill": "2024-08-22T17:08:50+00:00"
+            },
+            "DedicatedLogVolume": false,
+            "IsStorageConfigUpgradeAvailable": false
+        }
+    ]
+}
 ```
