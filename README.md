@@ -69,6 +69,7 @@ Using only Terraform or only Ansible for a multi-tier architecture can have cert
 - DynamoDB Database
 - EC2 key pair
 - CRUD GitHub Repo
+- Terraform / Ansible controller VM
 #### Remote Backend Setup
 ```
 [ec2-user@ip-192-168-0-145 terraform]$ aws s3api create-bucket --bucket terraform-ansible-task --acl private
