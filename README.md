@@ -444,3 +444,292 @@ The **[logs](terraform/logs)** show the Terraform apply process, including resou
     ]
 }
 ```
+#### Elastic File System
+```
+[ec2-user@ip-192-168-0-145 terraform]$ aws efs describe-file-systems
+{
+    "FileSystems": [
+        {
+            "OwnerId": "325618140111",
+            "CreationToken": "terraform-20231212185800927400000001",
+            "FileSystemId": "fs-0f3d6e7941bedbc04",
+            "FileSystemArn": "arn:aws:elasticfilesystem:us-east-1:325618140111:file-system/fs-0f3d6e7941bedbc04",
+            "CreationTime": "2023-12-12T18:58:02+00:00",
+            "LifeCycleState": "available",
+            "Name": "MyEFS",
+            "NumberOfMountTargets": 2,
+            "SizeInBytes": {
+                "Value": 6144,
+                "ValueInIA": 0,
+                "ValueInStandard": 6144,
+                "ValueInArchive": 0
+            },
+            "PerformanceMode": "generalPurpose",
+            "Encrypted": true,
+            "KmsKeyId": "arn:aws:kms:us-east-1:325618140111:key/55105398-49cb-474f-a601-ebaa540edbc7",
+            "ThroughputMode": "bursting",
+            "Tags": [
+                {
+                    "Key": "Name",
+                    "Value": "MyEFS"
+                }
+            ],
+            "FileSystemProtection": {
+                "ReplicationOverwriteProtection": "ENABLED"
+            }
+        }
+    ]
+}
+```
+#### Elastic Load Balancer
+```
+[ec2-user@ip-192-168-0-145 terraform]$ aws elb describe-load-balancers
+{
+    "LoadBalancerDescriptions": [
+        {
+            "LoadBalancerName": "My-ELB",
+            "DNSName": "My-ELB-329346245.us-east-1.elb.amazonaws.com",
+            "CanonicalHostedZoneName": "My-ELB-329346245.us-east-1.elb.amazonaws.com",
+            "CanonicalHostedZoneNameID": "Z35SXDOTRQ7X7K",
+            "ListenerDescriptions": [
+                {
+                    "Listener": {
+                        "Protocol": "HTTP",
+                        "LoadBalancerPort": 80,
+                        "InstanceProtocol": "HTTP",
+                        "InstancePort": 80
+                    },
+                    "PolicyNames": []
+                }
+            ],
+            "Policies": {
+                "AppCookieStickinessPolicies": [],
+                "LBCookieStickinessPolicies": [],
+                "OtherPolicies": []
+            },
+            "BackendServerDescriptions": [],
+            "AvailabilityZones": [
+                "us-east-1a",
+                "us-east-1b"
+            ],
+            "Subnets": [
+                "subnet-03fd3612d7a72aef6",
+                "subnet-0f38077a9a17c2d71"
+            ],
+            "VPCId": "vpc-01550116fd4f544b4",
+            "Instances": [
+                {
+                    "InstanceId": "i-0611ceeedbf13eba0"
+                },
+                {
+                    "InstanceId": "i-01c72729eab844f4a"
+                }
+            ],
+            "HealthCheck": {
+                "Target": "TCP:80",
+                "Interval": 20,
+                "Timeout": 5,
+                "UnhealthyThreshold": 2,
+                "HealthyThreshold": 2
+            },
+            "SourceSecurityGroup": {
+                "OwnerAlias": "325618140111",
+                "GroupName": "SG_for_ELB"
+            },
+            "SecurityGroups": [
+                "sg-06932c2d6c3ef1189"
+            ],
+            "CreatedTime": "2023-12-12T18:58:18.680000+00:00",
+            "Scheme": "internet-facing"
+        }
+    ]
+}
+```
+#### Auto Scaling Group
+```
+[ec2-user@ip-192-168-0-145 terraform]$ aws autoscaling describe-auto-scaling-groups
+{
+    "AutoScalingGroups": [
+        {
+            "AutoScalingGroupName": "my_asg20231212185942776500000003",
+            "AutoScalingGroupARN": "arn:aws:autoscaling:us-east-1:325618140111:autoScalingGroup:a9773797-0a5b-4797-b2f0-a5adc0771a8e:autoScalingGroupName/my_asg20231212185942776500000003",
+            "LaunchConfigurationName": "My Launch Config with WP20231212185821981700000002",
+            "MinSize": 2,
+            "MaxSize": 4,
+            "DesiredCapacity": 2,
+            "DefaultCooldown": 300,
+            "AvailabilityZones": [
+                "us-east-1a",
+                "us-east-1b"
+            ],
+            "LoadBalancerNames": [
+                "My-ELB"
+            ],
+            "TargetGroupARNs": [],
+            "HealthCheckType": "ELB",
+            "HealthCheckGracePeriod": 300,
+            "Instances": [
+                {
+                    "InstanceId": "i-01c72729eab844f4a",
+                    "InstanceType": "t3.medium",
+                    "AvailabilityZone": "us-east-1a",
+                    "LifecycleState": "InService",
+                    "HealthStatus": "Healthy",
+                    "LaunchConfigurationName": "My Launch Config with WP20231212185821981700000002",
+                    "ProtectedFromScaleIn": false
+                },
+                {
+                    "InstanceId": "i-0611ceeedbf13eba0",
+                    "InstanceType": "t3.medium",
+                    "AvailabilityZone": "us-east-1b",
+                    "LifecycleState": "InService",
+                    "HealthStatus": "Healthy",
+                    "LaunchConfigurationName": "My Launch Config with WP20231212185821981700000002",
+                    "ProtectedFromScaleIn": false
+                }
+            ],
+            "CreatedTime": "2023-12-12T18:59:43.993000+00:00",
+            "SuspendedProcesses": [],
+            "VPCZoneIdentifier": "subnet-0f38077a9a17c2d71,subnet-03fd3612d7a72aef6",
+            "EnabledMetrics": [],
+            "Tags": [],
+            "TerminationPolicies": [
+                "Default"
+            ],
+            "NewInstancesProtectedFromScaleIn": false,
+            "ServiceLinkedRoleARN": "arn:aws:iam::325618140111:role/aws-service-role/autoscaling.amazonaws.com/AWSServiceRoleForAutoScaling",
+            "TrafficSources": [
+                {
+                    "Identifier": "My-ELB",
+                    "Type": "elb"
+                }
+            ]
+        }
+    ]
+}
+```
+#### CRUD App
+```
+[ec2-user@ip-10-0-2-48 ~]$ curl -s https://checkip.amazonaws.com
+3.83.142.127
+[ec2-user@ip-10-0-2-48 ~]$ curl -v localhost
+*   Trying 127.0.0.1:80...
+* Connected to localhost (127.0.0.1) port 80
+> GET / HTTP/1.1
+> Host: localhost
+> User-Agent: curl/8.3.0
+> Accept: */*
+>
+< HTTP/1.1 200 OK
+< Date: Tue, 12 Dec 2023 19:51:58 GMT
+< Server: Apache/2.4.58 () PHP/7.4.33
+< Upgrade: h2,h2c
+< Connection: Upgrade
+< X-Powered-By: PHP/7.4.33
+< Set-Cookie: PHPSESSID=vbcg4aaag02254m3m6bna8ppra; path=/
+< Expires: Thu, 19 Nov 1981 08:52:00 GMT
+< Cache-Control: no-store, no-cache, must-revalidate
+< Pragma: no-cache
+< Content-Length: 3346
+< Content-Type: text/html; charset=UTF-8
+<
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>PHP CRUD MYSQL</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <!-- BOOTSTRAP 4 -->
+    <link rel="stylesheet" href="https://bootswatch.com/4/yeti/bootstrap.min.css">
+    <!-- FONT AWESOEM -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+  </head>
+  <body>
+
+    <nav class="navbar navbar-dark bg-dark">
+      <div class="container">
+        <a class="navbar-brand" href="index.php">PHP MySQL CRUD IP: 3.83.142.127 | 10.0.2.48</a>
+      </div>
+    </nav>
+
+<main class="container p-4">
+  <div class="row">
+    <div class="col-md-4">
+      <!-- MESSAGES -->
+
+
+      <!-- ADD TASK FORM -->
+      <div class="card card-body">
+        <form action="save_task.php" method="POST">
+          <div class="form-group">
+            <input type="text" name="title" class="form-control" placeholder="Task Title" autofocus>
+          </div>
+          <div class="form-group">
+            <textarea name="description" rows="2" class="form-control" placeholder="Task Description"></textarea>
+          </div>
+          <input type="submit" name="save_task" class="btn btn-success btn-block" value="Save Task">
+        </form>
+      </div>
+    </div>
+    <div class="col-md-8">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Created At</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+
+                    <tr>
+            <td>Terraform Task</td>
+            <td>Complete!</td>
+            <td>2023-12-12 19:12:05</td>
+            <td>
+              <a href="edit.php?id=1" class="btn btn-secondary">
+                <i class="fas fa-marker"></i>
+              </a>
+              <a href="delete_task.php?id=1" class="btn btn-danger">
+                <i class="far fa-trash-alt"></i>
+              </a>
+            </td>
+          </tr>
+                    <tr>
+            <td>Ansible Task</td>
+            <td>Complete!</td>
+            <td>2023-12-12 19:12:18</td>
+            <td>
+              <a href="edit.php?id=2" class="btn btn-secondary">
+                <i class="fas fa-marker"></i>
+              </a>
+              <a href="delete_task.php?id=2" class="btn btn-danger">
+                <i class="far fa-trash-alt"></i>
+              </a>
+            </td>
+          </tr>
+                  </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+
+<!-- BOOTSTRAP 4 SCRIPTS -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
+</body>
+</html>
+* Connection #0 to host localhost left intact
+
+[ec2-user@ip-192-168-0-145 terraform]$ curl -s http://my-elb-329346245.us-east-1.elb.amazonaws.com | grep -o 'Terraform Task' && curl -s http://my-elb-329346245.us-east-1.elb.amazonaws.com/index.php | grep -o -m 1 'Complete!'
+Terraform Task
+Complete!
+
+[ec2-user@ip-192-168-0-145 terraform]$ curl -s http://my-elb-329346245.us-east-1.elb.amazonaws.com | grep -o 'Ansible Task' && curl -s http://my-elb-329346245.us-east-1.e
+lb.amazonaws.com/index.php | grep -o -m 1 'Complete!'
+Ansible Task
+Complete!
+```
