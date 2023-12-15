@@ -252,6 +252,10 @@ Here's the high-level workflow:
    - Tasks encompass a range of activities such as installing necessary packages, downloading and extracting the CRUD application, modifying SQL scripts, updating PHP files with dynamic values obtained from the deployed infrastructure, and configuring Apache.
    - The template used to generate the playbook incorporates variables derived from the deployed infrastructure, ensuring that the playbook aligns with the specifics of the actual environment. This seamless integration between Terraform and Ansible enhances automation, consistency, and the overall manageability of the infrastructure.
 
+- **Roles:**
+  - The Ansible playbook utilizes the concept of roles to organize and modularize the configuration tasks. The role named **"crud"** encapsulates specific functionalities and configurations related to the CRUD application.
+  - Roles enhance the playbook's structure, making it more readable, maintainable, and reusable. They encapsulate related tasks, variables, and files, contributing to a more organized and scalable Ansible configuration.
+
 - **Inventory File:**
   - An inventory file (**hosts**) is generated dynamically with the public IP of the EC2 instance.
 
