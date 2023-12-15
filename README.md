@@ -724,12 +724,22 @@ The **[logs](terraform/logs)** show the Terraform apply process, including resou
 </html>
 * Connection #0 to host localhost left intact
 
-[ec2-user@ip-192-168-0-145 terraform]$ curl -s http://my-elb-329346245.us-east-1.elb.amazonaws.com | grep -o 'Terraform Task' && curl -s http://my-elb-329346245.us-east-1.elb.amazonaws.com/index.php | grep -o -m 1 'Complete!'
+[ec2-user@ip-192-168-0-145 terraform]$ curl -s http://my-elb-329346245.us-east-1.elb.amazonaws.com |
+    grep -o 'Terraform Task' &&
+    curl -s http://my-elb-329346245.us-east-1.elb.amazonaws.com |
+    grep -o -m 1 'Complete!'
 Terraform Task
 Complete!
 
-[ec2-user@ip-192-168-0-145 terraform]$ curl -s http://my-elb-329346245.us-east-1.elb.amazonaws.com | grep -o 'Ansible Task' && curl -s http://my-elb-329346245.us-east-1.e
-lb.amazonaws.com/index.php | grep -o -m 1 'Complete!'
+[ec2-user@ip-192-168-0-145 terraform]$ curl -s http://my-elb-329346245.us-east-1.elb.amazonaws.com |
+    grep -o 'Ansible Task' &&
+    curl -s http://my-elb-329346245.us-east-1.elb.amazonaws.com |
+    grep -o -m 1 'Complete!'
 Ansible Task
 Complete!
 ```
+#### Terraform destroy process:
+```
+[ec2-user@ip-192-168-0-145 terraform]$ terraform destroy -auto-approve >logs_destroy
+```
+The Terraform destroy logs (**[logs_destroy](terraform/logs_destroy)**) indicate the process of tearing down infrastructure. Notable steps include acquiring a state lock, reading and refreshing data sources, generating a destruction plan, and then sequentially destroying resources. There are warnings about potential permission issues during the cleanup of an ELB Classic Load Balancer. In the end, the logs confirm the completion of the destruction, specifying the number of resources destroyed.
