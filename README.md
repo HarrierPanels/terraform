@@ -189,14 +189,14 @@ terraform/
         └── crud/
             └── tasks/
                 └── main.yml
-terraform/
-├── crud.tmpl
-├── main.tf
-├── outputs.tf
-├── servers.tmpl
-├── userdata.tpl
-├── userdata.sh [*]
-└── variables.tf
+└── terraform/
+    ├── crud.tmpl
+    ├── main.tf
+    ├── outputs.tf
+    ├── servers.tmpl
+    ├── userdata.tpl
+    ├── userdata.sh [*]
+    └── variables.tf
 ```
 <sub>[*] created by Terraform from a template</sub>
 
