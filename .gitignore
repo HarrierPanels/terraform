@@ -1,6 +1,4 @@
 .aws/
 .terraform/
 .terraform.lock.hcl
-*.sh
-ansible/*.yaml
-hosts
+*.tf*
