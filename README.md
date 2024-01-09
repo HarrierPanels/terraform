@@ -11,3 +11,14 @@ The architecture of the project you build should include:
 - VPC (Virtual Private Cloud)
 - 2 x EC2 Instances
 - 1 x Load Balancer
+## Task 1
+For this task, you will install Terraform, create a Terraform minimal viable product (MVP), and execute Terraform commands.
+
+**Goals:**
+- Install Terraform to your control machine (your laptop).
+- Create a folder for your Terraform project and put the main.ts file in it.
+- Add information to the **main.tf** file about your cloud provider, Amazon AWS.
+- Generate an AWS_ACCESS_KEY and an AWS_SECRET_KEY in your Amazon AWS account.
+- Add Amazon AWS credentials to the **main.tf** file or environment variables.
+- Initialize and apply the current version of your Terraform project.
+
