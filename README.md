@@ -22,7 +22,7 @@ For this task, you will install Terraform, create a Terraform minimal viable pro
 - Add Amazon AWS credentials to the **main.tf** file or environment variables.
 - Initialize and apply the current version of your Terraform project.
 ## Task implementation
-To achieve the task goals, the script **[task1.sh](./task1.sh)** automates the installation of Terraform on the control machine, lists AWS credentials for a specified profile (*task1*), creates a folder named '*task1*' with a Terraform configuration file (*main.tf*) specifying the *AWS* provider, initializes and applies the Terraform project within the *task1* folder, and logs the entire script execution to a file named **[task1_logs](./task1_logs)**. The script also includes functions to check for utility installation, install utilities using `yum` or `apt-get`, and delete all files and folders created during the process.
+To achieve the task goals, the script **[task1.sh](./task1.sh)** automates the installation of Terraform on the control machine, lists AWS credentials for a specified profile (*task1*), creates a folder named '*task1*' with a Terraform configuration file (*main.tf*) specifying the *AWS* provider, initializes and applies the Terraform project within the *task1* folder, and logs the entire script execution to a file named **[task1_log](./task1_log)**. The script also includes functions to check for utility installation, install utilities using `yum` or `apt-get`, and delete all files and folders created during the process.
 ## Task 2
 ## Task 3
 ## Task 4
