@@ -24,7 +24,16 @@ For this task, you will install Terraform, create a Terraform minimal viable pro
 ## Task implementation
 To achieve the task goals, the script **[task1.sh](./task1.sh)** automates the installation of Terraform on the control machine, lists AWS credentials for a specified profile (*task1*), creates a folder named '*task1*' with a Terraform configuration file (*main.tf*) specifying the *AWS* provider, initializes and applies the Terraform project within the *task1* folder, and logs the entire script execution to a file named **[task1_log](./task1_log)**. The script also includes functions to check for utility installation, install utilities using `yum` or `apt-get`, and delete all files and folders created during the process.
 ## Task 2
+For this task, you will provision a VPC in AWS using a VPC modu;e from the Terraform Registry.
+
+**Goals:**
+
+- Find an appropriate Terraform module in the Terraform Registry.
+- Add a block of code into the main.tf file that configures VPC based on the module from the Terraform Registry.
+- Check the execution plan.
+- Apply the changes.
+## Task implementation
+The Bash script **[task2.sh](./task2.sh)** automates the deployment and destruction of AWS infrastructure using Terraform. It checks for utility installations, installs Terraform if needed, creates configuration files, applies changes, and cleans up. All output is logged to a specified log file **[task2_log](./task2_log)** for reference. The script ensures proper tooling and facilitates AWS infrastructure management through Terraform, with detailed logging for each step.
 ## Task 3
 ## Task 4
 # To be continued! Check back often!
-
