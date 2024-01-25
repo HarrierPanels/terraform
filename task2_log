@@ -1481,7 +1481,8 @@ tshicorp/aws versions matching ">= 5.20.0"...
 
 Terraform has created a lock file ializing provirform.lock.hcldr plugins..elections it made above. Include this file in your version control repository
 so that Terraform can guarantee to make the same selections by default when
-you run "terraform init" in the future.rform has been successfully initialized!
+you run "terraform init" in the future.
+rform has been successfully initialized!
 u may now begin working with Terraform. Try running "terraform plan" to see
 any changes that are required for your infrastructure. All Terraform commands
 should now work.
@@ -2119,7 +2120,7 @@ Terraform will perform the following actions:
   + resource "aws_subnet" "my-vpc-subnet" {
       + arn                             = (known after apply)
       + assign_ipv6_address_on_creation = false
-      + availability_zone               = "eu-east-1a"
+      + availability_zone               = "us-east-1a"
       + availability_zone_id            = (known after apply)
       + cidr_block                      = "10.0.0.0/16"
       + id                              = (known after apply)
@@ -2133,7 +2134,7 @@ Terraform will perform the following actions:
   + resource "aws_subnet" "my-vpc-subnet" {
       + arn                             = (known after apply)
       + assign_ipv6_address_on_creation = false
-      + availability_zone               = "eu-east-1b"
+      + availability_zone               = "us-east-1b"
       + availability_zone_id            = (known after apply)
       + cidr_block                      = "10.0.0.0/16"
       + id                              = (known after apply)
@@ -2147,7 +2148,7 @@ Terraform will perform the following actions:
   + resource "aws_subnet" "my-vpc-subnet" {
       + arn                             = (known after apply)
       + assign_ipv6_address_on_creation = false
-      + availability_zone               = "eu-east-1c"
+      + availability_zone               = "us-east-1c"
       + availability_zone_id            = (known after apply)
       + cidr_block                      = "10.0.0.0/16"
       + id                              = (known after apply)
