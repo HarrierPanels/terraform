@@ -2061,4 +2061,112 @@ Terraform will perform the following actions:
 
   # module.vpc.aws_route_table.my-vpc-public-rt[2] will be created
   + resource "aws_route_table" "my-vpc-public-rt" {
-      + id              = (known after
+      + id              = (known after apply) 
+      + owner_id        = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route           = [
+          + {
+              + cidr_block = "0.0.0.0/0"
+              + nat_gateway_id = aws_nat_gateway.my-vpc-ngw[2].id
+            },
+        ]
+      + vpc_id          = (known after apply)
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-private-subnet[0] will be created
+  + resource "aws_route_table_association" "my-vpc-private-subnet" {
+      + id             = (known after apply)
+      + route_table_id = aws_route_table.my-vpc-private-rt[0].id
+      + subnet_id      = aws_subnet.private-subnet[0].id
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-private-subnet[1] will be created
+  + resource "aws_route_table_association" "my-vpc-private-subnet" {
+      + id             = (known after apply)
+      + route_table_id = aws_route_table.my-vpc-private-rt[1].id
+      + subnet_id      = aws_subnet.private-subnet[1].id
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-private-subnet[2] will be created
+  + resource "aws_route_table_association" "my-vpc-private-subnet" {
+      + id             = (known after apply)
+      + route_table_id = aws_route_table.my-vpc-private-rt[2].id
+      + subnet_id      = aws_subnet.private-subnet[2].id
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-public-subnet[0] will be created
+  + resource "aws_route_table_association" "my-vpc-public-subnet" {
+      + id             = (known after apply)
+      + route_table_id = aws_route_table.my-vpc-public-rt[0].id
+      + subnet_id      = aws_subnet.public-subnet[0].id
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-public-subnet[1] will be created
+  + resource "aws_route_table_association" "my-vpc-public-subnet" {
+      + id             = (known after apply)
+      + route_table_id = aws_route_table.my-vpc-public-rt[1].id
+      + subnet_id      = aws_subnet.public-subnet[1].id
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-public-subnet[2] will be created
+  + resource "aws_route_table_association" "my-vpc-public-subnet" {
+      + id             = (known after apply)
+      + route_table_id = aws_route_table.my-vpc-public-rt[2].id
+      + subnet_id      = aws_subnet.public-subnet[2].id
+    }
+
+  # module.vpc.aws_subnet.my-vpc-subnet[0] will be created
+  + resource "aws_subnet" "my-vpc-subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "eu-east-1a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.0.0/16"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + vpc_id                          = (known after apply)
+    }
+
+  # module.vpc.aws_subnet.my-vpc-subnet[1] will be created
+  + resource "aws_subnet" "my-vpc-subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "eu-east-1b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.0.0/16"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + vpc_id                          = (known after apply)
+    }
+
+  # module.vpc.aws_subnet.my-vpc-subnet[2] will be created
+  + resource "aws_subnet" "my-vpc-subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "eu-east-1c"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.0.0/16"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + vpc_id                          = (known after apply)
+    }
+
+Plan: 17 to add, 0 to change, 0 to destroy.
+
+Changes to Outputs:
+  + vpc_id = (known after apply)
+module.vpc: Creating...
+module.vpc: Creation complete after 2s [id=vpc-0e21bc8c7f40c519b]
+
+Apply complete! Resources: 17 added, 0 changed, 0 destroyed.
+
+Outputs:
+
+vpc_id = "vpc-0e21bc8c7f40c519b"
+
