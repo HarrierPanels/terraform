@@ -2173,8 +2173,6 @@ vpc_id = "vpc-0e21bc8c7f40c519b"
 
 + terraform -chdir=task2 destroy -auto-approve
 
-terraform -chdir=task2 destroy -auto-approve
-
 Task2: Destroying...
 
 An execution plan has been generated and is shown below.
@@ -2581,6 +2579,241 @@ Terraform will perform the following actions:
               - gateway_id  = "igw-0123456789abcdef0" # Example internet gateway ID
             },
         ]
-      - vpc_id          = "vpc-0e21bc8c7f40c
+      - vpc_id          = "vpc-0e21bc8c7f40c      519b" # Example VPC ID
+    }
+
+  # module.vpc.aws_route_table.my-vpc-private-rt[2] will be destroyed
+  - resource "aws_route_table" "my-vpc-private-rt" {
+      - id              = "rtb-0123456789abcdef2" # Example route table ID
+      - owner_id        = "012345678901" # Example owner ID
+      - propagating_vgws = [] # Example list of propagating VGWs
+      - route           = [
+          - {
+              - cidr_block = "0.0.0.0/0"
+              - gateway_id  = "igw-0123456789abcdef0" # Example internet gateway ID
+            },
+        ]
+      - vpc_id          = "vpc-0e21bc8c7f40c519b" # Example VPC ID
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-private-subnet[0] will be destroyed
+  - resource "aws_route_table_association" "my-vpc-private-subnet" {
+      - id             = "rtbassoc-0123456789abcdef0" # Example association ID
+      - route_table_id = "rtb-0123456789abcdef0" # Example route table ID
+      - subnet_id      = "subnet-0123456789abcdef0" # Example subnet ID
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-private-subnet[1] will be destroyed
+  - resource "aws_route_table_association" "my-vpc-private-subnet" {
+      - id             = "rtbassoc-0123456789abcdef1" # Example association ID
+      - route_table_id = "rtb-0123456789abcdef1" # Example route table ID
+      - subnet_id      = "subnet-0123456789abcdef1" # Example subnet ID
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-private-subnet[2] will be destroyed
+  - resource "aws_route_table_association" "my-vpc-private-subnet" {
+      - id             = "rtbassoc-0123456789abcdef2" # Example association ID
+      - route_table_id = "rtb-0123456789abcdef2" # Example route table ID
+      - subnet_id      = "subnet-0123456789abcdef2" # Example subnet ID
+    }
+
+  # module.vpc.aws_subnet.my-vpc-subnet[0] will be destroyed
+  - resource "aws_subnet" "my-vpc-subnet" {
+      - arn                             = "arn:aws:ec2:us-east-1:012345678901:subnet/subnet-0123456789abcdef0" # Example subnet ARN
+      - assign_ipv6_address_on_creation = false
+      - availability_zone               = "us-east-1a"
+      - availability_zone_id            = "use1-az1" # Example availability zone ID
+      - cidr_block                      = "10.0.0.0/24"
+      - id                              = "subnet-0123456789abcdef0" # Example subnet ID
+      - ipv6_cidr_block                 = "2001:db8:0::/64" # Example IPv6 CIDR block
+      - map_public_ip_on_launch         = true
+      - owner_id                        = "012345678901" # Example owner ID
+      - vpc_id                          = "vpc-0e21bc8c7f40c519b" # Example VPC ID
+    }
+
+  # module.vpc.aws_subnet.my-vpc-subnet[1] will be destroyed
+  - resource "aws_subnet" "my-vpc-subnet" {
+      - arn                             = "arn:aws:ec2:us-east-1:012345678901:subnet/subnet-0123456789abcdef1" # Example subnet ARN
+      - assign_ipv6_address_on_creation = false
+      - availability_zone               = "us-east-1b"
+      - availability_zone_id            = "use1-az2" # Example availability zone ID
+      - cidr_block                      = "10.0.1.0/24"
+      - id                              = "subnet-0123456789abcdef1" # Example subnet ID
+      - ipv6_cidr_block                 = "2001:db8:1::/64" # Example IPv6 CIDR block
+      - map_public_ip_on_launch         = true
+      - owner_id                        = "012345678901" # Example owner ID
+      - vpc_id                          = "vpc-0e21bc8c7f40c519b" # Example VPC ID
+    }
+
+  # module.vpc.aws_subnet.my-vpc-subnet[2] will be destroyed
+  - resource "aws_subnet" "my-vpc-subnet" {
+      - arn                             = "arn:aws:ec2:us-east-1:012345678901:subnet/subnet-0123456789abcdef2" # Example subnet ARN
+      - assign_ipv6_address_on_creation = false
+      - availability_zone               = "us-east-1c"
+      - availability_zone_id            = "use1-az3" # Example availability zone ID
+      - cidr_block                      = "10.0.2.0/24"
+      - id                              = "subnet-0123456789abcdef2" # Example subnet ID
+      - ipv6_cidr_block                 = "2001:db8:2::/64" # Example IPv6 CIDR block
+      - map_public_ip_on_launch         = true
+      - owner_id                        = "012345678901" # Example owner ID
+      - vpc_id                          = "vpc-0e21bc8c7f40c519b" # Example VPC ID
+    }
+
+  # module.vpc.aws_route_table.my-vpc-public-rt[0] will be destroyed
+  - resource "aws_route_table" "my-vpc-public-rt" {
+      - id              = "rtb-0123456789abcdef3" # Example route table ID
+      - owner_id        = "012345678901" # Example owner ID
+      - propagating_vgws = [] # Example list of propagating VGWs
+      - route           = [
+          - {
+              - cidr_block     = "0.0.0.0/0"
+              - nat_gateway_id = "nat-0123456789abcdef0" # Example NAT gateway ID
+            },
+        ]
+      - vpc_id          = "vpc-0e21bc8c7f40c519b" # Example VPC ID
+    }
+
+  # module.vpc.aws_route_table.my-vpc-public-rt[1] will be destroyed
+  - resource "aws_route_table" "my-vpc-public-rt" {
+      - id              = "rtb-0123456789abcdef4" # Example route table ID
+      - owner_id        = "012345678901" # Example owner ID
+      - propagating_vgws = [] # Example list of propagating VGWs
+      - route           = [
+          - {
+              - cidr_block     = "0.0.0.0/0"
+              - nat_gateway_id = "nat-0123456789abcdef1" # Example NAT gateway ID
+            },
+        ]
+      - vpc_id          = "vpc-0e21bc8c7f40c519b" # Example VPC ID
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-public-subnet[0] will be destroyed
+  - resource "aws_route_table_association" "my-vpc-public-subnet" {
+      - id             = "rtbassoc-0123456789abcdef3" # Example association ID
+      - route_table_id = "rtb-0123456789abcdef3" # Example route table ID
+      - subnet_id      = "subnet-0123456789abcdef0" # Example subnet ID
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-public-subnet[1] will be destroyed
+  - resource "aws_route_table_association" "my-vpc-public-subnet" {
+      - id             = "rtbassoc-0123456789abcdef4" # Example association ID
+      - route_table_id = "rtb-0123456789abcdef4" # Example route table ID
+      - subnet_id      = "subnet-0123456789abcdef1" # Example subnet ID
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-public-subnet[2] will be destroyed
+  - resource "aws_route_table_association" "my-vpc-public-subnet" {
+      - id             = "rtbassoc-0123456789abcdef5" # Example association ID
+      - route_table_id = "rtb-0123456789abcdef5" # Example route table ID
+      - subnet_id      = "subnet-0123456789abcdef2" # Example subnet ID
+    }
+
+  # module.vpc.aws_security_group.my-vpc-internal will be destroyed
+  - resource "aws_security_group" "my-vpc-internal" {
+      - arn                    = "arn:aws:ec2:us-east-1:012345678901:security-group/sg-0123456789abcdef" # Example security group ARN
+      - description            = "Security group for internal resources"
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description       = ""
+              - from_port          = 0
+              - ipv6_cidr_blocks  = []
+              - prefix_list_ids   = []
+              - protocol          = "-1"
+              - security_groups   = []
+              - self              = false
+              - to_port            = 0
+            },
+        ]
+      - id                     = "sg-0123456789abcdef" # Example security group ID
+      - ingress                = []
+      - name                   = "my-vpc-internal"
+      - owner_id               = "012345678901" # Example owner ID
+      - revoke_rules_on_delete = false
+      - tags                   = {
+          - "Name" = "my-vpc-internal"
+        }
+      - vpc_id                 = "vpc-0e21bc8c7f40c519b" # Example VPC ID
+    }
+
+  # module.vpc.aws_security_group.my-vpc-public will be destroyed
+  - resource "aws_security_group" "my-vpc-public" {
+      - arn                    = "arn:aws:ec2:us-east-1:012345678901:security-group/sg-0123456789abcdef" # Example security group ARN
+      - description            = "Security group for public resources"
+      - egress                 = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description       = ""
+              - from_port          = 0
+              - ipv6_cidr_blocks  = []
+              - prefix_list_ids   = []
+              - protocol          = "-1"
+              - security_groups   = []
+              - self              = false
+              - to_port            = 0
+            },
+        ]
+      - id                     = "sg-0123456789abcdef" # Example security group ID
+      - ingress                = [
+          - {
+              - cidr_blocks      = [
+                  - "0.0.0.0/0",
+                ]
+              - description       = "Allow all inbound traffic"
+              - from_port          = 0
+              - ipv6_cidr_blocks  = []
+              - prefix_list_ids   = []
+              - protocol          = "-1"
+              - security_groups   = []
+              - self              = false
+              - to_port            = 0
+            },
+        ]
+      - name                   = "my-vpc-public"
+      - owner_id               = "012345678901" # Example owner ID
+      - revoke_rules_on_delete = false
+      - tags                   = {
+          - "Name" = "my-vpc-public"
+        }
+      - vpc_id                 = "vpc-0e21bc8c7f40c519b" # Example VPC ID
+    }
+
+  # module.vpc.aws_nat_gateway.my-vpc-nat-gw[0] will be destroyed
+  - resource "aws_nat_gateway" "my-vpc-nat-gw" {
+      - allocation_id        = "eipalloc-0123456789abcdef0" # Example allocation ID
+      - id                   = "nat-0123456789abcdef0" # Example NAT gateway ID
+      - network_interface_ids = [
+          - "eni-0123456789abcdef0",
+        ]
+      - private_ip           = "10.0.0.10" # Example private IP address
+      - public_ip            = "203.0.113.1" # Example public IP address
+      - subnet_id            = "subnet-0123456789abcdef0" # Example subnet ID
+      - tags                 = {
+          - "Name" = "my-vpc-nat-gw"
+        }
+    }
+
+  # module.vpc.aws_nat_gateway.my-vpc-nat-gw[1] will be destroyed
+  - resource "aws_nat_gateway" "my-vpc-nat-gw" {
+      - allocation_id        = "eipalloc-0123456789abcdef1" # Example allocation ID
+      - id                   = "nat-0123456789abcdef1" # Example NAT gateway ID
+      - network_interface_ids = [
+          - "eni-0123456789abcdef1",
+        ]
+      - private_ip           = "10.0.1.10" # Example private IP address
+      - public_ip            = "203.0.113.2" # Example public IP address
+      - subnet_id            = "subnet-0123456789abcdef1" # Example subnet ID
+      - tags                 = {
+          - "Name" = "my-vpc-nat-gw"
+        }
+    }
+
+  # module.vpc.aws_nat_gateway.my-vpc-nat-gw[2] will be destroyed
+  - resource "
+
 
 
