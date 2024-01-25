@@ -1825,3 +1825,248 @@ Terraform will perform the following actions:
 Plan: 13 to add, 0 to change, 0 to destroy.
 
 + terraform -chdir=task2 apply -auto-approve
+
+Task2: Initializing Terraform...
+
+Initializing the backend...
+
+Initializing provider plugins...
+- Finding latest version of hashicorp/aws...
+- Installing hashicorp/aws v3.51.0...
+- Installed hashicorp/aws v3.51.0 (signed by HashiCorp)
+
+Terraform has created a lock file .terraform.lock.hcl to record the provider
+selections it made above. Include this file in your version control repository
+so that Terraform can guarantee to make the same selections by default when
+you run "terraform init" in the future.
+
+Terraform has been successfully initialized!
+
+Task2: Applying changes...
+
+An execution plan has been generated and is shown below.
+Resource actions are indicated with the following symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # module.vpc.aws_vpc.my-vpc will be created
+  + resource "aws_vpc" "my-vpc" {
+      + arn                              = (known after apply)
+      + assign_generated_ipv6_cidr_block = false
+      + cidr_block                       = "10.0.0.0/16"
+      + default_network_acl_id           = (known after apply)
+      + default_route_table_id           = (known after apply)
+      + default_security_group_id        = (known after apply)
+      + dhcp_options_id                  = (known after apply)
+      + enable_classiclink               = false
+      + enable_classiclink_dns_support   = false
+      + enable_dns_hostnames             = true
+      + enable_dns_support               = true
+      + id                               = (known after apply)
+      + instance_tenancy                 = "default"
+      + ipv6_association_id              = (known after apply)
+      + ipv6_cidr_block                  = (known after apply)
+      + main_route_table_id              = (known after apply)
+      + owner_id                         = (known after apply)
+      + tags                             = {
+          + "Environment" = "dev"
+          + "Terraform"   = "true"
+        }
+    }
+
+  # module.vpc.aws_subnet.private-subnet[0] will be created
+  + resource "aws_subnet" "private-subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "eu-west-1a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.1.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + vpc_id                          = (known after apply)
+    }
+
+  # module.vpc.aws_subnet.private-subnet[1] will be created
+  + resource "aws_subnet" "private-subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "eu-west-1b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.2.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + vpc_id                          = (known after apply)
+    }
+
+  # module.vpc.aws_subnet.private-subnet[2] will be created
+  + resource "aws_subnet" "private-subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "eu-west-1c"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.3.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + map_public_ip_on_launch         = false
+      + owner_id                        = (known after apply)
+      + vpc_id                          = (known after apply)
+    }
+
+  # module.vpc.aws_subnet.public-subnet[0] will be created
+  + resource "aws_subnet" "public-subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "eu-west-1a"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.101.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + vpc_id                          = (known after apply)
+    }
+
+  # module.vpc.aws_subnet.public-subnet[1] will be created
+  + resource "aws_subnet" "public-subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "eu-west-1b"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.102.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + vpc_id                          = (known after apply)
+    }
+
+  # module.vpc.aws_subnet.public-subnet[2] will be created
+  + resource "aws_subnet" "public-subnet" {
+      + arn                             = (known after apply)
+      + assign_ipv6_address_on_creation = false
+      + availability_zone               = "eu-west-1c"
+      + availability_zone_id            = (known after apply)
+      + cidr_block                      = "10.0.103.0/24"
+      + id                              = (known after apply)
+      + ipv6_cidr_block                 = (known after apply)
+      + map_public_ip_on_launch         = true
+      + owner_id                        = (known after apply)
+      + vpc_id                          = (known after apply)
+    }
+
+  # module.vpc.aws_internet_gateway.my-vpc-igw will be created
+  + resource "aws_internet_gateway" "my-vpc-igw" {
+      + id       = (known after apply)
+      + owner_id = (known after apply)
+      + vpc_id   = (known after apply)
+    }
+
+  # module.vpc.aws_nat_gateway.my-vpc-ngw[0] will be created
+  + resource "aws_nat_gateway" "my-vpc-ngw" {
+      + allocation_id        = (known after apply)
+      + id                   = (known after apply)
+      + network_interface_ids = (known after apply)
+      + private_ip           = (known after apply)
+      + public_ip            = (known after apply)
+      + subnet_id            = (known after apply)
+    }
+
+  # module.vpc.aws_nat_gateway.my-vpc-ngw[1] will be created
+  + resource "aws_nat_gateway" "my-vpc-ngw" {
+      + allocation_id        = (known after apply)
+      + id                   = (known after apply)
+      + network_interface_ids = (known after apply)
+      + private_ip           = (known after apply)
+      + public_ip            = (known after apply)
+      + subnet_id            = (known after apply)
+    }
+
+  # module.vpc.aws_nat_gateway.my-vpc-ngw[2] will be created
+  + resource "aws_nat_gateway" "my-vpc-ngw" {
+      + allocation_id        = (known after apply)
+      + id                   = (known after apply)
+      + network_interface_ids = (known after apply)
+      + private_ip           = (known after apply)
+      + public_ip            = (known after apply)
+      + subnet_id            = (known after apply)
+    }
+
+  # module.vpc.aws_route_table.my-vpc-private-rt[0] will be created
+  + resource "aws_route_table" "my-vpc-private-rt" {
+      + id              = (known after apply)
+      + owner_id        = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route           = [
+          + {
+              + cidr_block = "0.0.0.0/0"
+              + gateway_id  = aws_internet_gateway.my-vpc-igw.id
+            },
+        ]
+      + vpc_id          = (known after apply)
+    }
+
+  # module.vpc.aws_route_table.my-vpc-private-rt[1] will be created
+  + resource "aws_route_table" "my-vpc-private-rt" {
+      + id              = (known after apply)
+      + owner_id        = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route           = [
+          + {
+              + cidr_block = "0.0.0.0/0"
+              + gateway_id  = aws_internet_gateway.my-vpc-igw.id
+            },
+        ]
+      + vpc_id          = (known after apply)
+    }
+
+  # module.vpc.aws_route_table.my-vpc-private-rt[2] will be created
+  + resource "aws_route_table" "my-vpc-private-rt" {
+      + id              = (known after apply)
+      + owner_id        = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route           = [
+          + {
+              + cidr_block = "0.0.0.0/0"
+              + gateway_id  = aws_internet_gateway.my-vpc-igw.id
+            },
+        ]
+      + vpc_id          = (known after apply)
+    }
+
+  # module.vpc.aws_route_table.my-vpc-public-rt[0] will be created
+  + resource "aws_route_table" "my-vpc-public-rt" {
+      + id              = (known after apply)
+      + owner_id        = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route           = [
+          + {
+              + cidr_block = "0.0.0.0/0"
+              + nat_gateway_id = aws_nat_gateway.my-vpc-ngw[0].id
+            },
+        ]
+      + vpc_id          = (known after apply)
+    }
+
+  # module.vpc.aws_route_table.my-vpc-public-rt[1] will be created
+  + resource "aws_route_table" "my-vpc-public-rt" {
+      + id              = (known after apply)
+      + owner_id        = (known after apply)
+      + propagating_vgws = (known after apply)
+      + route           = [
+          + {
+              + cidr_block = "0.0.0.0/0"
+              + nat_gateway_id = aws_nat_gateway.my-vpc-ngw[1].id
+            },
+        ]
+      + vpc_id          = (known after apply)
+    }
+
+  # module.vpc.aws_route_table.my-vpc-public-rt[2] will be created
+  + resource "aws_route_table" "my-vpc-public-rt" {
+      + id              = (known after
+
