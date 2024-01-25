@@ -78,6 +78,11 @@ terraform_apply_changes() {
     terraform -chdir="$terraform_folder" apply -auto-approve
 }
 
+# Function to destroy infrastructure
+terraform_destroy_infrastructure() {
+    terraform -chdir="$terraform_folder" destroy -auto-approve
+}
+
 # Function to delete all created files and folders
 delete_created_files() {
     rm -rf "$terraform_folder"
@@ -95,6 +100,7 @@ create_terraform_files
 retrieve_module
 terraform_check_plan
 terraform_apply_changes
+terraform_destroy_infrastructure
 delete_created_files
 
 # Log the script end time
