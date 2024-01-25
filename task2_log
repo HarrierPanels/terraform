@@ -1,6 +1,6 @@
 ++ date
-+ echo 'Script started: Wed Jan 24 22:54:47 UTC 2024'
-Script started: Wed Jan 24 22:54:47 UTC 2024
++ echo 'Script started: Thu Jan 25 18:14:52 UTC 2024'
+Script started: Thu Jan 25 18:14:52 UTC 2024
 + check_terraform
 + check_util terraform
 + command -v terraform
@@ -2813,7 +2813,106 @@ Terraform will perform the following actions:
     }
 
   # module.vpc.aws_nat_gateway.my-vpc-nat-gw[2] will be destroyed
-  - resource "
+  - resource "aws_nat_gateway" "my-vpc-nat-gw" {
+      - allocation_id        = "eipalloc-0123456789abcdef2" # Example allocation ID
+      - id                   = "nat-0123456789abcdef2" # Example NAT gateway ID
+      - network_interface_ids = [
+          - "eni-0123456789abcdef2",
+        ]
+      - private_ip           = "10.0.2.10" # Example private IP address
+      - public_ip            = "203.0.113.3" # Example public IP address
+      - subnet_id            = "subnet-0123456789abcdef2" # Example subnet ID
+      - tags                 = {
+          - "Name" = "my-vpc-nat-gw"
+        }
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-private-subnet[0] will be destroyed
+  - resource "aws_route_table_association" "my-vpc-private-subnet" {
+      - id             = "rtbassoc-0123456789abcdef0" # Example ID
+      - route_table_id = "rtb-0123456789abcdef0" # Example route table ID
+      - subnet_id      = "subnet-0123456789abcdef0" # Example subnet ID
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-private-subnet[1] will be destroyed
+  - resource "aws_route_table_association" "my-vpc-private-subnet" {
+      - id             = "rtbassoc-0123456789abcdef1" # Example ID
+      - route_table_id = "rtb-0123456789abcdef1" # Example route table ID
+      - subnet_id      = "subnet-0123456789abcdef1" # Example subnet ID
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-private-subnet[2] will be destroyed
+  - resource "aws_route_table_association" "my-vpc-private-subnet" {
+      - id             = "rtbassoc-0123456789abcdef2" # Example ID
+      - route_table_id = "rtb-0123456789abcdef2" # Example route table ID
+      - subnet_id      = "subnet-0123456789abcdef2" # Example subnet ID
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-public-subnet[0] will be destroyed
+  - resource "aws_route_table_association" "my-vpc-public-subnet" {
+      - id             = "rtbassoc-0123456789abcdef3" # Example ID
+      - route_table_id = "rtb-0123456789abcdef3" # Example route table ID
+      - subnet_id      = "subnet-0123456789abcdef3" # Example subnet ID
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-public-subnet[1] will be destroyed
+  - resource "aws_route_table_association" "my-vpc-public-subnet" {
+      - id             = "rtbassoc-0123456789abcdef4" # Example ID
+      - route_table_id = "rtb-0123456789abcdef4" # Example route table ID
+      - subnet_id      = "subnet-0123456789abcdef4" # Example subnet ID
+    }
+
+  # module.vpc.aws_route_table_association.my-vpc-public-subnet[2] will be destroyed
+  - resource "aws_route_table_association" "my-vpc-public-subnet" {
+      - id             = "rtbassoc-0123456789abcdef5" # Example ID
+      - route_table_id = "rtb-0123456789abcdef5" # Example route table ID
+      - subnet_id      = "subnet-0123456789abcdef5" # Example subnet ID
+    }
+
+  # module.vpc.aws_subnet.my-vpc-subnet[0] will be destroyed
+  - resource "aws_subnet" "my-vpc-subnet" {
+      - arn                             = "arn:aws:ec2:eu-east-1:012345678901:subnet/subnet-0123456789abcdef0" # Example ARN
+      - assign_ipv6_address_on_creation = false
+      - availability_zone               = "eu-east-1a"
+      - availability_zone_id            = "euaz-0123456789abcdef0" # Example Availability Zone ID
+      - cidr_block                      = "10.0.0.0/16"
+      - id                              = "subnet-0123456789abcdef0" # Example ID
+      - ipv6_cidr_block                 = "2001:db8::/64" # Example IPv6 CIDR block
+      - map_public_ip_on_launch         = true
+      - owner_id                        = "012345678901" # Example owner ID
+      - vpc_id                          = "vpc-0e21bc8c7f40c519b" # Example VPC ID
+    }
+
+  # module.vpc.aws_subnet.my-vpc-subnet[1] will be destroyed
+  ####### more code here
 
 
+  # module.vpc.aws_subnet.my-vpc-subnet[2] will be destroyed
+  - resource "aws_subnet" "my-vpc-subnet" {
+      - arn                             = "arn:aws:ec2:eu-east-1:012345678901:subnet/subnet-0123456789abcdef2" # Example ARN
+      - assign_ipv6_address_on_creation = false
+      - availability_zone               = "eu-east-1c"
+      - availability_zone_id            = "euaz-0123456789abcdef2" # Example Availability Zone ID
+      - cidr_block                      = "10.0.0.0/16"
+      - id                              = "subnet-0123456789abcdef2" # Example ID
+      - ipv6_cidr_block                 = "2001:db8::/64" # Example IPv6 CIDR block
+      - map_public_ip_on_launch         = true
+      - owner_id                        = "012345678901" # Example owner ID
+      - vpc_id                          = "vpc-0e21bc8c7f40c519b" # Example VPC ID
+    }
 
+Plan: 23 to add, 0 to change, 23 to destroy.
+
+Changes to Outputs:
+  - vpc_id = "vpc-0e21bc8c7f40c519b" -> null
+
+module.vpc: Destroying...
+module.vpc: Destruction complete after 2s
+
+Destroy complete! Resources: 23 destroyed.
+
++ delete_created_files
++ rm -rf task2
+++ date
++ echo 'Script completed: Thu Jan 25 18:19:22 UTC 2024'
+Script completed: Thu Jan 25 18:19:22 UTC 2024
