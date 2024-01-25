@@ -41,30 +41,41 @@ check_terraform() {
     fi
 }
 
+# Function to create Terraform folder and main.tf file
+create_terraform_files() {
+    mkdir -p "$terraform_folder"
+    cat <<EOF > "$terraform_file"
+provider "aws" {
+  profile = "$profile_name"
+}
+EOF
+}
+
 # Function to retrieve and include Terraform module code
 retrieve_module() {
-    mkdir -p "$terraform_folder"
 
     # Fetch the content from the URL
     content=$(curl -s "$module_source")
 
     # Extract the HCL code between "```hcl" and "```"
-    hcl_code=$(echo "$content" | awk '/module "vpc" {/,/}/ {print} /}/ {exit}')
+    hcl_code=$(echo "$content" | awk '/module "vpc" {/,/}/ {print} /}/ {exit}' |
+    sed "s/\"eu-west-1a\"/\""$region"a\"/g; s/\"eu-west-1b\"/\""$region"b\"/g; s/\"eu-west-1c\"/\""$region"c\"/g")
 
     # Append the HCL code to the main.tf file
-    echo "$hcl_code" > "$terraform_file"
-cat "$terraform_file"
+    echo "$hcl_code" >> "$terraform_file"
+    # Append the closing brace } to the file
+    echo "}" >> "$terraform_file"
 }
 
 # Function to check execution plan
 terraform_check_plan() {
-    AWS_PROFILE="$profile_name" terraform -chdir="$terraform_folder" init
-    AWS_PROFILE="$profile_name" terraform -chdir="$terraform_folder" plan
+    terraform -chdir="$terraform_folder" init
+    terraform -chdir="$terraform_folder" plan
 }
 
 # Function to apply changes
 terraform_apply_changes() {
-    AWS_PROFILE="$profile_name" terraform -chdir="$terraform_folder" apply -auto-approve
+    terraform -chdir="$terraform_folder" apply -auto-approve
 }
 
 # Function to delete all created files and folders
@@ -80,11 +91,11 @@ echo "Script started: $(date)"
 
 # Main execution
 check_terraform
+create_terraform_files
 retrieve_module
-#terraform_check_plan
-#terraform_apply_changes
-#delete_created_files
+terraform_check_plan
+terraform_apply_changes
+delete_created_files
 
 # Log the script end time
 echo "Script completed: $(date)"
-
