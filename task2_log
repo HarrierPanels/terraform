@@ -24,7 +24,7 @@ module "vpc" {
   name = "my-vpc"
   cidr = "10.0.0.0/16"
 
-  azs             = ["eu-east-1a", "eu-east-1b", "eu-east-1c"]
+  azs             = ["us-east-1a", "us-east-1b", "us-east-1c"]
   private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 
@@ -720,7 +720,7 @@ Apache 2 Licensed. See [LICENSE](https://github.com/terraform-aws-modules/terraf
 * Russia has [illegally annexed Crimea in 2014](https://en.wikipedia.org/wiki/Annexation_of_Crimea_by_the_Russian_Federation) and [brought the war in Donbas](https://en.wikipedia.org/wiki/War_in_Donbas) followed by [full-scale invasion of Ukraine in 2022](https://en.wikipedia.org/wiki/2022_Russian_invasion_of_Ukraine).
 * Russia has brought sorrow and devastations to millions of Ukrainians, killed [thousands of innocent people](https://www.ohchr.org/en/news/2023/06/ukraine-civilian-casualty-update-19-june-2023), damaged thousands of buildings including [critical infrastructure](https://www.aljazeera.com/gallery/2022/12/17/russia-launches-another-major-missile-attack-on-ukraine), caused ecocide by [blowing up a dam](https://www.reuters.com/world/europe/ukraine-security-service-says-it-intercepted-call-proving-russia-destroyed-2023-06-09/), [bombed theater](https://www.cnn.com/2022/03/16/europe/ukraine-mariupol-bombing-theater-intl/index.html) in Mariupol that had "Children" marking on the ground, [raped men and boys](https://www.theguardian.com/world/2022/may/03/men-and-boys-among-alleged-victims-by-russian-soldiers-in-ukraine), [deported children](https://www.bbc.com/news/world-europe-64992727) in the occupied territoris, and forced [millions of people](https://www.unrefugees.org/emergencies/ukraine/) to flee.
 * [Putin khuylo!](https://en.wikipedia.org/wiki/Putin_khuylo!)'
-++ sed 's/"eu-east-1a"/"us-east-1a"/g; s/"eu-east-1b"/"us-east-1b"/g; s/"eu-east-1c"/"us-east-1c"/g'
+++ sed 's/"us-east-1a"/"us-east-1a"/g; s/"us-east-1b"/"us-east-1b"/g; s/"us-east-1c"/"us-east-1c"/g'
 ++ awk '/module "vpc" {/,/}/ {print} /}/ {exit}'
 ++ echo '# AWS VPC Terraform module
 
@@ -737,7 +737,7 @@ module "vpc" {
   name = "my-vpc"
   cidr = "10.0.0.0/16"
 
-  azs             = ["eu-east-1a", "eu-east-1b", "eu-east-1c"]
+  azs             = ["us-east-1a", "us-east-1b", "us-east-1c"]
   private_subnets = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   public_subnets  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
 
@@ -1471,31 +1471,24 @@ Apache 2 Licensed. See [LICENSE](https://github.com/terraform-aws-modules/terraf
 + terraform_check_plan
 + terraform -chdir=task2 init
 
-[0m[1mInitializing the backend...[0m
-[0m[1mInitializing modules...[0m
-Downloading registry.terraform.io/terraform-aws-modules/vpc/aws 5.5.1 for vpc...
+tializing the backend..tializing modules..
+wnloading registry.terraform.io/terraform-aws-modules/vpc/aws 5.5.1 for vpc...
 - vpc in .terraform/modules/vpc
 
-[0m[1mInitializing provider plugins...[0m
-- Finding hashicorp/aws versions matching ">= 5.20.0"...
+tshicorp/aws versions matching ">= 5.20.0"...
 - Installing hashicorp/aws v5.33.0...
 - Installed hashicorp/aws v5.33.0 (signed by HashiCorp)
 
-Terraform has created a lock file [1m.terraform.lock.hcl[0m to record the provider
-selections it made above. Include this file in your version control repository
+Terraform has created a lock file ializing provirform.lock.hcldr plugins..elections it made above. Include this file in your version control repository
 so that Terraform can guarantee to make the same selections by default when
-you run "terraform init" in the future.[0m
-
-[0m[1m[32mTerraform has been successfully initialized![0m[32m[0m
-[0m[32m
-You may now begin working with Terraform. Try running "terraform plan" to see
+you run "terraform init" in the future.rform has been successfully initialized!
+u may now begin working with Terraform. Try running "terraform plan" to see
 any changes that are required for your infrastructure. All Terraform commands
 should now work.
 
 If you ever set or change modules or backend configuration for Terraform,
 rerun this command to reinitialize your working directory. If you forget, other
-commands will detect it and remind you to do so if necessary.[0m
-+ terraform -chdir=task2 plan
+commands will detect it and remind you to do so if necessaryrform -chdir=task2 plan
 
 Refreshing Terraform state in-memory prior to plan...
 The refreshed state will be used to calculate this plan, but will not be
@@ -1538,7 +1531,7 @@ Terraform will perform the following actions:
   + resource "aws_subnet" "private-subnet" {
       + arn                             = (known after apply)
       + assign_ipv6_address_on_creation = false
-      + availability_zone               = "eu-east-1a"
+      + availability_zone               = "us-east-1a"
       + availability_zone_id            = (known after apply)
       + cidr_block                      = "10.0.1.0/24"
       + id                              = (known after apply)
@@ -1552,7 +1545,7 @@ Terraform will perform the following actions:
   + resource "aws_subnet" "private-subnet" {
       + arn                             = (known after apply)
       + assign_ipv6_address_on_creation = false
-      + availability_zone               = "eu-east-1b"
+      + availability_zone               = "us-east-1b"
       + availability_zone_id            = (known after apply)
       + cidr_block                      = "10.0.2.0/24"
       + id                              = (known after apply)
@@ -1566,7 +1559,7 @@ Terraform will perform the following actions:
   + resource "aws_subnet" "private-subnet" {
       + arn                             = (known after apply)
       + assign_ipv6_address_on_creation = false
-      + availability_zone               = "eu-east-1c"
+      + availability_zone               = "us-east-1c"
       + availability_zone_id            = (known after apply)
       + cidr_block                      = "10.0.3.0/24"
       + id                              = (known after apply)
@@ -1580,7 +1573,7 @@ Terraform will perform the following actions:
   + resource "aws_subnet" "public-subnet" {
       + arn                             = (known after apply)
       + assign_ipv6_address_on_creation = false
-      + availability_zone               = "eu-east-1a"
+      + availability_zone               = "us-east-1a"
       + availability_zone_id            = (known after apply)
       + cidr_block                      = "10.0.101.0/24"
       + id                              = (known after apply)
@@ -1594,7 +1587,7 @@ Terraform will perform the following actions:
   + resource "aws_subnet" "public-subnet" {
       + arn                             = (known after apply)
       + assign_ipv6_address_on_creation = false
-      + availability_zone               = "eu-east-1b"
+      + availability_zone               = "us-east-1b"
       + availability_zone_id            = (known after apply)
       + cidr_block                      = "10.0.102.0/24"
       + id                              = (known after apply)
@@ -1608,7 +1601,7 @@ Terraform will perform the following actions:
   + resource "aws_subnet" "public-subnet" {
       + arn                             = (known after apply)
       + assign_ipv6_address_on_creation = false
-      + availability_zone               = "eu-east-1c"
+      + availability_zone               = "us-east-1c"
       + availability_zone_id            = (known after apply)
       + cidr_block                      = "10.0.103.0/24"
       + id                              = (known after apply)
@@ -1879,7 +1872,7 @@ Terraform will perform the following actions:
   + resource "aws_subnet" "private-subnet" {
       + arn                             = (known after apply)
       + assign_ipv6_address_on_creation = false
-      + availability_zone               = "eu-east-1a"
+      + availability_zone               = "us-east-1a"
       + availability_zone_id            = (known after apply)
       + cidr_block                      = "10.0.1.0/24"
       + id                              = (known after apply)
@@ -1893,7 +1886,7 @@ Terraform will perform the following actions:
   + resource "aws_subnet" "private-subnet" {
       + arn                             = (known after apply)
       + assign_ipv6_address_on_creation = false
-      + availability_zone               = "eu-east-1b"
+      + availability_zone               = "us-east-1b"
       + availability_zone_id            = (known after apply)
       + cidr_block                      = "10.0.2.0/24"
       + id                              = (known after apply)
@@ -1907,7 +1900,7 @@ Terraform will perform the following actions:
   + resource "aws_subnet" "private-subnet" {
       + arn                             = (known after apply)
       + assign_ipv6_address_on_creation = false
-      + availability_zone               = "eu-east-1c"
+      + availability_zone               = "us-east-1c"
       + availability_zone_id            = (known after apply)
       + cidr_block                      = "10.0.3.0/24"
       + id                              = (known after apply)
@@ -1921,7 +1914,7 @@ Terraform will perform the following actions:
   + resource "aws_subnet" "public-subnet" {
       + arn                             = (known after apply)
       + assign_ipv6_address_on_creation = false
-      + availability_zone               = "eu-east-1a"
+      + availability_zone               = "us-east-1a"
       + availability_zone_id            = (known after apply)
       + cidr_block                      = "10.0.101.0/24"
       + id                              = (known after apply)
@@ -1935,7 +1928,7 @@ Terraform will perform the following actions:
   + resource "aws_subnet" "public-subnet" {
       + arn                             = (known after apply)
       + assign_ipv6_address_on_creation = false
-      + availability_zone               = "eu-east-1b"
+      + availability_zone               = "us-east-1b"
       + availability_zone_id            = (known after apply)
       + cidr_block                      = "10.0.102.0/24"
       + id                              = (known after apply)
@@ -1949,7 +1942,7 @@ Terraform will perform the following actions:
   + resource "aws_subnet" "public-subnet" {
       + arn                             = (known after apply)
       + assign_ipv6_address_on_creation = false
-      + availability_zone               = "eu-east-1c"
+      + availability_zone               = "us-east-1c"
       + availability_zone_id            = (known after apply)
       + cidr_block                      = "10.0.103.0/24"
       + id                              = (known after apply)
