@@ -1,0 +1,1104 @@
+.
+├── .git
+│   ├── branches
+│   ├── hooks
+│   │   ├── applypatch-msg.sample
+│   │   ├── commit-msg.sample
+│   │   ├── fsmonitor-watchman.sample
+│   │   ├── post-update.sample
+│   │   ├── pre-applypatch.sample
+│   │   ├── pre-commit.sample
+│   │   ├── pre-merge-commit.sample
+│   │   ├── pre-push.sample
+│   │   ├── pre-rebase.sample
+│   │   ├── pre-receive.sample
+│   │   ├── prepare-commit-msg.sample
+│   │   ├── push-to-checkout.sample
+│   │   └── update.sample
+│   ├── info
+│   │   └── exclude
+│   ├── logs
+│   │   ├── refs
+│   │   │   ├── heads
+│   │   │   │   └── master
+│   │   │   └── remotes
+│   │   │       └── origin
+│   │   │           └── HEAD
+│   │   └── HEAD
+│   ├── objects
+│   │   ├── info
+│   │   └── pack
+│   │       ├── pack-a0947114e7e33fce6a9863e3ff011c4dc892549a.idx
+│   │       └── pack-a0947114e7e33fce6a9863e3ff011c4dc892549a.pack
+│   ├── refs
+│   │   ├── heads
+│   │   │   └── master
+│   │   ├── remotes
+│   │   │   └── origin
+│   │   │       └── HEAD
+│   │   └── tags
+│   ├── HEAD
+│   ├── config
+│   ├── description
+│   ├── index
+│   └── packed-refs
+├── deploy-templates
+│   ├── kh-escheduler-install-escheduler-develop-deploy.yaml
+│   ├── kh-escheduler-install-escheduler-devtest-deploy.yaml
+│   ├── kh-escheduler-install-escheduler-master-deploy.yaml
+│   ├── kh-escheduler-install-escheduler-qa-deploy.yaml
+│   └── kh-escheduler.yaml
+├── docs
+│   ├── new_c4_l1_context_view.puml
+│   ├── new_c4_l2_container_view.puml
+│   ├── new_c4_l3_component_view.puml
+│   └── new_c4_l4_deployment_view.puml
+├── paas-env
+│   ├── Dockerfile
+│   ├── deploy-template-prod.yaml
+│   ├── deploy-template-stage.yaml
+│   ├── deploy-template.yaml
+│   └── guest.epam.com.keystore
+├── src
+│   ├── main
+│   │   ├── java
+│   │   │   └── com
+│   │   │       └── epam
+│   │   │           └── preproduction
+│   │   │               ├── config
+│   │   │               │   └── security
+│   │   │               │       ├── cert
+│   │   │               │       │   └── CertUtils.java
+│   │   │               │       ├── config
+│   │   │               │       │   ├── oauth2client
+│   │   │               │       │   │   ├── OAuth2ClientManagerConfiguration.java
+│   │   │               │       │   │   ├── OAuth2Common.java
+│   │   │               │       │   │   ├── OAuth2TokenExchangeAuthorizedClientProvider.java
+│   │   │               │       │   │   ├── OAuth2TokenExchangeGrantRequest.java
+│   │   │               │       │   │   └── OAuth2TokenExchangeGrantRequestEntityConverter.java
+│   │   │               │       │   ├── AppConfig.java
+│   │   │               │       │   ├── InterceptorRegistration.java
+│   │   │               │       │   ├── MethodSecurityConfig.java
+│   │   │               │       │   ├── WebSecurityConfig.java
+│   │   │               │       │   └── WebSecurityConfigForTest.java
+│   │   │               │       ├── model
+│   │   │               │       │   ├── AuthenticatedPrincipal.java
+│   │   │               │       │   └── Oauth2ClientResources.java
+│   │   │               │       └── service
+│   │   │               │           ├── AbstractUserInfoTokenServices.java
+│   │   │               │           └── CorporateJsonWebTokenUserInfoDecodingServices.java
+│   │   │               ├── controller
+│   │   │               │   ├── AccessDeniedExceptionHandler.java
+│   │   │               │   ├── ArchiveController.java
+│   │   │               │   ├── BackOfficeController.java
+│   │   │               │   ├── CommonController.java
+│   │   │               │   ├── ConfirmationPageController.java
+│   │   │               │   ├── DashBoardPageController.java
+│   │   │               │   ├── DateSelectionController.java
+│   │   │               │   ├── ErrorControllerImpl.java
+│   │   │               │   ├── EventController.java
+│   │   │               │   ├── FrontOfficeController.java
+│   │   │               │   ├── HelpPageController.java
+│   │   │               │   ├── InfoPageController.java
+│   │   │               │   ├── ParticipantController.java
+│   │   │               │   ├── ParticipantRegistrationController.java
+│   │   │               │   ├── PermissionsPageController.java
+│   │   │               │   ├── RestExceptionHandler.java
+│   │   │               │   ├── SearchController.java
+│   │   │               │   ├── TimeSelectionPageController.java
+│   │   │               │   ├── TimeSlotController.java
+│   │   │               │   ├── UserAccessController.java
+│   │   │               │   ├── UserController.java
+│   │   │               │   └── WelcomePageController.java
+│   │   │               ├── dao
+│   │   │               │   ├── impl
+│   │   │               │   │   ├── ArchiveInfoDAOImpl.java
+│   │   │               │   │   ├── EventInfoDAOImpl.java
+│   │   │               │   │   └── LocationDAOImpl.java
+│   │   │               │   ├── ArchiveInfoDAO.java
+│   │   │               │   ├── EventInfoDAO.java
+│   │   │               │   └── LocationDAO.java
+│   │   │               ├── dto
+│   │   │               │   ├── email
+│   │   │               │   │   ├── EventUserMailDto.java
+│   │   │               │   │   └── ParticipantTimeSlotMailDto.java
+│   │   │               │   ├── quartz
+│   │   │               │   │   └── ParticipantNotificationDto.java
+│   │   │               │   ├── ArchiveDTO.java
+│   │   │               │   ├── ArchiveTimelapseDTO.java
+│   │   │               │   ├── ClearCriteriaDTO.java
+│   │   │               │   ├── CloudflareResponseDTO.java
+│   │   │               │   ├── EventChildDTO.java
+│   │   │               │   ├── EventChildTimeSlotsDTO.java
+│   │   │               │   ├── EventDTO.java
+│   │   │               │   ├── EventDateSelectionDTO.java
+│   │   │               │   ├── EventInfoDTO.java
+│   │   │               │   ├── EventModificationDTO.java
+│   │   │               │   ├── EventOwnerDTO.java
+│   │   │               │   ├── EventTimeSlotsDTO.java
+│   │   │               │   ├── ParticipantDTO.java
+│   │   │               │   ├── PublicProfileDto.java
+│   │   │               │   ├── SearchArchiveCriteriaDTO.java
+│   │   │               │   ├── SearchEventCriteriaDTO.java
+│   │   │               │   ├── SwapParticipantsDTO.java
+│   │   │               │   ├── TimeSlotChildDTO.java
+│   │   │               │   ├── TimeSlotDTO.java
+│   │   │               │   ├── TimeSlotParticipantsDTO.java
+│   │   │               │   ├── UserAccessDTO.java
+│   │   │               │   ├── UserDTO.java
+│   │   │               │   └── UserRoleDTO.java
+│   │   │               ├── entity
+│   │   │               │   ├── enumeration
+│   │   │               │   │   ├── AccessLevel.java
+│   │   │               │   │   ├── ClearPeriod.java
+│   │   │               │   │   ├── ClearType.java
+│   │   │               │   │   ├── EventStatus.java
+│   │   │               │   │   ├── EventType.java
+│   │   │               │   │   ├── HelpPageType.java
+│   │   │               │   │   ├── ParticipantStatus.java
+│   │   │               │   │   ├── Size.java
+│   │   │               │   │   └── UserRole.java
+│   │   │               │   ├── Archive.java
+│   │   │               │   ├── ArchiveInfo.java
+│   │   │               │   ├── EpamLocationChart.java
+│   │   │               │   ├── Event.java
+│   │   │               │   ├── EventInfo.java
+│   │   │               │   ├── Invitation.java
+│   │   │               │   ├── Location.java
+│   │   │               │   ├── ParentChildView.java
+│   │   │               │   ├── Participant.java
+│   │   │               │   ├── PublicProfile.java
+│   │   │               │   ├── TimeSlot.java
+│   │   │               │   ├── User.java
+│   │   │               │   ├── UserAccess.java
+│   │   │               │   └── UserReport.java
+│   │   │               ├── exception
+│   │   │               │   ├── ESchedulerException.java
+│   │   │               │   ├── ESchedulerRuntimeException.java
+│   │   │               │   ├── ESchedulerValidationException.java
+│   │   │               │   ├── EventStateException.java
+│   │   │               │   ├── IllegalParticipantException.java
+│   │   │               │   ├── IllegalUserException.java
+│   │   │               │   ├── JobParticipantNotificationExecuteException.java
+│   │   │               │   ├── JobSchedulerException.java
+│   │   │               │   ├── MapException.java
+│   │   │               │   ├── MissingMandatoryTokenAttributeException.java
+│   │   │               │   ├── NoVacantSpotTimeSlotException.java
+│   │   │               │   ├── SwapParticipantException.java
+│   │   │               │   ├── ThereIsNoSuchEntityException.java
+│   │   │               │   ├── ThereIsNoSuchEventException.java
+│   │   │               │   ├── ThereIsNoSuchInvitationException.java
+│   │   │               │   ├── ThereIsNoSuchTimeSlotException.java
+│   │   │               │   ├── ThereIsNoSuchUserException.java
+│   │   │               │   ├── TimeSlotUpdateException.java
+│   │   │               │   ├── UnableToExtractPrincipalInfoFromJsonWebTokenException.java
+│   │   │               │   └── UserAccessException.java
+│   │   │               ├── facade
+│   │   │               │   ├── impl
+│   │   │               │   │   ├── ArchiveFacadeImpl.java
+│   │   │               │   │   ├── EventFacadeImpl.java
+│   │   │               │   │   ├── InvitationFacadeImpl.java
+│   │   │               │   │   ├── ParticipantFacadeImpl.java
+│   │   │               │   │   ├── TimeSlotFacadeImpl.java
+│   │   │               │   │   ├── UserAccessFacadeImpl.java
+│   │   │               │   │   └── UserFacadeImpl.java
+│   │   │               │   ├── ArchiveFacade.java
+│   │   │               │   ├── EventFacade.java
+│   │   │               │   ├── InvitationFacade.java
+│   │   │               │   ├── ParticipantFacade.java
+│   │   │               │   ├── TimeSlotFacade.java
+│   │   │               │   ├── UserAccessFacade.java
+│   │   │               │   └── UserFacade.java
+│   │   │               ├── filter
+│   │   │               │   ├── security
+│   │   │               │   │   └── CSPFilter.java
+│   │   │               │   └── useraccess
+│   │   │               │       └── EventPermissionEvaluator.java
+│   │   │               ├── graph
+│   │   │               │   ├── GraphClientProvider.java
+│   │   │               │   ├── GraphService.java
+│   │   │               │   └── GraphServiceImpl.java
+│   │   │               ├── kafka
+│   │   │               │   ├── configs
+│   │   │               │   │   └── ConsumerProperties.java
+│   │   │               │   ├── consumer
+│   │   │               │   │   ├── EpamDatahubLocationChartConsumer.java
+│   │   │               │   │   ├── EpamDatahubLocationChartNodeConsumer.java
+│   │   │               │   │   ├── EpamGdprRemovalConsumer.java
+│   │   │               │   │   ├── EpamPersonPersonalInfoConsumer.java
+│   │   │               │   │   └── PublicUserPersonalInfoConsumer.java
+│   │   │               │   ├── map
+│   │   │               │   │   ├── EpamLocationChartMapper.java
+│   │   │               │   │   ├── EpamLocationChartNodeMapper.java
+│   │   │               │   │   ├── EpamPersonMapper.java
+│   │   │               │   │   └── PublicPersonMapper.java
+│   │   │               │   ├── producer
+│   │   │               │   │   └── RemovalReportProducer.java
+│   │   │               │   ├── service
+│   │   │               │   │   ├── impl
+│   │   │               │   │   │   └── RemovalReportServiceImpl.java
+│   │   │               │   │   └── RemovalReportService.java
+│   │   │               │   ├── KafkaConsumerConfig.java
+│   │   │               │   └── KafkaProducerConfig.java
+│   │   │               ├── mail
+│   │   │               │   └── builder
+│   │   │               │       └── MailContentBuilder.java
+│   │   │               ├── repository
+│   │   │               │   ├── ArchiveRepository.java
+│   │   │               │   ├── EventRepository.java
+│   │   │               │   ├── InvitationRepository.java
+│   │   │               │   ├── LocationChartRepository.java
+│   │   │               │   ├── LocationRepository.java
+│   │   │               │   ├── ParentChildRepository.java
+│   │   │               │   ├── ParticipantRepository.java
+│   │   │               │   ├── PublicProfileRepository.java
+│   │   │               │   ├── TimeSlotRepository.java
+│   │   │               │   ├── UserAccessRepository.java
+│   │   │               │   └── UserRepository.java
+│   │   │               ├── scheduler
+│   │   │               │   └── quartz
+│   │   │               │       ├── EventsStatusJob.java
+│   │   │               │       ├── ParticipantNotificationJob.java
+│   │   │               │       └── SchedulerConfig.java
+│   │   │               ├── service
+│   │   │               │   ├── impl
+│   │   │               │   │   ├── telescope
+│   │   │               │   │   │   ├── config
+│   │   │               │   │   │   │   ├── TelescopeRestTemplateConfiguration.java
+│   │   │               │   │   │   │   ├── TelescopeServiceAuthorizationHeaderInterceptor.java
+│   │   │               │   │   │   │   └── TelescopeTokenService.java
+│   │   │               │   │   │   └── TelescopeSearchService.java
+│   │   │               │   │   ├── ArchiveServiceImpl.java
+│   │   │               │   │   ├── CloudflareTokenServiceImpl.java
+│   │   │               │   │   ├── EmailServiceImpl.java
+│   │   │               │   │   ├── EventServiceImpl.java
+│   │   │               │   │   ├── InvitationServiceImpl.java
+│   │   │               │   │   ├── LocationServiceImpl.java
+│   │   │               │   │   ├── ParticipantNotificationSchedulerServiceImpl.java
+│   │   │               │   │   ├── ParticipantServiceImpl.java
+│   │   │               │   │   ├── PublicProfileSearchService.java
+│   │   │               │   │   ├── PublicProfileServiceImpl.java
+│   │   │               │   │   ├── SchedulerServiceImpl.java
+│   │   │               │   │   ├── TimeSlotServiceImpl.java
+│   │   │               │   │   ├── UserAccessServiceImpl.java
+│   │   │               │   │   ├── UserReportServiceImpl.java
+│   │   │               │   │   └── UserServiceImpl.java
+│   │   │               │   ├── ArchiveService.java
+│   │   │               │   ├── BaseEmailService.java
+│   │   │               │   ├── CloudflareTokenService.java
+│   │   │               │   ├── EmailService.java
+│   │   │               │   ├── EventService.java
+│   │   │               │   ├── InvitationService.java
+│   │   │               │   ├── LocationService.java
+│   │   │               │   ├── ParticipantNotificationSchedulerService.java
+│   │   │               │   ├── ParticipantService.java
+│   │   │               │   ├── PublicProfileService.java
+│   │   │               │   ├── SchedulerService.java
+│   │   │               │   ├── SearchEpamService.java
+│   │   │               │   ├── TimeSlotService.java
+│   │   │               │   ├── UserAccessService.java
+│   │   │               │   ├── UserReportService.java
+│   │   │               │   └── UserService.java
+│   │   │               ├── util
+│   │   │               │   ├── excel
+│   │   │               │   │   ├── table
+│   │   │               │   │   │   ├── ArchiveExcelTable.java
+│   │   │               │   │   │   ├── EventExcelTable.java
+│   │   │               │   │   │   └── UserExcelTable.java
+│   │   │               │   │   ├── ExcelUtil.java
+│   │   │               │   │   └── ExcelWriter.java
+│   │   │               │   ├── hibernate
+│   │   │               │   │   └── interceptor
+│   │   │               │   │       └── NotificationInterceptor.java
+│   │   │               │   ├── mapping
+│   │   │               │   │   ├── ArchiveInfoDTOMapper.java
+│   │   │               │   │   ├── ErrorMessageMapper.java
+│   │   │               │   │   ├── EventDTOMapper.java
+│   │   │               │   │   ├── EventInfoDTOMapper.java
+│   │   │               │   │   ├── EventModificationDTOMapper.java
+│   │   │               │   │   ├── EventOwnerDTOMapper.java
+│   │   │               │   │   ├── ParticipantMapper.java
+│   │   │               │   │   ├── TimeSlotDTOMapper.java
+│   │   │               │   │   ├── TimeSlotParticipantsDTOMapper.java
+│   │   │               │   │   ├── UserAccessDTOMapper.java
+│   │   │               │   │   ├── UserDTOMapper.java
+│   │   │               │   │   └── UserReportMapper.java
+│   │   │               │   ├── rest
+│   │   │               │   │   └── RestClientLoggerInterceptor.java
+│   │   │               │   ├── status
+│   │   │               │   │   └── EventStatusResolver.java
+│   │   │               │   ├── validation
+│   │   │               │   │   ├── entity
+│   │   │               │   │   │   ├── EventValidator.java
+│   │   │               │   │   │   ├── ParticipantValidator.java
+│   │   │               │   │   │   └── UserRoleValidator.java
+│   │   │               │   │   ├── Phone.java
+│   │   │               │   │   ├── TimeZone.java
+│   │   │               │   │   ├── ValidId.java
+│   │   │               │   │   ├── ValidRole.java
+│   │   │               │   │   └── ValueOfEnum.java
+│   │   │               │   ├── ApplicationProps.java
+│   │   │               │   ├── CustomStringEscaperUtil.java
+│   │   │               │   ├── DateWorker.java
+│   │   │               │   ├── EventUtil.java
+│   │   │               │   ├── LinkGenerator.java
+│   │   │               │   ├── ResponseEntityBuilder.java
+│   │   │               │   └── TimezoneUtil.java
+│   │   │               └── Application.java
+│   │   └── resources
+│   │       ├── avsc
+│   │       │   ├── com.epam.cdm.hrms.EpamPersonPersonalInfo.avsc
+│   │       │   ├── epam.cdm.LocationChart.avsc
+│   │       │   ├── epam.cdm.LocationChartNode.avsc
+│   │       │   ├── epam.cdm.PublicUserPersonalInfo.avsc
+│   │       │   ├── epam.gdpr.removal-report-value.avsc
+│   │       │   └── epam.gdpr.removal-requests-value.avsc
+│   │       ├── ldap
+│   │       │   ├── epm-eco-prod.truststore
+│   │       │   ├── kafka.client.keytab
+│   │       │   └── krb5.conf
+│   │       ├── security
+│   │       │   └── cert
+│   │       │       ├── Staging_ADFS_Cert_base64.cer
+│   │       │       ├── rootca.epam.com.crt
+│   │       │       └── sso-keystore.jks
+│   │       ├── sql
+│   │       │   ├── eSchedulerDB.sql
+│   │       │   ├── quartz.sql
+│   │       │   └── \321\201reate_user_for_data_catalog.sql
+│   │       ├── ssl
+│   │       │   ├── epm-eco-int.truststore
+│   │       │   ├── epm-eco-prod.truststore
+│   │       │   ├── guest.epam.com.key
+│   │       │   ├── guest.epam.com.keystore
+│   │       │   └── guest.epam.com.truststore
+│   │       ├── static
+│   │       │   ├── assets
+│   │       │   │   ├── countries.json
+│   │       │   │   └── timezones.json
+│   │       │   ├── bootstrap
+│   │       │   │   ├── css
+│   │       │   │   │   ├── bootstrap-theme.css
+│   │       │   │   │   ├── bootstrap-theme.css.map
+│   │       │   │   │   ├── bootstrap-theme.min.css
+│   │       │   │   │   ├── bootstrap-theme.min.css.map
+│   │       │   │   │   ├── bootstrap.css
+│   │       │   │   │   ├── bootstrap.css.map
+│   │       │   │   │   ├── bootstrap.min.css
+│   │       │   │   │   └── bootstrap.min.css.map
+│   │       │   │   ├── fonts
+│   │       │   │   │   ├── glyphicons-halflings-regular.eot
+│   │       │   │   │   ├── glyphicons-halflings-regular.svg
+│   │       │   │   │   ├── glyphicons-halflings-regular.ttf
+│   │       │   │   │   ├── glyphicons-halflings-regular.woff
+│   │       │   │   │   └── glyphicons-halflings-regular.woff2
+│   │       │   │   └── js
+│   │       │   │       ├── bootstrap.js
+│   │       │   │       ├── bootstrap.min.js
+│   │       │   │       └── npm.js
+│   │       │   ├── css
+│   │       │   │   ├── archive.css
+│   │       │   │   ├── confirmation_page.css
+│   │       │   │   ├── custom-modals.css
+│   │       │   │   ├── dashboard.css
+│   │       │   │   ├── date_selection_page.css
+│   │       │   │   ├── datepicker-styles.css
+│   │       │   │   ├── event_creation.css
+│   │       │   │   ├── event_edit.css
+│   │       │   │   ├── event_edit_group.css
+│   │       │   │   ├── event_edit_personal.css
+│   │       │   │   ├── event_share.css
+│   │       │   │   ├── fonts.css
+│   │       │   │   ├── footer.css
+│   │       │   │   ├── forbidden_page.css
+│   │       │   │   ├── front_office.css
+│   │       │   │   ├── header.css
+│   │       │   │   ├── help_page.css
+│   │       │   │   ├── loader.css
+│   │       │   │   ├── permissions.css
+│   │       │   │   ├── registration.css
+│   │       │   │   ├── table-styles.css
+│   │       │   │   ├── time_selection_page.css
+│   │       │   │   └── welcome_page.css
+│   │       │   ├── fonts
+│   │       │   │   ├── Museo_Sans
+│   │       │   │   │   ├── exljbris\ -\ MuseoSans-100.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSans-100Italic.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSans-300.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSans-300Italic.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSans-500.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSans-500Italic.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSans-700.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSans-700Italic.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSans-900.otf
+│   │       │   │   │   └── exljbris\ -\ MuseoSans-900Italic.otf
+│   │       │   │   ├── Museo_Slab
+│   │       │   │   │   ├── exljbris\ -\ MuseoSlab-100.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSlab-100Italic.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSlab-300.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSlab-300Italic.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSlab-500.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSlab-500Italic.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSlab-700.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSlab-700Italic.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSlab-900.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSlab-900Italic.otf
+│   │       │   │   │   ├── exljbris\ -\ MuseoSlab-1000.otf
+│   │       │   │   │   └── exljbris\ -\ MuseoSlab-1000Italic.otf
+│   │       │   │   └── Source\ Sans\ Pro
+│   │       │   │       └── OTF
+│   │       │   │           ├── SourceSansPro-Black.otf
+│   │       │   │           ├── SourceSansPro-BlackIt.otf
+│   │       │   │           ├── SourceSansPro-Bold.otf
+│   │       │   │           ├── SourceSansPro-BoldIt.otf
+│   │       │   │           ├── SourceSansPro-ExtraLight.otf
+│   │       │   │           ├── SourceSansPro-ExtraLightIt.otf
+│   │       │   │           ├── SourceSansPro-It.otf
+│   │       │   │           ├── SourceSansPro-Light.otf
+│   │       │   │           ├── SourceSansPro-LightIt.otf
+│   │       │   │           ├── SourceSansPro-Regular.otf
+│   │       │   │           ├── SourceSansPro-Semibold.otf
+│   │       │   │           └── SourceSansPro-SemiboldIt.otf
+│   │       │   ├── img
+│   │       │   │   ├── help
+│   │       │   │   │   ├── archive
+│   │       │   │   │   │   ├── Archive\ page\ overview_html_1b95aafa0arch001.png
+│   │       │   │   │   │   ├── Archive\ page\ overview_html_1b95aafa0arch002.png
+│   │       │   │   │   │   ├── Archive\ page\ overview_html_1b95aafa0arch003.png
+│   │       │   │   │   │   ├── Archive\ page\ overview_html_1b95aafa0arch004.png
+│   │       │   │   │   │   ├── Archive\ page\ overview_html_1b95aafa0arch005.png
+│   │       │   │   │   │   ├── Archive\ page\ overview_html_1b95aafa0arch006.png
+│   │       │   │   │   │   ├── Archive\ page\ overview_html_1b95aafa0arch007.png
+│   │       │   │   │   │   ├── Archive\ page\ overview_html_1b95aafa0arch008.png
+│   │       │   │   │   │   ├── Archive\ page\ overview_html_1b95aafa0arch009.png
+│   │       │   │   │   │   └── Archive\ page\ overview_html_1b95aafa0arch010.png
+│   │       │   │   │   ├── create_event
+│   │       │   │   │   │   ├── Create\ an\ event\ overview_html_3ff31ae265a780c8.png
+│   │       │   │   │   │   ├── Create\ an\ event\ overview_html_4d1277fc8a5c50ee.png
+│   │       │   │   │   │   ├── Create\ an\ event\ overview_html_5d9c8e94153a458b.png
+│   │       │   │   │   │   ├── Create\ an\ event\ overview_html_5ea7844e5a53c745.png
+│   │       │   │   │   │   ├── Create\ an\ event\ overview_html_8cf2250d12544506.png
+│   │       │   │   │   │   ├── Create\ an\ event\ overview_html_95c6051484cddf6f.png
+│   │       │   │   │   │   ├── Create\ an\ event\ overview_html_6620b24cd2be4a2.png
+│   │       │   │   │   │   ├── Create\ an\ event\ overview_html_b2b41bcde960a5.png
+│   │       │   │   │   │   └── Create\ an\ event\ overview_html_c6b7d971e380446c.png
+│   │       │   │   │   ├── dashboard
+│   │       │   │   │   │   ├── Dashboard\ overview_html_3c063bc194b00001.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_3c063bc194b00002.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_3c063bc194b00003.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_3c063bc194b00004.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_3c063bc194b00005.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_3c063bc194b26455.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_3c063bc194c00001.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_3c063bc194d00001.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_3c063bc194d00002.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_3c063bc194d00003.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_3d1f87304211391f.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_4a6dec73ef9931f.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_5e1490711dce2943.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_7c6e6581ffb8a188.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_7ea93c774d56a79a.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_15ca0c8666fd1b97.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_72c0e938392bd44e.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_72f3d105404bf078.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_8228834b9b602e91.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_a2c756c27b400138.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_a3932ada034c64e3.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_b4defdb85a59b87e.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_c358b762eb94c51.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_e55055ab328d3ce7.png
+│   │       │   │   │   │   ├── Dashboard\ overview_html_e659454d9dbc61f.png
+│   │       │   │   │   │   └── Dashboard\ overview_html_ebb1d94c075610b6.png
+│   │       │   │   │   ├── edit_event
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_1d54f4c63f4e4088.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_2f9d7aa3245f198f.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_3d50790091b3bddc.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_4af5c72ff31955e2.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_5ef1869fac442457.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_7fc506e5476ac874.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_8baa6220e6d619a2.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_18f9757095623e36.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_33cf8ed47ba1d51a.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_52ee950866dfa89b.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_72be26b761a726c5.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_91e799b6d5317163.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_407a044365f92632.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_65071a89ea8fcfb7.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_2163651f1b13ae23.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_90711823b4e31997.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_a3cef8c03cd73cad.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_b2b04148684d4a04.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_b3e2b6168dc96c90.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_b5f1f216d7aa7e6d.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_b8442669f42dd83.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_baaffe11c19eb887.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_c1a4844c5dc7f7b0.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_cd745a1aa530e53a.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_d5ad4c3682a57e4.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_d9d96bb39d65b748.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_e3d6012ed9f55c4f.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_e659454d9dbc61f.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_ec31735c8e0fac92.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_ec31735c8e0fac93.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_ed9d007c6f52988d.png
+│   │       │   │   │   │   ├── Edit\ event\ page\ overview_html_f35dce7c80d5c078.png
+│   │       │   │   │   │   └── Edit\ event\ page\ overview_html_fca6da631b69a670.png
+│   │       │   │   │   ├── edit_group_event
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_1b95aafa914d519c.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_1d54f4c63f4e4088.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_1dd7976fefe637cf.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_3d42f4331c953765.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_3d50790091b3bddc.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_4af5c72ff31955e2.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_4d9f8a17329ee3f6.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_6c55390ef01e9936.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_7fc506e5476ac874.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_8a6c19f89537627c.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_8fc95aadf8cf577d.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_9ba3b59f34cfd96.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_9e9d25a12b1d0760.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_18f9757095623e36.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_50c929be80c42fe.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_52ee950866dfa89b.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_6185fbc0a56169e5.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_1483403e2cd460a7.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_2163651f1b13ae23.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_9867631d3f4e286b.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_b7e7781eef5f8c58.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_be4c82c1cc40f93e.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_c377b8d7f09efd48.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_cb1c091b8b9a1f03.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_cd745a1aa530e53a.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_copy.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_copy_16x16.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_d5ad4c3682a57e4.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_d5078f0289a40b59.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_dc2ac5be5c1f98.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_e0874fe0d6edb9c3.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_e5f401d7c238d192.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_e4207fa7dadf47ab.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_ec424a4dbb1b9e50.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_ec31735c8e0fac92.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_ec31735c8e0fac93.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_f0d714ef7ab226e0.png
+│   │       │   │   │   │   ├── Edit\ group\ event\ page\ overview_html_f54d5e3bfe231c54.png
+│   │       │   │   │   │   └── Edit\ group\ event\ page\ overview_html_fd97a50217cff837.png
+│   │       │   │   │   ├── info
+│   │       │   │   │   │   ├── Info\ page\ overview_html_1b95aafa914d519c.png
+│   │       │   │   │   │   ├── Info\ page\ overview_html_2b95aafa914d519c.png
+│   │       │   │   │   │   ├── Info\ page\ overview_html_3b95aafa914d519c.png
+│   │       │   │   │   │   ├── Info\ page\ overview_html_4b95aafa914d519c.png
+│   │       │   │   │   │   ├── Info\ page\ overview_html_5b95aafa914d519c.png
+│   │       │   │   │   │   └── Info\ page\ overview_html_6b95aafa914d519c.png
+│   │       │   │   │   ├── interface_and_navigation
+│   │       │   │   │   │   ├── Interface\ and\ navigation_html_1e78173d82dfc90a.png
+│   │       │   │   │   │   ├── Interface\ and\ navigation_html_2cbdf10ccc96ec5e.png
+│   │       │   │   │   │   ├── Interface\ and\ navigation_html_6c0e9da96b11144c.png
+│   │       │   │   │   │   ├── Interface\ and\ navigation_html_7cdb652d6e82b4c3.png
+│   │       │   │   │   │   ├── Interface\ and\ navigation_html_599ca89db432info.png
+│   │       │   │   │   │   ├── Interface\ and\ navigation_html_599ca89db432939d.png
+│   │       │   │   │   │   ├── Interface\ and\ navigation_html_78347082f89d4cb4.png
+│   │       │   │   │   │   └── Interface\ and\ navigation_html_d14d1f7647573516.png
+│   │       │   │   │   ├── introduction
+│   │       │   │   │   │   └── video1.gif
+│   │       │   │   │   ├── permission
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_1beea5bf797afb4a.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_2a092bb8ff5af5fa.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_3dacbb501892005a.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_4d3f384cd303dff9.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_7f99a4fffcf82c1b.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_9c166c0b02cb0f9a.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_48a661ecc547c3b2.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_582746bcb3fdb770.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_946898e56b155f87.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_987484d8c47161da.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_a9adc4538870a83b.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_a9aef0fce214b9e0.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_bda2933b33ae116f.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_cc45089b3f4ccfd4.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_ccb88dfa5b66d286.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_d57187ce22060650.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_e05c8c062c42003f.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_e7c653ab7ae1557f.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_ec62b2a997a2f5be.png
+│   │       │   │   │   │   ├── Permission\ page\ overview_html_ef2272b771daa2dd.png
+│   │       │   │   │   │   └── Permission\ page\ overview_html_fc746e6ee9df0c66.png
+│   │       │   │   │   ├── registration
+│   │       │   │   │   │   ├── Registration\ on\ an\ event\ overview_html_92c5f4082cd8d11.png
+│   │       │   │   │   │   ├── Registration\ on\ an\ event\ overview_html_93a551e13086ff04.png
+│   │       │   │   │   │   ├── Registration\ on\ an\ event\ overview_html_389f8da659990ec0.png
+│   │       │   │   │   │   ├── Registration\ on\ an\ event\ overview_html_2198d3f968a832ef.png
+│   │       │   │   │   │   ├── Registration\ on\ an\ event\ overview_html_c4ef8c3ea254c550.png
+│   │       │   │   │   │   └── Registration\ on\ an\ event\ overview_html_d1aaa79df632ab7f.png
+│   │       │   │   │   ├── roles
+│   │       │   │   │   │   ├── System\ Roles_html_592b79d38da1c5e7.png
+│   │       │   │   │   │   ├── System\ Roles_html_e8c62809a733b825.png
+│   │       │   │   │   │   └── System\ Roles_html_ec88568f9ccbc529.png
+│   │       │   │   │   └── share_event
+│   │       │   │   │       ├── Share\ event\ page\ overview_html_5bd921a68faaf55d.png
+│   │       │   │   │       ├── Share\ event\ page\ overview_html_9ea6b68a6e540ca2.png
+│   │       │   │   │       ├── Share\ event\ page\ overview_html_52c410d58051623b.png
+│   │       │   │   │       ├── Share\ event\ page\ overview_html_110f91ea375c8e96.png
+│   │       │   │   │       ├── Share\ event\ page\ overview_html_467c8b46f7fd2b3b.png
+│   │       │   │   │       ├── Share\ event\ page\ overview_html_1200c96de34b45fa.png
+│   │       │   │   │       ├── Share\ event\ page\ overview_html_b3ae0eba91711235.png
+│   │       │   │   │       ├── Share\ event\ page\ overview_html_b99e8b203347b438.png
+│   │       │   │   │       ├── Share\ event\ page\ overview_html_e31daf779c7cee0a.png
+│   │       │   │   │       └── Share\ event\ page\ overview_html_f00da627e518b464.png
+│   │       │   │   ├── EPAM_LOGO_WhiteAndBlue.png
+│   │       │   │   ├── add.png
+│   │       │   │   ├── add_hover.png
+│   │       │   │   └── atl.site.png
+│   │       │   ├── jquery-ui
+│   │       │   │   ├── images
+│   │       │   │   │   ├── ui-bg_glass_55_fbf9ee_1x400.png
+│   │       │   │   │   ├── ui-bg_glass_65_ffffff_1x400.png
+│   │       │   │   │   ├── ui-bg_glass_75_dadada_1x400.png
+│   │       │   │   │   ├── ui-bg_glass_75_e6e6e6_1x400.png
+│   │       │   │   │   ├── ui-bg_glass_95_fef1ec_1x400.png
+│   │       │   │   │   ├── ui-bg_highlight-soft_75_cccccc_1x100.png
+│   │       │   │   │   ├── ui-icons_2e83ff_256x240.png
+│   │       │   │   │   ├── ui-icons_222222_256x240.png
+│   │       │   │   │   ├── ui-icons_454545_256x240.png
+│   │       │   │   │   ├── ui-icons_888888_256x240.png
+│   │       │   │   │   └── ui-icons_cd0a0a_256x240.png
+│   │       │   │   ├── jquery-ui.css
+│   │       │   │   ├── jquery-ui.js
+│   │       │   │   ├── jquery-ui.min.css
+│   │       │   │   ├── jquery-ui.min.js
+│   │       │   │   ├── jquery-ui.structure.css
+│   │       │   │   ├── jquery-ui.structure.min.css
+│   │       │   │   ├── jquery-ui.theme.css
+│   │       │   │   └── jquery-ui.theme.min.css
+│   │       │   ├── js
+│   │       │   │   ├── archive.js
+│   │       │   │   ├── common_page_utils.js
+│   │       │   │   ├── dashboard.js
+│   │       │   │   ├── date_selection_page.js
+│   │       │   │   ├── error_display.js
+│   │       │   │   ├── event_creation.js
+│   │       │   │   ├── event_edit.js
+│   │       │   │   ├── event_edit_group.js
+│   │       │   │   ├── event_edit_personal.js
+│   │       │   │   ├── event_read_mode.js
+│   │       │   │   ├── event_share.js
+│   │       │   │   ├── forbidden_page.js
+│   │       │   │   ├── help_page.js
+│   │       │   │   ├── info.js
+│   │       │   │   ├── outlook.js
+│   │       │   │   ├── permissions.js
+│   │       │   │   ├── registration.js
+│   │       │   │   ├── sort_table.js
+│   │       │   │   ├── sort_timeslots.js
+│   │       │   │   ├── string_utils.js
+│   │       │   │   ├── telescope_search.js
+│   │       │   │   ├── time_format.js
+│   │       │   │   └── time_selection_page.js
+│   │       │   └── uui
+│   │       │       ├── css
+│   │       │       │   ├── lib
+│   │       │       │   │   └── components
+│   │       │       │   │       ├── bootstrap-select.min.css
+│   │       │       │   │       ├── datepicker3.css
+│   │       │       │   │       ├── jasny-bootstrap.min.css
+│   │       │       │   │       ├── jquery-ui-timepicker-addon.min.css
+│   │       │       │   │       ├── jquery.mCustomScrollbar.min.css
+│   │       │       │   │       ├── jquery.tagit.css
+│   │       │       │   │       ├── mCSB_buttons.png
+│   │       │       │   │       ├── tagit.ui-zendesk.css
+│   │       │       │   │       └── timepicker.less
+│   │       │       │   ├── uui-accordion.min.css
+│   │       │       │   ├── uui-alerts.min.css
+│   │       │       │   ├── uui-all.min.css
+│   │       │       │   ├── uui-animated-image-panel.min.css
+│   │       │       │   ├── uui-autocomplete.min.css
+│   │       │       │   ├── uui-breadcrumbs.min.css
+│   │       │       │   ├── uui-buttons.min.css
+│   │       │       │   ├── uui-carousel.min.css
+│   │       │       │   ├── uui-core.min.css
+│   │       │       │   ├── uui-datepicker-2.min.css
+│   │       │       │   ├── uui-datepicker.min.css
+│   │       │       │   ├── uui-file-uploader.min.css
+│   │       │       │   ├── uui-form-elements.min.css
+│   │       │       │   ├── uui-image-text.min.css
+│   │       │       │   ├── uui-items-list.min.css
+│   │       │       │   ├── uui-labels.min.css
+│   │       │       │   ├── uui-loaders.min.css
+│   │       │       │   ├── uui-login-panel.min.css
+│   │       │       │   ├── uui-modal.min.css
+│   │       │       │   ├── uui-multiswitch.min.css
+│   │       │       │   ├── uui-pagination.min.css
+│   │       │       │   ├── uui-panels.min.css
+│   │       │       │   ├── uui-popovers.min.css
+│   │       │       │   ├── uui-profile-menu.min.css
+│   │       │       │   ├── uui-profile.min.css
+│   │       │       │   ├── uui-progress-bars.min.css
+│   │       │       │   ├── uui-rating.min.css
+│   │       │       │   ├── uui-search.min.css
+│   │       │       │   ├── uui-show-text.min.css
+│   │       │       │   ├── uui-sliders.min.css
+│   │       │       │   ├── uui-switch.min.css
+│   │       │       │   ├── uui-tables.min.css
+│   │       │       │   ├── uui-tabs.min.css
+│   │       │       │   ├── uui-tagit.min.css
+│   │       │       │   ├── uui-timeline.min.css
+│   │       │       │   ├── uui-timepicker.min.css
+│   │       │       │   └── uui-tooltips.min.css
+│   │       │       ├── fonts
+│   │       │       │   ├── font-awesome
+│   │       │       │   │   ├── css
+│   │       │       │   │   │   ├── font-awesome.css
+│   │       │       │   │   │   └── font-awesome.min.css
+│   │       │       │   │   ├── fonts
+│   │       │       │   │   │   ├── FontAwesome.otf
+│   │       │       │   │   │   ├── fontawesome-webfont.eot
+│   │       │       │   │   │   ├── fontawesome-webfont.svg
+│   │       │       │   │   │   ├── fontawesome-webfont.ttf
+│   │       │       │   │   │   ├── fontawesome-webfont.woff
+│   │       │       │   │   │   └── fontawesome-webfont.woff2
+│   │       │       │   │   ├── less
+│   │       │       │   │   │   ├── animated.less
+│   │       │       │   │   │   ├── bordered-pulled.less
+│   │       │       │   │   │   ├── core.less
+│   │       │       │   │   │   ├── fixed-width.less
+│   │       │       │   │   │   ├── font-awesome.less
+│   │       │       │   │   │   ├── icons.less
+│   │       │       │   │   │   ├── larger.less
+│   │       │       │   │   │   ├── list.less
+│   │       │       │   │   │   ├── mixins.less
+│   │       │       │   │   │   ├── path.less
+│   │       │       │   │   │   ├── rotated-flipped.less
+│   │       │       │   │   │   ├── spinning.less
+│   │       │       │   │   │   ├── stacked.less
+│   │       │       │   │   │   └── variables.less
+│   │       │       │   │   └── scss
+│   │       │       │   │       ├── _animated.scss
+│   │       │       │   │       ├── _bordered-pulled.scss
+│   │       │       │   │       ├── _core.scss
+│   │       │       │   │       ├── _fixed-width.scss
+│   │       │       │   │       ├── _icons.scss
+│   │       │       │   │       ├── _larger.scss
+│   │       │       │   │       ├── _list.scss
+│   │       │       │   │       ├── _mixins.scss
+│   │       │       │   │       ├── _path.scss
+│   │       │       │   │       ├── _rotated-flipped.scss
+│   │       │       │   │       ├── _spinning.scss
+│   │       │       │   │       ├── _stacked.scss
+│   │       │       │   │       ├── _variables.scss
+│   │       │       │   │       └── font-awesome.scss
+│   │       │       │   ├── font-oswald
+│   │       │       │   │   ├── oswald-bold.eot
+│   │       │       │   │   ├── oswald-bold.otf
+│   │       │       │   │   ├── oswald-bold.svg
+│   │       │       │   │   ├── oswald-bold.ttf
+│   │       │       │   │   ├── oswald-bold.woff
+│   │       │       │   │   ├── oswald-light.eot
+│   │       │       │   │   ├── oswald-light.otf
+│   │       │       │   │   ├── oswald-light.svg
+│   │       │       │   │   ├── oswald-light.ttf
+│   │       │       │   │   ├── oswald-light.woff
+│   │       │       │   │   ├── oswald-regular.eot
+│   │       │       │   │   ├── oswald-regular.otf
+│   │       │       │   │   ├── oswald-regular.svg
+│   │       │       │   │   ├── oswald-regular.ttf
+│   │       │       │   │   └── oswald-regular.woff
+│   │       │       │   └── font-sourcesanspro
+│   │       │       │       ├── sourcesanspro-bold.eot
+│   │       │       │       ├── sourcesanspro-bold.otf
+│   │       │       │       ├── sourcesanspro-bold.svg
+│   │       │       │       ├── sourcesanspro-bold.ttf
+│   │       │       │       ├── sourcesanspro-bold.woff
+│   │       │       │       ├── sourcesanspro-it.eot
+│   │       │       │       ├── sourcesanspro-it.otf
+│   │       │       │       ├── sourcesanspro-it.svg
+│   │       │       │       ├── sourcesanspro-it.ttf
+│   │       │       │       ├── sourcesanspro-it.woff
+│   │       │       │       ├── sourcesanspro-light.eot
+│   │       │       │       ├── sourcesanspro-light.otf
+│   │       │       │       ├── sourcesanspro-light.svg
+│   │       │       │       ├── sourcesanspro-light.ttf
+│   │       │       │       ├── sourcesanspro-light.woff
+│   │       │       │       ├── sourcesanspro-regular.eot
+│   │       │       │       ├── sourcesanspro-regular.otf
+│   │       │       │       ├── sourcesanspro-regular.svg
+│   │       │       │       ├── sourcesanspro-regular.ttf
+│   │       │       │       ├── sourcesanspro-regular.woff
+│   │       │       │       ├── sourcesanspro-semibold.eot
+│   │       │       │       ├── sourcesanspro-semibold.otf
+│   │       │       │       ├── sourcesanspro-semibold.svg
+│   │       │       │       ├── sourcesanspro-semibold.ttf
+│   │       │       │       └── sourcesanspro-semibold.woff
+│   │       │       ├── images
+│   │       │       │   ├── icons
+│   │       │       │   │   ├── datepicker-2.png
+│   │       │       │   │   ├── favicon.ico
+│   │       │       │   │   ├── no-results-responsive.png
+│   │       │       │   │   ├── no-results.png
+│   │       │       │   │   └── no_photo.png
+│   │       │       │   ├── Logo_Epam_Color.svg
+│   │       │       │   ├── Logo_Epam_Gray.svg
+│   │       │       │   ├── Logo_Epam_White.svg
+│   │       │       │   ├── ic_logo_UUi.svg
+│   │       │       │   └── ic_logo_UUi_blue.svg
+│   │       │       └── js
+│   │       │           ├── lib
+│   │       │           │   ├── components
+│   │       │           │   │   ├── DataTables-1.10.2
+│   │       │           │   │   │   ├── css
+│   │       │           │   │   │   │   ├── jquery.dataTables.css
+│   │       │           │   │   │   │   ├── jquery.dataTables.min.css
+│   │       │           │   │   │   │   └── jquery.dataTables_themeroller.css
+│   │       │           │   │   │   ├── images
+│   │       │           │   │   │   │   ├── Sorting\ icons.psd
+│   │       │           │   │   │   │   ├── back_disabled.png
+│   │       │           │   │   │   │   ├── back_enabled.png
+│   │       │           │   │   │   │   ├── back_enabled_hover.png
+│   │       │           │   │   │   │   ├── favicon.ico
+│   │       │           │   │   │   │   ├── forward_disabled.png
+│   │       │           │   │   │   │   ├── forward_enabled.png
+│   │       │           │   │   │   │   ├── forward_enabled_hover.png
+│   │       │           │   │   │   │   ├── sort_asc.png
+│   │       │           │   │   │   │   ├── sort_asc_disabled.png
+│   │       │           │   │   │   │   ├── sort_both.png
+│   │       │           │   │   │   │   ├── sort_desc.png
+│   │       │           │   │   │   │   └── sort_desc_disabled.png
+│   │       │           │   │   │   └── js
+│   │       │           │   │   │       ├── jquery.dataTables.js
+│   │       │           │   │   │       ├── jquery.dataTables.min.js
+│   │       │           │   │   │       └── jquery.js
+│   │       │           │   │   ├── c3-0.4.2
+│   │       │           │   │   │   ├── c3.min.css
+│   │       │           │   │   │   └── c3.min.js
+│   │       │           │   │   ├── d3-3.4.13
+│   │       │           │   │   │   └── d3.min.js
+│   │       │           │   │   ├── bootstrap-datepicker.js
+│   │       │           │   │   ├── bootstrap-select.min.js
+│   │       │           │   │   ├── bootstrap-timepicker.js
+│   │       │           │   │   ├── bootstrap3-typeahead.min.js
+│   │       │           │   │   ├── jasny-bootstrap.min.js
+│   │       │           │   │   ├── jquery.mCustomScrollbar.concat.min.js
+│   │       │           │   │   ├── jquery.sparkline.min.js
+│   │       │           │   │   └── tag-it.min.js
+│   │       │           │   ├── jquery-1.12.0.min.js
+│   │       │           │   └── less.js
+│   │       │           ├── uui-autocomplete.min.js
+│   │       │           ├── uui-core.min.js
+│   │       │           ├── uui-datepicker-2.min.js
+│   │       │           ├── uui-datepicker.min.js
+│   │       │           ├── uui-dropdown.min.js
+│   │       │           ├── uui-global-search.min.js
+│   │       │           ├── uui-multiswitch.min.js
+│   │       │           ├── uui-panel.min.js
+│   │       │           ├── uui-popover.min.js
+│   │       │           ├── uui-rating.min.js
+│   │       │           ├── uui-show-text.min.js
+│   │       │           ├── uui-tabs.min.js
+│   │       │           ├── uui-tagit.min.js
+│   │       │           ├── uui-timepicker.min.js
+│   │       │           ├── uui-tooltip.min.js
+│   │       │           └── uui-tree-grid.min.js
+│   │       ├── templates
+│   │       │   ├── backoffice
+│   │       │   │   ├── archive.html
+│   │       │   │   ├── dashboard.html
+│   │       │   │   ├── event_child_creation.html
+│   │       │   │   ├── event_creation.html
+│   │       │   │   ├── event_edit.html
+│   │       │   │   ├── event_edit_group.html
+│   │       │   │   ├── event_read.html
+│   │       │   │   ├── event_share.html
+│   │       │   │   ├── help.html
+│   │       │   │   ├── info.html
+│   │       │   │   ├── permissions.html
+│   │       │   │   └── template.html
+│   │       │   ├── errors
+│   │       │   │   ├── forbidden.html
+│   │       │   │   └── page_not_found.html
+│   │       │   ├── frontoffice
+│   │       │   │   ├── confirmation_page.html
+│   │       │   │   ├── date_selection_page.html
+│   │       │   │   ├── registration_page.html
+│   │       │   │   ├── template.html
+│   │       │   │   ├── time_selection_page.html
+│   │       │   │   └── welcome_page.html
+│   │       │   ├── help
+│   │       │   │   ├── archive_page.html
+│   │       │   │   ├── contacts.html
+│   │       │   │   ├── create_event.html
+│   │       │   │   ├── dashboard.html
+│   │       │   │   ├── edit_event.html
+│   │       │   │   ├── edit_group_event.html
+│   │       │   │   ├── info_page.html
+│   │       │   │   ├── interface_and_navigation.html
+│   │       │   │   ├── introduction.html
+│   │       │   │   ├── permission.html
+│   │       │   │   ├── popular_solutions.html
+│   │       │   │   ├── registration.html
+│   │       │   │   ├── roles.html
+│   │       │   │   └── share_event.html
+│   │       │   ├── mail
+│   │       │   │   ├── css
+│   │       │   │   │   └── mail.css
+│   │       │   │   ├── change_event_location_mail_template.html
+│   │       │   │   ├── change_event_time_mail_template.html
+│   │       │   │   ├── complete_event_mail_template.html
+│   │       │   │   ├── remove_participant_mail_template.html
+│   │       │   │   └── successfully_registration_mail_template.html
+│   │       │   ├── modal_confirmation_window.html
+│   │       │   ├── modal_delete_user_window.html
+│   │       │   ├── modal_inform_window.html
+│   │       │   └── modal_registration_window.html
+│   │       ├── EpamSecurityExcelTemplate.xlsx
+│   │       ├── application-config.yml
+│   │       ├── application-ldap.yml
+│   │       ├── application-sso.yml
+│   │       ├── application-test.yml
+│   │       ├── application.yml
+│   │       ├── locations_datasource.properties
+│   │       ├── logback-spring.xml
+│   │       ├── lombok.config
+│   │       ├── messages.properties
+│   │       └── timezones.json
+│   └── test
+│       ├── java
+│       │   └── com
+│       │       └── epam
+│       │           └── preproduction
+│       │               ├── config
+│       │               │   └── security
+│       │               │       ├── cert
+│       │               │       │   └── CertUtilsTest.java
+│       │               │       ├── config
+│       │               │       │   ├── EventsPermissionsConfigTest.java
+│       │               │       │   └── PagePermissionTest.java
+│       │               │       └── service
+│       │               │           └── CorporateJsonWebTokenUserInfoDecodingServicesTest.java
+│       │               ├── controller
+│       │               │   ├── ArchiveControllerTest.java
+│       │               │   ├── ConfirmationPageControllerTest.java
+│       │               │   ├── DateSelectionControllerTest.java
+│       │               │   ├── EventControllerTest.java
+│       │               │   ├── InfoControllerTest.java
+│       │               │   ├── ParticipantControllerTest.java
+│       │               │   ├── ParticipantRegistrationControllerTest.java
+│       │               │   ├── SearchControllerTest.java
+│       │               │   ├── TimeSelectionPageControllerTest.java
+│       │               │   ├── TimeSlotControllerTest.java
+│       │               │   ├── UserAccessControllerTest.java
+│       │               │   ├── UserControllerTest.java
+│       │               │   └── WelcomePageControllerTest.java
+│       │               ├── datagenerators
+│       │               │   ├── EventDataGenerator.java
+│       │               │   ├── ParticipantDataGenerator.java
+│       │               │   └── TimeSlotDataGenerator.java
+│       │               ├── facade
+│       │               │   └── impl
+│       │               │       ├── ArchiveFacadeImplTest.java
+│       │               │       ├── EventFacadeImplTest.java
+│       │               │       ├── ParticipantFacadeImplTest.java
+│       │               │       ├── TimeSlotFacadeImplTest.java
+│       │               │       ├── UserAccessFacadeImplTest.java
+│       │               │       └── UserFacadeImplTest.java
+│       │               ├── kafka
+│       │               │   ├── map
+│       │               │   │   ├── EpamPersonMapperTest.java
+│       │               │   │   └── PublicPersonMapperTest.java
+│       │               │   ├── producer
+│       │               │   │   └── RemovalReportProducerTest.java
+│       │               │   ├── service
+│       │               │   │   └── RemovalReportServiceTest.java
+│       │               │   ├── EpamGdprRemovalConsumerTest.java
+│       │               │   ├── EpamPersonPersonalInfoConsumerTest.java
+│       │               │   └── PublicUserPersonalInfoConsumerTest.java
+│       │               ├── repository
+│       │               │   ├── ArchiveInfoDAOImplTest.java
+│       │               │   ├── EventInfoDAOImplTest.java
+│       │               │   ├── EventRepositoryTest.java
+│       │               │   ├── LocationDAOTest.java
+│       │               │   ├── ParticipantRepositoryIntegrationTest.java
+│       │               │   ├── PublicProfileRepositoryTest.java
+│       │               │   ├── TimeSlotRepositoryIntegrationTest.java
+│       │               │   └── UserRepositoryTest.java
+│       │               ├── scheduler
+│       │               │   └── quartz
+│       │               │       ├── EventsStatusJobTest.java
+│       │               │       └── ParticipantNotificationJobTest.java
+│       │               ├── service
+│       │               │   └── impl
+│       │               │       ├── ArchiveServiceImplTest.java
+│       │               │       ├── CloudflareTokenServiceTest.java
+│       │               │       ├── EmailServiceImplTest.java
+│       │               │       ├── EventServiceImplTest.java
+│       │               │       ├── ParticipantNotificationSchedulerServiceImplTest.java
+│       │               │       ├── ParticipantServiceImplIntegrationTest.java
+│       │               │       ├── ParticipantServiceImplTest.java
+│       │               │       ├── PublicProfileSearchServiceTest.java
+│       │               │       ├── PublicProfileServiceImplTest.java
+│       │               │       ├── SchedulerServiceImplTest.java
+│       │               │       ├── TimeSlotServiceImplTest.java
+│       │               │       ├── UserAccessServiceImplTest.java
+│       │               │       ├── UserReportServiceImplTest.java
+│       │               │       ├── UserServiceImplIntegrationTest.java
+│       │               │       └── UserServiceImplTest.java
+│       │               └── util
+│       │                   ├── mapping
+│       │                   │   ├── ArchiveInfoDTOMapperTest.java
+│       │                   │   ├── ErrorMessageMapperTest.java
+│       │                   │   ├── EventDTOMapperTest.java
+│       │                   │   ├── EventInfoDTOMapperTest.java
+│       │                   │   ├── ParticipantMapperTest.java
+│       │                   │   ├── TimeSlotDTOMapperTest.java
+│       │                   │   ├── UserDTOMapperTest.java
+│       │                   │   └── UserReportMapperTest.java
+│       │                   ├── status
+│       │                   │   └── EventStatusResolverTest.java
+│       │                   ├── validation
+│       │                   │   └── entity
+│       │                   │       ├── EventValidatorTest.java
+│       │                   │       ├── ParticipantValidatorTest.java
+│       │                   │       └── UserRoleValidatorTest.java
+│       │                   ├── CustomStringEscaperUtilTest.java
+│       │                   ├── DateWorkerTest.java
+│       │                   ├── EventUtilTest.java
+│       │                   ├── ExcelWriterTest.java
+│       │                   └── LinkGeneratorTest.java
+│       └── resources
+│           ├── excel-test
+│           │   ├── ArchiveTestExcel.xlsx
+│           │   ├── EventTestExcel.xlsx
+│           │   ├── MergeTestExcel.xlsx
+│           │   └── UserReportTestExcel.xlsx
+│           ├── initial-data
+│           │   ├── archive
+│           │   │   └── archive_info_schema_before.sql
+│           │   └── event
+│           │       ├── event_info_schema_before.sql
+│           │       ├── event_schema_after.sql
+│           │       ├── event_schema_before.sql
+│           │       ├── locations_after.sql
+│           │       ├── locations_before.sql
+│           │       ├── participant_service_before.sql
+│           │       ├── time_slot_repository_before.sql
+│           │       └── user_access_repository_before.sql
+│           ├── ssl
+│           │   ├── guest.epam.com.key
+│           │   ├── guest.epam.com.keystore
+│           │   └── guest.epam.com.truststore
+│           ├── application-config.yml
+│           ├── application.yml
+│           └── locations_datasource.properties
+├── stages
+│   ├── CustomBuild.groovy
+│   ├── CustomBuildImage.groovy
+│   ├── CustomTests.groovy
+│   └── Set-build-name.groovy
+├── .gitignore
+├── .gitlab-ci.yml
+├── README.md
+├── build.groovy
+├── code-review.groovy
+├── create-release.groovy
+├── package-lock.json
+└── pom.xml
+
+175 directories, 926 files
