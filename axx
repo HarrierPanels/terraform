@@ -1,47 +1,4 @@
 .
-├── .git
-│   ├── branches
-│   ├── hooks
-│   │   ├── applypatch-msg.sample
-│   │   ├── commit-msg.sample
-│   │   ├── fsmonitor-watchman.sample
-│   │   ├── post-update.sample
-│   │   ├── pre-applypatch.sample
-│   │   ├── pre-commit.sample
-│   │   ├── pre-merge-commit.sample
-│   │   ├── pre-push.sample
-│   │   ├── pre-rebase.sample
-│   │   ├── pre-receive.sample
-│   │   ├── prepare-commit-msg.sample
-│   │   ├── push-to-checkout.sample
-│   │   └── update.sample
-│   ├── info
-│   │   └── exclude
-│   ├── logs
-│   │   ├── refs
-│   │   │   ├── heads
-│   │   │   │   └── master
-│   │   │   └── remotes
-│   │   │       └── origin
-│   │   │           └── HEAD
-│   │   └── HEAD
-│   ├── objects
-│   │   ├── info
-│   │   └── pack
-│   │       ├── pack-a0947114e7e33fce6a9863e3ff011c4dc892549a.idx
-│   │       └── pack-a0947114e7e33fce6a9863e3ff011c4dc892549a.pack
-│   ├── refs
-│   │   ├── heads
-│   │   │   └── master
-│   │   ├── remotes
-│   │   │   └── origin
-│   │   │       └── HEAD
-│   │   └── tags
-│   ├── HEAD
-│   ├── config
-│   ├── description
-│   ├── index
-│   └── packed-refs
 ├── deploy-templates
 │   ├── kh-escheduler-install-escheduler-develop-deploy.yaml
 │   ├── kh-escheduler-install-escheduler-devtest-deploy.yaml
@@ -1101,4 +1058,4 @@
 ├── package-lock.json
 └── pom.xml
 
-175 directories, 926 files
+158 directories, 900 files
